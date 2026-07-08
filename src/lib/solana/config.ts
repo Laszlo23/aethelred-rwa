@@ -18,8 +18,10 @@ export const SOLANA_CONFIG = {
   vaultProgramId: env("VITE_VAULT_PROGRAM_ID", env("VAULT_PROGRAM_ID")),
   euroMintAddress: env("VITE_EURO_MINT_ADDRESS", env("EURO_MINT_ADDRESS")),
   rewardsMintAddress: env("VITE_REWARDS_MINT_ADDRESS", env("REWARDS_MINT_ADDRESS")),
-  usdcMintAddress:
-    env("VITE_USDC_MINT_ADDRESS", env("USDC_MINT_ADDRESS", "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU")),
+  usdcMintAddress: env(
+    "VITE_USDC_MINT_ADDRESS",
+    env("USDC_MINT_ADDRESS", "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"),
+  ),
   treasuryWalletAddress: env("TREASURY_WALLET_ADDRESS", env("VITE_TREASURY_WALLET_ADDRESS")),
   guardianPubkey: env(
     "VITE_GUARDIAN_SIGNER_PUBKEY",

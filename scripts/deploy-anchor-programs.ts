@@ -76,7 +76,10 @@ try {
 
   updateEnv("VITE_SOLANA_NETWORK", "devnet");
   updateEnv("SOLANA_RPC_URL", process.env.SOLANA_RPC_URL ?? "https://api.devnet.solana.com");
-  updateEnv("VITE_SOLANA_RPC_URL", process.env.VITE_SOLANA_RPC_URL ?? "https://api.devnet.solana.com");
+  updateEnv(
+    "VITE_SOLANA_RPC_URL",
+    process.env.VITE_SOLANA_RPC_URL ?? "https://api.devnet.solana.com",
+  );
 
   console.log("Anchor programs deployed. Restart dev server to pick up new env vars.");
 } catch (err) {

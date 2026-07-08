@@ -5,7 +5,14 @@ import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { Connection, Keypair, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+  sendAndConfirmTransaction,
+} from "@solana/web3.js";
 import {
   createAssociatedTokenAccountInstruction,
   createInitializeMint2Instruction,
@@ -46,7 +53,8 @@ process.env.VITE_SOLANA_RPC_URL = RPC;
 process.env.VITE_SOLANA_NETWORK = "localnet";
 
 const { getRegistryProgram, getPassportProgram } = await import("../src/lib/solana/anchor/client");
-const { registryPda, registryConfigPda, passportConfigPda } = await import("../src/lib/solana/anchor/pdas");
+const { registryPda, registryConfigPda, passportConfigPda } =
+  await import("../src/lib/solana/anchor/pdas");
 const { deployRwaShareMint } = await import("../src/lib/solana/rwa-mint-server");
 const { BUILDING_CULTURE_ASSETS } = await import("../src/lib/data/seed-building-culture");
 const { ensureSeeded } = await import("../src/lib/db");
@@ -189,7 +197,9 @@ async function main() {
     try {
       execSync(`solana airdrop 10 --url ${RPC}`, { stdio: "inherit" });
     } catch {
-      console.warn("Airdrop failed — ensure solana-test-validator is running or fund devnet wallet");
+      console.warn(
+        "Airdrop failed — ensure solana-test-validator is running or fund devnet wallet",
+      );
     }
   }
 
@@ -198,7 +208,14 @@ async function main() {
     console.log("Deploying Anchor programs...");
     execSync(
       "mkdir -p target/deploy && cp programs/target/deploy/*.so programs/target/deploy/*-keypair.json target/deploy/ 2>/dev/null; anchor deploy --provider.cluster localnet",
-      { cwd: ROOT, stdio: "inherit", env: { ...process.env, PATH: `${process.env.PATH}:/Users/poker.vibe/.local/share/solana/install/active_release/bin` } },
+      {
+        cwd: ROOT,
+        stdio: "inherit",
+        env: {
+          ...process.env,
+          PATH: `${process.env.PATH}:/Users/poker.vibe/.local/share/solana/install/active_release/bin`,
+        },
+      },
     );
   } else {
     console.log("Devnet mode — skipping anchor deploy (run npm run deploy:anchor first)");
@@ -289,7 +306,13 @@ async function main() {
       (await connection.getAccountInfo(new PublicKey(existing)))?.owner.equals(TOKEN_PROGRAM_ID);
     if (mintOnChain) {
       console.log(`  OK ${bc.symbol} → ${existing}`);
-      await registerOnChain(deployer, bc.slug, existing, Math.round(bc.acquisitionEur * 100), Math.min(99, Math.round(bc.yieldBps / 10)));
+      await registerOnChain(
+        deployer,
+        bc.slug,
+        existing,
+        Math.round(bc.acquisitionEur * 100),
+        Math.min(99, Math.round(bc.yieldBps / 10)),
+      );
       continue;
     }
     if (existing && existing.length > 32) {
@@ -305,7 +328,13 @@ async function main() {
         registryPda: registryPda(bc.slug).toBase58(),
       },
     });
-    await registerOnChain(deployer, bc.slug, deployed.mintAddress, Math.round(bc.acquisitionEur * 100), Math.min(99, Math.round(bc.yieldBps / 10)));
+    await registerOnChain(
+      deployer,
+      bc.slug,
+      deployed.mintAddress,
+      Math.round(bc.acquisitionEur * 100),
+      Math.min(99, Math.round(bc.yieldBps / 10)),
+    );
     console.log(`  DONE ${bc.symbol} mint=${deployed.mintAddress}`);
   }
 

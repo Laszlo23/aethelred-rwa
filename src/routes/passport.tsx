@@ -27,8 +27,8 @@ function PassportPage() {
           <span className="text-editorial text-accent">a living digital identity.</span>
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Every RWA receives a verified passport: value, debt, liquidity, collateral, and
-          Guardian trust score — updated continuously and anchored on Solana.
+          Every RWA receives a verified passport: value, debt, liquidity, collateral, and Guardian
+          trust score — updated continuously and anchored on Solana.
         </p>
         <Link
           to="/create"

@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-07  
 **Scope:** 6 Anchor programs, primary-market purchase flow, devnet deployment  
-**Status:** Pre-devnet — remediations tracked below
+**Status:** Devnet POC — remediations tracked below; third-party audit planned
 
 ---
 

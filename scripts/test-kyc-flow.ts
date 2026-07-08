@@ -58,7 +58,11 @@ async function main() {
   record("approve", approved.status === "approved", `status=${approved.status}`);
 
   const after = await getKyc(wallet);
-  record("verified", after.verified && after.kycTier === "basic", `verified=${after.verified} tier=${after.kycTier}`);
+  record(
+    "verified",
+    after.verified && after.kycTier === "basic",
+    `verified=${after.verified} tier=${after.kycTier}`,
+  );
 
   // Reject path on a second wallet
   const wallet2 = Keypair.generate().publicKey.toBase58();
@@ -71,11 +75,17 @@ async function main() {
     docNumber: "ID999",
     requestedTier: "basic",
   });
-  const rejected = await reviewKyc({ applicationId: app2.id, decision: "reject", note: "Blurry document" });
+  const rejected = await reviewKyc({
+    applicationId: app2.id,
+    decision: "reject",
+    note: "Blurry document",
+  });
   const after2 = await getKyc(wallet2);
   record(
     "reject",
-    rejected.status === "rejected" && !after2.verified && after2.application?.reviewerNote === "Blurry document",
+    rejected.status === "rejected" &&
+      !after2.verified &&
+      after2.application?.reviewerNote === "Blurry document",
     `status=${rejected.status} verified=${after2.verified}`,
   );
 

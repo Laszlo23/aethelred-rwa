@@ -69,7 +69,9 @@ function AssetDetailPage() {
     return (
       <div className="mx-auto max-w-lg px-6 py-32 text-center">
         <h1 className="text-2xl font-semibold">Asset not found</h1>
-        <Link to="/explore" className="mt-4 inline-block text-accent">← Back to explore</Link>
+        <Link to="/explore" className="mt-4 inline-block text-accent">
+          ← Back to explore
+        </Link>
       </div>
     );
   }
@@ -150,10 +152,7 @@ function AssetDetailPage() {
               </div>
             )}
             {activeTab === "Yield" && (
-              <YieldDistributions
-                distributions={asset.recentDistributions}
-                payouts={payouts}
-              />
+              <YieldDistributions distributions={asset.recentDistributions} payouts={payouts} />
             )}
           </div>
         </>
@@ -223,7 +222,9 @@ function AssetDetailPage() {
             {assetAudits.map((a) => (
               <li key={a.id} className="flex justify-between gap-4 py-3">
                 <span>{a.event}</span>
-                <span className="text-muted-foreground">{format(new Date(a.createdAt), "PPp")}</span>
+                <span className="text-muted-foreground">
+                  {format(new Date(a.createdAt), "PPp")}
+                </span>
                 <span className="text-accent">{a.result}</span>
               </li>
             ))}

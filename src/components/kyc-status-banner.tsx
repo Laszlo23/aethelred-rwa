@@ -22,10 +22,7 @@ export function KycStatusBanner({ walletAddress }: KycStatusBannerProps) {
             </p>
           </div>
         </div>
-        <Link
-          to="/profile"
-          className="shrink-0 text-sm font-medium text-accent hover:underline"
-        >
+        <Link to="/profile" className="shrink-0 text-sm font-medium text-accent hover:underline">
           View profile →
         </Link>
       </div>

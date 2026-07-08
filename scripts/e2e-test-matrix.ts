@@ -136,7 +136,10 @@ async function main() {
           shareBps,
         })
       : "";
-    const buyerShareAta = getAssociatedTokenAddressSync(new PublicKey(mintAddress), TEST_WALLET.publicKey);
+    const buyerShareAta = getAssociatedTokenAddressSync(
+      new PublicKey(mintAddress),
+      TEST_WALLET.publicKey,
+    );
     let shareBal = 0;
     try {
       shareBal = Number((await connection.getTokenAccountBalance(buyerShareAta)).value.amount);
@@ -151,9 +154,8 @@ async function main() {
   }
 
   // T5 — indexer sync
-  const { syncWalletSplBalances, reconcileShareHoldingsFromChain } = await import(
-    "../src/workers/chain-indexer"
-  );
+  const { syncWalletSplBalances, reconcileShareHoldingsFromChain } =
+    await import("../src/workers/chain-indexer");
   await syncWalletSplBalances(TEST_WALLET.publicKey.toBase58());
   await reconcileShareHoldingsFromChain(TEST_WALLET.publicKey.toBase58());
   const holding = await prisma.assetShare.findFirst({
@@ -169,7 +171,11 @@ async function main() {
   // T7 — registry on-chain
   const regPda = registryPda(ASSET_SLUG);
   const regAcct = await connection.getAccountInfo(regPda);
-  record("T7", Boolean(regAcct && regAcct.data.length > 0), `registry bytes=${regAcct?.data.length ?? 0}`);
+  record(
+    "T7",
+    Boolean(regAcct && regAcct.data.length > 0),
+    `registry bytes=${regAcct?.data.length ?? 0}`,
+  );
 
   await prisma.$disconnect();
 

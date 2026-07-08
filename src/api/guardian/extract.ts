@@ -1,8 +1,5 @@
 import type { ExtractedAssetFields, GuardianAuditResult } from "@/lib/types";
-import {
-  computeAssetTrustFactors,
-  compositeAssetTrustScore,
-} from "@/lib/trust/scoring";
+import { computeAssetTrustFactors, compositeAssetTrustScore } from "@/lib/trust/scoring";
 
 function parseEuroAmount(text: string): number | null {
   const match = text.match(/€?\s*([\d.,]+)\s*(million|m|k)?/i);
@@ -37,12 +34,21 @@ export function extractAssetFieldsHeuristic(
   }
   const valueCents = parseEuroAmount(naturalLanguage) ?? 2_000_000_00;
   const riskProfile =
-    valueCents > 5_000_000_00 ? "institutional" : valueCents > 1_000_000_00 ? "standard" : "emerging";
+    valueCents > 5_000_000_00
+      ? "institutional"
+      : valueCents > 1_000_000_00
+        ? "standard"
+        : "emerging";
   return {
     location,
     assetType,
     estimatedValueCents: valueCents,
-    documentsNeeded: ["Ownership deed", "Valuation report", "Debt statement", "Insurance certificate"],
+    documentsNeeded: [
+      "Ownership deed",
+      "Valuation report",
+      "Debt statement",
+      "Insurance certificate",
+    ],
     riskProfile,
   };
 }
@@ -114,10 +120,25 @@ export function computeAuditResult(
   trustScore = Math.min(100, Math.max(50, trustScore));
 
   const guardianGrade =
-    trustScore >= 95 ? "A+" : trustScore >= 90 ? "A" : trustScore >= 85 ? "B+" : trustScore >= 80 ? "B" : "C";
+    trustScore >= 95
+      ? "A+"
+      : trustScore >= 90
+        ? "A"
+        : trustScore >= 85
+          ? "B+"
+          : trustScore >= 80
+            ? "B"
+            : "C";
   const collateralRatio = 150;
   const liquidityEstimateCents = Math.max(0, Math.floor(valueCents / 1.5) - debtCents);
-  return { trustScore, collateralRatio, guardianGrade, liquidityEstimateCents, riskProfile, trustFactors: factors };
+  return {
+    trustScore,
+    collateralRatio,
+    guardianGrade,
+    liquidityEstimateCents,
+    riskProfile,
+    trustFactors: factors,
+  };
 }
 
 export function signAttestation(payload: Record<string, unknown>): string {

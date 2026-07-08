@@ -21,7 +21,9 @@ export const Route = createFileRoute("/api/compliance/veriff")({
 
         const wallet = body.vendorData?.trim();
         if (!wallet) {
-          return new Response(JSON.stringify({ error: "Missing wallet in vendorData" }), { status: 400 });
+          return new Response(JSON.stringify({ error: "Missing wallet in vendorData" }), {
+            status: 400,
+          });
         }
 
         const status = body.verification?.status ?? "approved";

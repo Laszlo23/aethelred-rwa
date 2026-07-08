@@ -40,10 +40,7 @@ export function OrderTicket({ terminal }: OrderTicketProps) {
     enabled: !!wallet,
   });
 
-  const maxLev = Math.min(
-    terminal.market.maxLeverage,
-    trust?.maxPerpLeverage ?? 3,
-  );
+  const maxLev = Math.min(terminal.market.maxLeverage, trust?.maxPerpLeverage ?? 3);
   const marginCents = marginEuro * 100;
   const notionalCents = marginCents * leverage;
   const entryPrice = orderType === "limit" ? limitPriceEuro * 100 : terminal.market.indexPriceCents;
@@ -169,7 +166,9 @@ export function OrderTicket({ terminal }: OrderTicketProps) {
         )}
 
         <div>
-          <label className="text-xs text-muted-foreground">Leverage {leverage}x (max {maxLev}x)</label>
+          <label className="text-xs text-muted-foreground">
+            Leverage {leverage}x (max {maxLev}x)
+          </label>
           <input
             type="range"
             min={1}
@@ -215,7 +214,9 @@ export function OrderTicket({ terminal }: OrderTicketProps) {
           {trust && (
             <div className="flex justify-between">
               <dt className="text-muted-foreground">Trust tier</dt>
-              <dd>{trust.trustScore} · max {trust.maxPerpLeverage}x</dd>
+              <dd>
+                {trust.trustScore} · max {trust.maxPerpLeverage}x
+              </dd>
             </div>
           )}
         </dl>
@@ -229,13 +230,13 @@ export function OrderTicket({ terminal }: OrderTicketProps) {
           disabled={!wallet || submit.isPending || isSigningIn}
           onClick={() => submit.mutate()}
           className={`flex w-full items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-semibold disabled:opacity-50 ${
-            side === "long"
-              ? "bg-verified text-white"
-              : "bg-destructive text-white"
+            side === "long" ? "bg-verified text-white" : "bg-destructive text-white"
           }`}
         >
           {(submit.isPending || isSigningIn) && <Loader2 className="h-4 w-4 animate-spin" />}
-          {wallet ? `${side === "long" ? "Long" : "Short"} ${terminal.market.symbol}` : "Connect wallet"}
+          {wallet
+            ? `${side === "long" ? "Long" : "Short"} ${terminal.market.symbol}`
+            : "Connect wallet"}
         </button>
       </div>
     </div>

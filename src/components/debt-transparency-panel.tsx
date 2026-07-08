@@ -34,12 +34,11 @@ export function DebtTransparencyPanel({
       <div>
         <p className="eyebrow">Debt Transparency</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-          Debt is no longer{" "}
-          <span className="text-editorial text-accent">hidden.</span>
+          Debt is no longer <span className="text-editorial text-accent">hidden.</span>
         </h2>
         <p className="mt-3 max-w-xl text-muted-foreground">
-          Every asset shows its full debt position — original value, repayments, and
-          remaining obligations — updated by the Guardian in real time.
+          Every asset shows its full debt position — original value, repayments, and remaining
+          obligations — updated by the Guardian in real time.
         </p>
       </div>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

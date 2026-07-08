@@ -21,8 +21,7 @@ export function SimplePassportCard({
   verified = true,
   className,
 }: SimplePassportCardProps) {
-  const available =
-    availableCents ?? Math.max(0, Math.floor(valueCents / 1.5) - debtCents);
+  const available = availableCents ?? Math.max(0, Math.floor(valueCents / 1.5) - debtCents);
 
   return (
     <div
@@ -52,9 +51,7 @@ export function SimplePassportCard({
         </div>
         <div>
           <dt className="text-xs text-muted-foreground">Available</dt>
-          <dd className="tabular mt-1 font-mono text-lg text-accent">
-            {formatEuro(available)}
-          </dd>
+          <dd className="tabular mt-1 font-mono text-lg text-accent">{formatEuro(available)}</dd>
         </div>
         <div>
           <dt className="text-xs text-muted-foreground">Trust</dt>

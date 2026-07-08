@@ -62,12 +62,24 @@ export function PositionsDock({ wallet, positions, orders, trades }: PositionsDo
                 {positions.map((p) => (
                   <tr key={p.id} className="border-b border-border/50">
                     <td className="px-4 py-2 font-medium">{p.symbol}</td>
-                    <td className={cn("px-4 py-2 capitalize", p.side === "long" ? "text-verified" : "text-destructive")}>
+                    <td
+                      className={cn(
+                        "px-4 py-2 capitalize",
+                        p.side === "long" ? "text-verified" : "text-destructive",
+                      )}
+                    >
                       {p.side} {p.leverage}x
                     </td>
                     <td className="px-4 py-2 text-right tabular-nums">{formatEuro(p.sizeCents)}</td>
-                    <td className="px-4 py-2 text-right tabular-nums">{formatEuro(p.entryPriceCents)}</td>
-                    <td className={cn("px-4 py-2 text-right tabular-nums", p.unrealizedPnlCents >= 0 ? "text-verified" : "text-destructive")}>
+                    <td className="px-4 py-2 text-right tabular-nums">
+                      {formatEuro(p.entryPriceCents)}
+                    </td>
+                    <td
+                      className={cn(
+                        "px-4 py-2 text-right tabular-nums",
+                        p.unrealizedPnlCents >= 0 ? "text-verified" : "text-destructive",
+                      )}
+                    >
                       {formatEuro(p.unrealizedPnlCents)}
                     </td>
                     <td className="px-4 py-2 text-right tabular-nums text-muted-foreground">
@@ -77,7 +89,9 @@ export function PositionsDock({ wallet, positions, orders, trades }: PositionsDo
                       {wallet && (
                         <button
                           type="button"
-                          onClick={() => close.mutate({ data: { walletAddress: wallet, positionId: p.id } })}
+                          onClick={() =>
+                            close.mutate({ data: { walletAddress: wallet, positionId: p.id } })
+                          }
                           className="text-accent hover:underline"
                         >
                           Close
@@ -109,7 +123,9 @@ export function PositionsDock({ wallet, positions, orders, trades }: PositionsDo
                 {orders.map((o) => (
                   <tr key={o.id} className="border-b border-border/50">
                     <td className="px-4 py-2">{o.symbol}</td>
-                    <td className="px-4 py-2 capitalize">{o.side} {o.orderType}</td>
+                    <td className="px-4 py-2 capitalize">
+                      {o.side} {o.orderType}
+                    </td>
                     <td className="px-4 py-2 text-right tabular-nums">
                       {o.priceCents ? formatEuro(o.priceCents) : "Market"}
                     </td>
@@ -118,7 +134,9 @@ export function PositionsDock({ wallet, positions, orders, trades }: PositionsDo
                       {wallet && (
                         <button
                           type="button"
-                          onClick={() => cancel.mutate({ data: { walletAddress: wallet, orderId: o.id } })}
+                          onClick={() =>
+                            cancel.mutate({ data: { walletAddress: wallet, orderId: o.id } })
+                          }
                           className="text-accent hover:underline"
                         >
                           Cancel
@@ -148,7 +166,12 @@ export function PositionsDock({ wallet, positions, orders, trades }: PositionsDo
                   <td className="px-4 py-2 text-muted-foreground">
                     {new Date(t.recordedAt).toLocaleString()}
                   </td>
-                  <td className={cn("px-4 py-2 capitalize", t.side === "long" ? "text-verified" : "text-destructive")}>
+                  <td
+                    className={cn(
+                      "px-4 py-2 capitalize",
+                      t.side === "long" ? "text-verified" : "text-destructive",
+                    )}
+                  >
                     {t.side}
                   </td>
                   <td className="px-4 py-2 text-right tabular-nums">{formatEuro(t.priceCents)}</td>

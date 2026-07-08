@@ -50,10 +50,7 @@ export const getPortfolio = createServerFn({ method: "GET" })
 
     const totalValueCents = mergedHoldings.reduce((s, h) => s + h.valueCents, 0);
     const totalDebtCents = mergedHoldings.reduce((s, h) => s + h.debtCents, 0);
-    const totalAvailableCents = mergedHoldings.reduce(
-      (s, h) => s + h.availableLiquidityCents,
-      0,
-    );
+    const totalAvailableCents = mergedHoldings.reduce((s, h) => s + h.availableLiquidityCents, 0);
 
     const collateralByAsset = new Map<string, number>();
     for (const lp of lendingPositions) {
@@ -118,9 +115,7 @@ export const getPortfolio = createServerFn({ method: "GET" })
 
     const lendingApyBps =
       lendingPositions.length > 0
-        ? Math.round(
-            lendingPositions.reduce((s, p) => s + p.apyBps, 0) / lendingPositions.length,
-          )
+        ? Math.round(lendingPositions.reduce((s, p) => s + p.apyBps, 0) / lendingPositions.length)
         : 0;
 
     const netWorthCents = marketValueCents + totalYieldEarnedCents - lentPrincipalCents;

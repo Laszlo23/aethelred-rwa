@@ -82,10 +82,7 @@ export function rootSeo() {
               name: "Building Culture",
               url: "https://buildingcultureid.space",
               logo: absoluteUrl("/icon-512.png"),
-              sameAs: [
-                "https://buildingcultureid.space",
-                "https://solana.com",
-              ],
+              sameAs: ["https://buildingcultureid.space", "https://solana.com"],
             },
             {
               "@type": "WebSite",

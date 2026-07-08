@@ -147,7 +147,12 @@ export function mapTask(
     timeEstimate: string;
     verificationType: string;
   },
-  completion?: { id: string; status: string; proofUrl: string | null; txSignature: string | null } | null,
+  completion?: {
+    id: string;
+    status: string;
+    proofUrl: string | null;
+    txSignature: string | null;
+  } | null,
 ): TaskDTO {
   return {
     id: t.id,

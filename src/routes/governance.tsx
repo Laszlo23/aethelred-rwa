@@ -38,8 +38,7 @@ function GovernancePage() {
       <header className="mb-14">
         <p className="eyebrow">DAO Governance</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight">
-          Shape the{" "}
-          <span className="text-editorial text-accent">trust layer.</span>
+          Shape the <span className="text-editorial text-accent">trust layer.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
           Vote on protocol parameters. Vote weight scales with verified passport collateral.

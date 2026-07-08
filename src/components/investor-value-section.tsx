@@ -1,11 +1,4 @@
-import {
-  Building2,
-  LineChart,
-  Repeat2,
-  ShieldCheck,
-  TrendingUp,
-  Wallet,
-} from "lucide-react";
+import { Building2, LineChart, Repeat2, ShieldCheck, TrendingUp, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
@@ -19,14 +12,7 @@ interface ValueCardProps {
   cta: { label: string; to: string };
 }
 
-function ValueCard({
-  eyebrow,
-  title,
-  description,
-  bullets,
-  icon: Icon,
-  cta,
-}: ValueCardProps) {
+function ValueCard({ eyebrow, title, description, bullets, icon: Icon, cta }: ValueCardProps) {
   return (
     <article className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-border-strong lg:p-10">
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gold-soft opacity-60 blur-2xl transition-opacity group-hover:opacity-100" />
@@ -36,9 +22,7 @@ function ValueCard({
         </div>
         <p className="eyebrow mt-6">{eyebrow}</p>
         <h3 className="mt-2 text-2xl font-semibold tracking-tight">{title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          {description}
-        </p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
         <ul className="mt-6 space-y-3">
           {bullets.map((bullet) => (
             <li key={bullet} className="flex items-start gap-3 text-sm">
@@ -88,9 +72,9 @@ export function InvestorValueSection() {
             <span className="text-editorial text-accent">tokenized real assets.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            The bank holds the title. We raise community capital to retire the lien and
-            place real assets in token holders&apos; hands — with stays, governance, rent
-            share, and USDC lending against your shares.
+            The bank holds the title. We raise community capital to retire the lien and place real
+            assets in token holders&apos; hands — with stays, governance, rent share, and USDC
+            lending against your shares.
           </p>
         </div>
 
@@ -132,9 +116,9 @@ export function InvestorValueSection() {
                 Verified RWAs are designed to be tradable — not locked in a vault.
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Each asset passport feeds collateral data into perpetual markets, so
-                investors can express conviction on real estate and income streams
-                with the same clarity they expect from modern trading platforms.
+                Each asset passport feeds collateral data into perpetual markets, so investors can
+                express conviction on real estate and income streams with the same clarity they
+                expect from modern trading platforms.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-6">

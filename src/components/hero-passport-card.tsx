@@ -41,12 +41,7 @@ export function HeroPassportCard({
   const collateralHealth = Math.max(0, 100 - debtRatio);
 
   return (
-    <div
-      className={cn(
-        "glass-panel shadow-passport rounded-2xl p-7 md:p-8",
-        className,
-      )}
-    >
+    <div className={cn("glass-panel shadow-passport rounded-2xl p-7 md:p-8", className)}>
       <div className="flex items-start justify-between gap-4">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-verified/30 bg-verified/10 px-3 py-1 text-xs font-medium text-verified shadow-[0_0_20px_-4px_oklch(0.75_0.14_155/0.5)]">
           <BadgeCheck className="h-3.5 w-3.5" />
@@ -58,9 +53,7 @@ export function HeroPassportCard({
       </div>
 
       <div className="mt-6">
-        <h3 className="text-lg font-semibold tracking-tight text-white md:text-xl">
-          {name}
-        </h3>
+        <h3 className="text-lg font-semibold tracking-tight text-white md:text-xl">{name}</h3>
         <p className="mt-1 font-mono text-xs uppercase tracking-widest text-white/40">
           {slug.replace(/-/g, " ")}
         </p>

@@ -40,12 +40,11 @@ function FundsPage() {
       <header className="max-w-2xl">
         <p className="eyebrow">Transparent funds</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          On-chain reserves,{" "}
-          <span className="text-editorial text-accent">auditable NAV.</span>
+          On-chain reserves, <span className="text-editorial text-accent">auditable NAV.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
-          Vault collateral, property-level AUM, and Guardian NAV attestations — reconciled
-          against Building Culture reference acquisitions.
+          Vault collateral, property-level AUM, and Guardian NAV attestations — reconciled against
+          Building Culture reference acquisitions.
         </p>
       </header>
 
@@ -92,7 +91,10 @@ function FundsPage() {
           </div>
           <div className="mt-4 space-y-3">
             {data.oracleSnapshots.slice(0, 8).map((s) => (
-              <div key={s.id} className="rounded-lg border border-border bg-surface px-4 py-3 text-sm">
+              <div
+                key={s.id}
+                className="rounded-lg border border-border bg-surface px-4 py-3 text-sm"
+              >
                 <div className="flex justify-between">
                   <span className="font-medium">{s.assetSlug}</span>
                   <span className="tabular font-mono">{formatEuro(s.navCents)}</span>
@@ -113,7 +115,10 @@ function FundsPage() {
           </div>
           <div className="mt-4 space-y-3">
             {data.recentLedger.map((e) => (
-              <div key={e.id} className="rounded-lg border border-border bg-surface px-4 py-3 text-sm">
+              <div
+                key={e.id}
+                className="rounded-lg border border-border bg-surface px-4 py-3 text-sm"
+              >
                 <div className="flex justify-between">
                   <span className="capitalize">{e.direction}</span>
                   <span className="tabular font-mono">{formatEuro(e.amountCents)}</span>

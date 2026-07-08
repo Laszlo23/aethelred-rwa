@@ -14,7 +14,11 @@ async function runAuditJob(assetId: string) {
   const steps = [
     { event: "Scanning ownership documents", target: asset.name, result: "PASSED" },
     { event: "Cross-referencing land registry", target: asset.location, result: "VERIFIED" },
-    { event: "Modeling market valuation", target: asset.name, result: `€${(asset.valueCents / 100).toLocaleString()}` },
+    {
+      event: "Modeling market valuation",
+      target: asset.name,
+      result: `€${(asset.valueCents / 100).toLocaleString()}`,
+    },
     { event: "Running risk & solvency analysis", target: asset.name, result: "COMPLETE" },
   ];
 
@@ -23,11 +27,15 @@ async function runAuditJob(assetId: string) {
     await new Promise((r) => setTimeout(r, 300));
   }
 
-  const job = await prisma.guardianJob.findFirst({ where: { assetId }, orderBy: { createdAt: "desc" } });
+  const job = await prisma.guardianJob.findFirst({
+    where: { assetId },
+    orderBy: { createdAt: "desc" },
+  });
   let riskProfile = "standard";
   if (job?.extractedJson) {
     try {
-      riskProfile = (JSON.parse(job.extractedJson) as { riskProfile?: string }).riskProfile ?? "standard";
+      riskProfile =
+        (JSON.parse(job.extractedJson) as { riskProfile?: string }).riskProfile ?? "standard";
     } catch {
       /* ignore */
     }
@@ -112,7 +120,10 @@ export const submitAsset = createServerFn({ method: "POST" })
     let assetId = data.assetId;
     if (!assetId) {
       const slug =
-        (data.name ?? extracted.location).toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40) +
+        (data.name ?? extracted.location)
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .slice(0, 40) +
         "-" +
         Date.now().toString(36);
       const asset = await prisma.asset.create({

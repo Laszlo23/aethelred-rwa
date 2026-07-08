@@ -1,17 +1,9 @@
 export type AssetStatus = "DRAFT" | "PENDING_AUDIT" | "VERIFIED" | "REJECTED" | "LIQUIDATING";
 export type TaskCategory = "EASY" | "COMMUNITY" | "BUILDER";
 export type VerificationType =
-  | "SOCIAL_FOLLOW"
-  | "WALLET_CONNECT"
-  | "ONCHAIN_ACTION"
-  | "MANUAL_REVIEW";
+  "SOCIAL_FOLLOW" | "WALLET_CONNECT" | "ONCHAIN_ACTION" | "MANUAL_REVIEW";
 export type TaskCompletionStatus =
-  | "STARTED"
-  | "SUBMITTED"
-  | "VERIFIED"
-  | "CLAIMABLE"
-  | "CLAIMED"
-  | "REJECTED";
+  "STARTED" | "SUBMITTED" | "VERIFIED" | "CLAIMABLE" | "CLAIMED" | "REJECTED";
 
 export interface AssetDTO {
   id: string;
@@ -128,12 +120,7 @@ export interface DebtSnapshotDTO {
 }
 
 export type PerkType =
-  | "STAY"
-  | "GOVERNANCE"
-  | "RENT_SHARE"
-  | "DINING"
-  | "LOUNGE"
-  | "PRIORITY_ACCESS";
+  "STAY" | "GOVERNANCE" | "RENT_SHARE" | "DINING" | "LOUNGE" | "PRIORITY_ACCESS";
 
 export type PropertyClass = "apartment" | "hotel" | "commercial" | "residential";
 export type CultureSegment = "city" | "land" | "water";

@@ -14,22 +14,20 @@ import type {
 } from "@/lib/types";
 import { createServerFn } from "@tanstack/react-start";
 
-function mapMarket(
-  m: {
-    symbol: string;
-    indexPriceCents: number;
-    fundingRateBps: number;
-    openInterestCents: number;
-    volume24hCents: number;
-    maxLeverage: number;
-    trustMinScore: number;
-    driftMarketIndex?: number | null;
-    change24hBps?: number;
-    high24hCents?: number | null;
-    low24hCents?: number | null;
-    asset: { slug: string } | null;
-  },
-): PerpMarketDTO {
+function mapMarket(m: {
+  symbol: string;
+  indexPriceCents: number;
+  fundingRateBps: number;
+  openInterestCents: number;
+  volume24hCents: number;
+  maxLeverage: number;
+  trustMinScore: number;
+  driftMarketIndex?: number | null;
+  change24hBps?: number;
+  high24hCents?: number | null;
+  low24hCents?: number | null;
+  asset: { slug: string } | null;
+}): PerpMarketDTO {
   return {
     symbol: m.symbol,
     assetSlug: m.asset?.slug ?? null,
@@ -46,19 +44,17 @@ function mapMarket(
   };
 }
 
-function mapPosition(
-  p: {
-    id: string;
-    side: string;
-    sizeCents: number;
-    entryPriceCents: number;
-    leverage: number;
-    marginCents: number;
-    unrealizedPnlCents: number;
-    status: string;
-    market: { symbol: string; indexPriceCents: number };
-  },
-): PerpPositionDTO {
+function mapPosition(p: {
+  id: string;
+  side: string;
+  sizeCents: number;
+  entryPriceCents: number;
+  leverage: number;
+  marginCents: number;
+  unrealizedPnlCents: number;
+  status: string;
+  market: { symbol: string; indexPriceCents: number };
+}): PerpPositionDTO {
   const mark = p.market.indexPriceCents;
   const pnl = Math.round(
     (mark - p.entryPriceCents) * (p.side === "long" ? 1 : -1) * p.leverage * 0.01,
@@ -123,9 +119,7 @@ export const getPerpTerminal = createServerFn({ method: "GET" })
   });
 
 export const getPerpCandles = createServerFn({ method: "GET" })
-  .validator(
-    (data: { symbol: string; interval?: string; limit?: number }) => data,
-  )
+  .validator((data: { symbol: string; interval?: string; limit?: number }) => data)
   .handler(async ({ data }) => {
     await ensureSeeded();
     const interval = data.interval ?? "1h";
@@ -146,28 +140,24 @@ export const getPerpCandles = createServerFn({ method: "GET" })
         interval as "1h",
         limit,
       );
-      return generated.map(
-        (c): PerpCandleDTO => ({
-          time: Math.floor(c.recordedAt.getTime() / 1000),
-          open: c.openCents / 100,
-          high: c.highCents / 100,
-          low: c.lowCents / 100,
-          close: c.closeCents / 100,
-          volume: c.volumeCents / 100,
-        }),
-      );
-    }
-
-    return candles.map(
-      (c): PerpCandleDTO => ({
+      return generated.map((c): PerpCandleDTO => ({
         time: Math.floor(c.recordedAt.getTime() / 1000),
         open: c.openCents / 100,
         high: c.highCents / 100,
         low: c.lowCents / 100,
         close: c.closeCents / 100,
         volume: c.volumeCents / 100,
-      }),
-    );
+      }));
+    }
+
+    return candles.map((c): PerpCandleDTO => ({
+      time: Math.floor(c.recordedAt.getTime() / 1000),
+      open: c.openCents / 100,
+      high: c.highCents / 100,
+      low: c.lowCents / 100,
+      close: c.closeCents / 100,
+      volume: c.volumeCents / 100,
+    }));
   });
 
 export const getSyntheticOrderBook = createServerFn({ method: "GET" })
@@ -200,16 +190,14 @@ export const getRecentTrades = createServerFn({ method: "GET" })
       orderBy: { recordedAt: "desc" },
       take: data.limit ?? 30,
     });
-    return trades.map(
-      (t): PerpTradeDTO => ({
-        id: t.id,
-        symbol: t.symbol,
-        side: t.side,
-        priceCents: t.priceCents,
-        sizeCents: t.sizeCents,
-        recordedAt: t.recordedAt.toISOString(),
-      }),
-    );
+    return trades.map((t): PerpTradeDTO => ({
+      id: t.id,
+      symbol: t.symbol,
+      side: t.side,
+      priceCents: t.priceCents,
+      sizeCents: t.sizeCents,
+      recordedAt: t.recordedAt.toISOString(),
+    }));
   });
 
 export const listPerpPositions = createServerFn({ method: "GET" })
@@ -237,19 +225,17 @@ export const listPerpOrders = createServerFn({ method: "GET" })
       where: { userId: user.id, status: "open" },
       orderBy: { createdAt: "desc" },
     });
-    return orders.map(
-      (o): PerpOrderDTO => ({
-        id: o.id,
-        symbol: o.symbol,
-        side: o.side,
-        orderType: o.orderType,
-        priceCents: o.priceCents,
-        sizeCents: o.sizeCents,
-        leverage: o.leverage,
-        status: o.status,
-        createdAt: o.createdAt.toISOString(),
-      }),
-    );
+    return orders.map((o): PerpOrderDTO => ({
+      id: o.id,
+      symbol: o.symbol,
+      side: o.side,
+      orderType: o.orderType,
+      priceCents: o.priceCents,
+      sizeCents: o.sizeCents,
+      leverage: o.leverage,
+      status: o.status,
+      createdAt: o.createdAt.toISOString(),
+    }));
   });
 
 export const validatePerpOrder = createServerFn({ method: "POST" })
@@ -445,12 +431,8 @@ export const openPerpPosition = createServerFn({ method: "POST" })
 
 export const closePerpPosition = createServerFn({ method: "POST" })
   .validator(
-    (data: {
-      walletAddress: string;
-      positionId: string;
-      signature?: string;
-      message?: string;
-    }) => data,
+    (data: { walletAddress: string; positionId: string; signature?: string; message?: string }) =>
+      data,
   )
   .handler(async ({ data }) => {
     await ensureSeeded();

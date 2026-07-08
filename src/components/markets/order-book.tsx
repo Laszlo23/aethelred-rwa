@@ -25,7 +25,9 @@ function DepthRow({
         className={`absolute inset-y-0 ${side === "bid" ? "right-0 bg-verified/10" : "left-0 bg-destructive/10"}`}
         style={{ width: `${pct}%` }}
       />
-      <span className={side === "bid" ? "text-verified" : "text-destructive"}>{formatEuro(price)}</span>
+      <span className={side === "bid" ? "text-verified" : "text-destructive"}>
+        {formatEuro(price)}
+      </span>
       <span className="text-right text-muted-foreground">{formatEuro(size)}</span>
       <span className="text-right">{formatEuro(total)}</span>
     </div>
@@ -43,7 +45,9 @@ export function OrderBook({ book }: OrderBookProps) {
       <div className="flex items-center justify-between border-b border-border px-3 py-2">
         <p className="text-xs font-semibold">Order book</p>
         {book.isSynthetic && (
-          <span className="rounded bg-gold-soft/30 px-1.5 py-0.5 text-[10px] text-accent">Index book</span>
+          <span className="rounded bg-gold-soft/30 px-1.5 py-0.5 text-[10px] text-accent">
+            Index book
+          </span>
         )}
       </div>
       <div className="grid grid-cols-3 gap-2 px-3 py-1 text-[10px] text-muted-foreground">
@@ -53,13 +57,27 @@ export function OrderBook({ book }: OrderBookProps) {
       </div>
       <div className="flex-1 overflow-y-auto px-3">
         {[...book.asks].reverse().map((l, i) => (
-          <DepthRow key={`a-${i}`} price={l.priceCents} size={l.sizeCents} total={l.totalCents} side="ask" maxTotal={maxTotal} />
+          <DepthRow
+            key={`a-${i}`}
+            price={l.priceCents}
+            size={l.sizeCents}
+            total={l.totalCents}
+            side="ask"
+            maxTotal={maxTotal}
+          />
         ))}
         <div className="my-1 border-y border-border py-1 text-center text-xs text-muted-foreground">
           Spread {book.spreadBps / 100}%
         </div>
         {book.bids.map((l, i) => (
-          <DepthRow key={`b-${i}`} price={l.priceCents} size={l.sizeCents} total={l.totalCents} side="bid" maxTotal={maxTotal} />
+          <DepthRow
+            key={`b-${i}`}
+            price={l.priceCents}
+            size={l.sizeCents}
+            total={l.totalCents}
+            side="bid"
+            maxTotal={maxTotal}
+          />
         ))}
       </div>
     </div>

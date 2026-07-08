@@ -23,7 +23,10 @@ export function TradesTape({ trades }: TradesTapeProps) {
             </span>
             <span className="text-right text-muted-foreground">{formatEuro(t.sizeCents)}</span>
             <span className="text-right text-muted-foreground">
-              {new Date(t.recordedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              {new Date(t.recordedAt).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
             </span>
           </div>
         ))}

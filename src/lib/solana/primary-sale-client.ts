@@ -38,9 +38,7 @@ export async function buildUsdcPrimarySaleTx(
   try {
     await getAccount(connection, buyerAta);
   } catch {
-    tx.add(
-      createAssociatedTokenAccountInstruction(buyer, buyerAta, buyer, usdcMint),
-    );
+    tx.add(createAssociatedTokenAccountInstruction(buyer, buyerAta, buyer, usdcMint));
   }
 
   try {

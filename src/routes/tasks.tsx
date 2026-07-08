@@ -19,9 +19,7 @@ function TasksPage() {
     <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
       <header className="mb-14">
         <p className="eyebrow">Building Culture × Aethelred</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Task Board
-        </h1>
+        <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">Task Board</h1>
         <p className="mt-4 text-muted-foreground">
           Pick a contribution. Complete it. Get rewarded instantly — on-chain BCT and points.
         </p>

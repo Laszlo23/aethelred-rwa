@@ -82,11 +82,7 @@ export function BuyTokensPanel({ asset }: BuyTokensPanelProps) {
         return;
       }
       const { buildUsdcPrimarySaleTx } = await import("@/lib/solana/primary-sale-client");
-      const saleTx = await buildUsdcPrimarySaleTx(
-        wallet,
-        asset.slug,
-        amountCents,
-      );
+      const saleTx = await buildUsdcPrimarySaleTx(wallet, asset.slug, amountCents);
       const signed = await signTransaction(saleTx);
       const txSignature = await connection.sendRawTransaction(signed.serialize(), {
         skipPreflight: false,
@@ -169,7 +165,7 @@ export function BuyTokensPanel({ asset }: BuyTokensPanelProps) {
         disabled={purchase.isPending || isSigningIn || !canBuy}
         className="flex w-full items-center justify-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-all hover:brightness-110 disabled:opacity-50"
       >
-        {(purchase.isPending || isSigningIn) ? (
+        {purchase.isPending || isSigningIn ? (
           <Loader2 className="h-4 w-4 animate-spin" />
         ) : publicKey ? (
           <>Buy with USDC · {formatEuro(amountCents)}</>

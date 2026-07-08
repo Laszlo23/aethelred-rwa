@@ -22,9 +22,7 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <p className="eyebrow mb-6">Error 404</p>
-        <h1 className="text-5xl font-semibold tracking-tight text-foreground">
-          Off the ledger
-        </h1>
+        <h1 className="text-5xl font-semibold tracking-tight text-foreground">Off the ledger</h1>
         <p className="mt-3 text-sm text-muted-foreground">
           This asset isn't in the registry. It may have been retired or never issued.
         </p>

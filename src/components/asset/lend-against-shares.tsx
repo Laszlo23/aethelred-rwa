@@ -97,7 +97,9 @@ export function LendAgainstShares({
       </form>
 
       {!walletAddress && (
-        <p className="mt-3 text-xs text-muted-foreground">Connect wallet to borrow against shares.</p>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Connect wallet to borrow against shares.
+        </p>
       )}
       {walletAddress && !userShareBps && (
         <p className="mt-3 text-xs text-muted-foreground">

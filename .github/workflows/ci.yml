@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Push database schema
+        run: npx prisma db push
+        env:
+          DATABASE_URL: file:./ci.db
+
+      - name: KYC service tests
+        run: npm run test:kyc
+        env:
+          DATABASE_URL: file:./ci.db
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          DATABASE_URL: file:./ci.db
+          VITE_SITE_URL: https://rwa.buildingcultureid.space
+          SIWS_DOMAIN: rwa.buildingcultureid.space
+          VITE_PASSPORT_PROGRAM_ID: 9wMCFvTTgyVuzB2yCNtC2G9ZcVDHrxpBmBnW2BSZoy1A
+          VITE_REGISTRY_PROGRAM_ID: AQXb8Z29qSxco5h5qSWfUnwZd7DgSuFhxXjeB25FMtEU
+          VITE_NAMES_PROGRAM_ID: APU7238FpwdCWTrx5jSKpQYnkrrHiT1HgQgtPPRY3aDd
+          VITE_VAULT_PROGRAM_ID: 4tzFUjGPaiENbHR3vZE9bLEdjrMSbewZqizkwP5m5t9X

@@ -10,9 +10,7 @@ interface InvestPanelProps {
 
 export function InvestPanel({ asset }: InvestPanelProps) {
   const property = asset.property;
-  const raisePct = property
-    ? Math.min(100, Math.round(property.tokensSoldBps / 100))
-    : 0;
+  const raisePct = property ? Math.min(100, Math.round(property.tokensSoldBps / 100)) : 0;
 
   return (
     <div className="rounded-2xl border border-border bg-surface p-6 lg:sticky lg:top-24">

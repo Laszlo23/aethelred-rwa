@@ -22,10 +22,7 @@ function WalletSync({ children }: { children: ReactNode }) {
 
 export function SolanaProvider({ children }: { children: ReactNode }) {
   const endpoint = SOLANA_CONFIG.rpcUrl;
-  const wallets = useMemo(
-    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
-    [],
-  );
+  const wallets = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter()], []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>

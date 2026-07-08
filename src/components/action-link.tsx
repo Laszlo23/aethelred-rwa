@@ -26,18 +26,14 @@ export function ActionLink({
           "rounded-md bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground",
         variant === "secondary" &&
           "rounded-md border border-border-strong bg-transparent text-foreground hover:bg-white/5",
-        variant === "hero-primary" &&
-          "btn-hero-primary hover:brightness-110",
-        variant === "hero-secondary" &&
-          "btn-hero-secondary hover:bg-white/10",
+        variant === "hero-primary" && "btn-hero-primary hover:brightness-110",
+        variant === "hero-secondary" && "btn-hero-secondary hover:bg-white/10",
         className,
       )}
     >
       <Icon
         className="h-4 w-4 shrink-0"
-        strokeWidth={
-          variant === "hero-primary" || variant === "hero-secondary" ? 2.25 : 2
-        }
+        strokeWidth={variant === "hero-primary" || variant === "hero-secondary" ? 2.25 : 2}
       />
       {children}
     </Link>
@@ -70,8 +66,7 @@ export function ActionButton({
       disabled={disabled}
       className={cn(
         "inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold transition-all disabled:opacity-50",
-        variant === "primary" &&
-          "bg-accent text-accent-foreground hover:brightness-110",
+        variant === "primary" && "bg-accent text-accent-foreground hover:brightness-110",
         variant === "secondary" &&
           "border border-border-strong bg-transparent text-foreground hover:bg-white/5",
         className,

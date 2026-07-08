@@ -93,9 +93,8 @@ export const purchaseShares = createServerFn({ method: "POST" })
       throw new Error("This payment transaction was already used for a purchase");
     }
 
-    const { verifyUsdcPayment, settleShareTransfer } = await import(
-      "@/lib/solana/primary-sale-server"
-    );
+    const { verifyUsdcPayment, settleShareTransfer } =
+      await import("@/lib/solana/primary-sale-server");
     const paid = await verifyUsdcPayment({
       signature: data.txSignature,
       buyerWallet: data.walletAddress,
@@ -142,9 +141,8 @@ export const purchaseShares = createServerFn({ method: "POST" })
     });
     console.info("[purchaseShares] settleShareTransfer", { transferSig, shareBps });
 
-    const { syncWalletSplBalances, reconcileShareHoldingsFromChain } = await import(
-      "@/workers/chain-indexer"
-    );
+    const { syncWalletSplBalances, reconcileShareHoldingsFromChain } =
+      await import("@/workers/chain-indexer");
     await syncWalletSplBalances(data.walletAddress);
     await reconcileShareHoldingsFromChain(data.walletAddress);
 

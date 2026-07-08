@@ -35,9 +35,7 @@ export const getHolderPayouts = createServerFn({ method: "GET" })
     const payouts = await prisma.sharePayout.findMany({
       where: {
         holderWallet: data.walletAddress,
-        ...(assetFilterId
-          ? { distribution: { assetId: assetFilterId } }
-          : {}),
+        ...(assetFilterId ? { distribution: { assetId: assetFilterId } } : {}),
       },
       include: {
         distribution: { include: { asset: true } },

@@ -109,15 +109,11 @@ function CreatePage() {
         toast.error("Wallet cannot sign transactions");
         return;
       }
-      const transaction = await buildMintPassportTx(
-        publicKey.toBase58(),
-        assetId,
-        {
-          trustScore: auditResult?.trustScore ?? 85,
-          guardianGrade: auditResult?.guardianGrade ?? "A+",
-          navCents: extracted?.estimatedValueCents ?? 0,
-        },
-      );
+      const transaction = await buildMintPassportTx(publicKey.toBase58(), assetId, {
+        trustScore: auditResult?.trustScore ?? 85,
+        guardianGrade: auditResult?.guardianGrade ?? "A+",
+        navCents: extracted?.estimatedValueCents ?? 0,
+      });
       const signed = await signTransaction(transaction);
       const { coSignPassportMint } = await import("@/api/solana-passport");
       const { signature: sig } = await coSignPassportMint({
@@ -199,7 +195,9 @@ function CreatePage() {
               </div>
               <div>
                 <dt className="text-muted-foreground">Estimated value</dt>
-                <dd className="tabular mt-1 font-mono">{formatEuro(extracted.estimatedValueCents)}</dd>
+                <dd className="tabular mt-1 font-mono">
+                  {formatEuro(extracted.estimatedValueCents)}
+                </dd>
               </div>
             </dl>
           </div>
@@ -245,9 +243,7 @@ function CreatePage() {
       {step === 4 && auditResult && extracted && (
         <div className="animate-fade-up space-y-8">
           <header>
-            <h1 className="text-3xl font-semibold tracking-tight">
-              Your asset is verified.
-            </h1>
+            <h1 className="text-3xl font-semibold tracking-tight">Your asset is verified.</h1>
             <p className="mt-3 text-muted-foreground">
               Here is your digital passport. You can now unlock liquidity.
             </p>

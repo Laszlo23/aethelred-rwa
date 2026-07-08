@@ -19,12 +19,9 @@ function requireAdminSecret(header: string | undefined) {
 
 /** Local/devnet only — airdrop test USDC to a wallet for primary market testing. */
 export const faucetTestUsdc = createServerFn({ method: "POST" })
-  .validator(
-    (data: { walletAddress: string; amountUi?: number; adminSecret?: string }) => data,
-  )
+  .validator((data: { walletAddress: string; amountUi?: number; adminSecret?: string }) => data)
   .handler(async ({ data, request }) => {
-    const network =
-      process.env.VITE_SOLANA_NETWORK ?? process.env.SOLANA_NETWORK ?? "devnet";
+    const network = process.env.VITE_SOLANA_NETWORK ?? process.env.SOLANA_NETWORK ?? "devnet";
     if (network === "mainnet-beta") {
       throw new Error("Test USDC faucet is disabled on mainnet");
     }

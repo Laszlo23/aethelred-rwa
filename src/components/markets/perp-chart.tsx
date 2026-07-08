@@ -1,5 +1,11 @@
 import { useEffect, useRef } from "react";
-import { createChart, CandlestickSeries, type IChartApi, type ISeriesApi, ColorType } from "lightweight-charts";
+import {
+  createChart,
+  CandlestickSeries,
+  type IChartApi,
+  type ISeriesApi,
+  ColorType,
+} from "lightweight-charts";
 import type { PerpCandleDTO } from "@/lib/types";
 
 interface PerpChartProps {
@@ -42,7 +48,10 @@ export function PerpChart({ candles, interval, onIntervalChange }: PerpChartProp
 
     const ro = new ResizeObserver(() => {
       if (containerRef.current) {
-        chart.applyOptions({ width: containerRef.current.clientWidth, height: containerRef.current.clientHeight });
+        chart.applyOptions({
+          width: containerRef.current.clientWidth,
+          height: containerRef.current.clientHeight,
+        });
       }
     });
     ro.observe(containerRef.current);
@@ -78,7 +87,9 @@ export function PerpChart({ candles, interval, onIntervalChange }: PerpChartProp
             type="button"
             onClick={() => onIntervalChange(iv)}
             className={`rounded px-2 py-1 text-xs font-medium ${
-              interval === iv ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"
+              interval === iv
+                ? "bg-accent text-accent-foreground"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {iv}

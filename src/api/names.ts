@@ -34,12 +34,7 @@ export const resolveName = createServerFn({ method: "GET" })
 
 export const registerName = createServerFn({ method: "POST" })
   .validator(
-    (data: {
-      walletAddress: string;
-      handle: string;
-      signature?: string;
-      message?: string;
-    }) => data,
+    (data: { walletAddress: string; handle: string; signature?: string; message?: string }) => data,
   )
   .handler(async ({ data }) => {
     await ensureSeeded();

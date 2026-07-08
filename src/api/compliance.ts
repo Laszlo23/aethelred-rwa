@@ -10,9 +10,7 @@ export const getWalletCompliance = createServerFn({ method: "GET" })
   });
 
 export const setWalletVerified = createServerFn({ method: "POST" })
-  .validator(
-    (data: { walletAddress: string; kycTier?: string; externalRef?: string }) => data,
-  )
+  .validator((data: { walletAddress: string; kycTier?: string; externalRef?: string }) => data)
   .handler(async ({ data }) => {
     await ensureSeeded();
     return markWalletVerified({

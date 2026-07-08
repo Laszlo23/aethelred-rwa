@@ -49,9 +49,7 @@ function LandingPage() {
             </span>
 
             <h1 className="text-5xl font-semibold leading-[1.02] tracking-tight text-balance text-white md:text-6xl lg:text-7xl">
-              Real Assets.{" "}
-              <span className="text-gold-gradient">Verified.</span>{" "}
-              Accessible.
+              Real Assets. <span className="text-gold-gradient">Verified.</span> Accessible.
             </h1>
 
             <p className="max-w-lg text-lg leading-relaxed text-white/65">
@@ -132,8 +130,8 @@ function LandingPage() {
                 <span className="text-editorial text-accent">digital passport.</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                One clear view of what an asset is worth, what debt sits on it,
-                and how much liquidity you can unlock — updated as things change.
+                One clear view of what an asset is worth, what debt sits on it, and how much
+                liquidity you can unlock — updated as things change.
               </p>
             </div>
             {heroAsset && (

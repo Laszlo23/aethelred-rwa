@@ -12,13 +12,7 @@ const CATEGORY_META: Record<string, { label: string; color: string; hint: string
 
 const FILTERS = ["ALL", "EASY", "COMMUNITY", "BUILDER"] as const;
 
-function TaskCard({
-  task,
-  onStart,
-}: {
-  task: TaskDTO;
-  onStart: (task: TaskDTO) => void;
-}) {
+function TaskCard({ task, onStart }: { task: TaskDTO; onStart: (task: TaskDTO) => void }) {
   const catColor =
     task.category === "EASY"
       ? "bg-verified/20 text-verified"
@@ -31,7 +25,9 @@ function TaskCard({
   return (
     <article className="flex flex-col rounded-2xl border border-border bg-surface p-6 transition-all hover:border-accent/30">
       <div className="flex items-start justify-between">
-        <span className={`rounded-sm px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${catColor}`}>
+        <span
+          className={`rounded-sm px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${catColor}`}
+        >
           {task.category}
         </span>
         <span className="tabular font-mono text-sm font-semibold text-verified">
@@ -80,8 +76,7 @@ export function TaskBoard() {
   const submitProof = useSubmitTaskProof();
   const claimReward = useClaimTaskReward();
 
-  const filtered =
-    filter === "ALL" ? tasks : tasks.filter((t) => t.category === filter);
+  const filtered = filter === "ALL" ? tasks : tasks.filter((t) => t.category === filter);
 
   const grouped = (["EASY", "COMMUNITY", "BUILDER"] as const).map((cat) => ({
     cat,
@@ -138,7 +133,9 @@ export function TaskBoard() {
                 : "border border-border bg-surface text-muted-foreground hover:text-foreground"
             }`}
           >
-            {f === "ALL" ? `All tasks ${totalCount}` : `${f.charAt(0) + f.slice(1).toLowerCase()} ${tasks.filter((t) => t.category === f).length}`}
+            {f === "ALL"
+              ? `All tasks ${totalCount}`
+              : `${f.charAt(0) + f.slice(1).toLowerCase()} ${tasks.filter((t) => t.category === f).length}`}
           </button>
         ))}
       </div>
@@ -149,7 +146,9 @@ export function TaskBoard() {
         return (
           <section key={cat} className="space-y-6">
             <div className="flex items-center gap-3">
-              <span className={`h-2 w-2 rounded-full ${cat === "EASY" ? "bg-verified" : cat === "COMMUNITY" ? "bg-accent" : "bg-foreground"}`} />
+              <span
+                className={`h-2 w-2 rounded-full ${cat === "EASY" ? "bg-verified" : cat === "COMMUNITY" ? "bg-accent" : "bg-foreground"}`}
+              />
               <div>
                 <h2 className="text-lg font-semibold">{meta.label}</h2>
                 <p className="text-sm text-muted-foreground">{meta.hint}</p>

@@ -50,7 +50,8 @@ export async function buildPlacePerpOrderTx(
   const sdk = await loadDriftSdk();
   const driftClient = await createDriftClient(connection, wallet);
 
-  const direction = params.side === "long" ? sdk.PositionDirection.LONG : sdk.PositionDirection.SHORT;
+  const direction =
+    params.side === "long" ? sdk.PositionDirection.LONG : sdk.PositionDirection.SHORT;
   const baseAmount = new sdk.BN(Math.max(1, Math.floor(params.baseAssetAmount * 1e9)));
 
   const orderParams =

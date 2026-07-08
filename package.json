@@ -1,11 +1,12 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "aethelred-rwa",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
     "build": "node scripts/generate-seo-assets.mjs && vite build",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -18,6 +19,7 @@
     "setup:devnet": "SOLANA_RPC_URL=https://api.devnet.solana.com VITE_SOLANA_RPC_URL=https://api.devnet.solana.com VITE_SOLANA_NETWORK=devnet SETUP_STRICT=1 npx tsx scripts/setup-local-chain.ts",
     "indexer:sync": "npx tsx scripts/run-indexer.ts",
     "test:e2e": "npx tsx scripts/e2e-test-matrix.ts",
+    "test:kyc": "npx tsx scripts/test-kyc-flow.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {

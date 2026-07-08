@@ -41,12 +41,11 @@ function VaultPage() {
       <header className="max-w-2xl">
         <p className="eyebrow">EURO Vault</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight">
-          Verified asset-backed{" "}
-          <span className="text-editorial text-accent">liquidity.</span>
+          Verified asset-backed <span className="text-editorial text-accent">liquidity.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
-          Mint EURO against Guardian-verified collateral. Burn EURO to reduce debt and
-          strengthen asset health.
+          Mint EURO against Guardian-verified collateral. Burn EURO to reduce debt and strengthen
+          asset health.
         </p>
       </header>
 
@@ -67,7 +66,9 @@ function VaultPage() {
               </button>
             ))}
           </div>
-          <label className="eyebrow" htmlFor="euro-amount">Amount (EUR)</label>
+          <label className="eyebrow" htmlFor="euro-amount">
+            Amount (EUR)
+          </label>
           <input
             id="euro-amount"
             type="number"

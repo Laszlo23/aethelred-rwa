@@ -2,18 +2,16 @@ import { prisma, ensureSeeded } from "@/lib/db";
 import type { FundsTransparencyDTO, FundLedgerEntryDTO, OracleSnapshotDTO } from "@/lib/types";
 import { createServerFn } from "@tanstack/react-start";
 
-function mapLedger(
-  entry: {
-    id: string;
-    direction: string;
-    amountCents: number;
-    currency: string;
-    proofHash: string | null;
-    txSignature: string | null;
-    recordedAt: Date;
-    asset: { slug: string } | null;
-  },
-): FundLedgerEntryDTO {
+function mapLedger(entry: {
+  id: string;
+  direction: string;
+  amountCents: number;
+  currency: string;
+  proofHash: string | null;
+  txSignature: string | null;
+  recordedAt: Date;
+  asset: { slug: string } | null;
+}): FundLedgerEntryDTO {
   return {
     id: entry.id,
     assetSlug: entry.asset?.slug ?? null,
@@ -26,18 +24,16 @@ function mapLedger(
   };
 }
 
-function mapOracle(
-  snap: {
-    id: string;
-    assetId: string;
-    navCents: number;
-    debtCents: number;
-    yieldBps: number;
-    source: string;
-    recordedAt: Date;
-    asset: { slug: string };
-  },
-): OracleSnapshotDTO {
+function mapOracle(snap: {
+  id: string;
+  assetId: string;
+  navCents: number;
+  debtCents: number;
+  yieldBps: number;
+  source: string;
+  recordedAt: Date;
+  asset: { slug: string };
+}): OracleSnapshotDTO {
   return {
     id: snap.id,
     assetId: snap.assetId,
@@ -79,7 +75,9 @@ export const getFundsTransparency = createServerFn({ method: "GET" }).handler(as
 
   const totalAumCents = assets.reduce((s, a) => s + a.valueCents, 0);
   const offChainReferenceCents = propertyBreakdown.reduce((s, p) => s + p.acquisitionCents, 0);
-  const onChainReserveCents = pool ? Number(pool.collateralCents) / 100 : Math.floor(totalAumCents * 0.65);
+  const onChainReserveCents = pool
+    ? Number(pool.collateralCents) / 100
+    : Math.floor(totalAumCents * 0.65);
 
   const result: FundsTransparencyDTO = {
     totalAumCents,

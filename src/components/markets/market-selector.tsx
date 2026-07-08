@@ -17,9 +17,7 @@ export function MarketSelector({
   search,
   onSearchChange,
 }: MarketSelectorProps) {
-  const filtered = markets.filter((m) =>
-    m.symbol.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filtered = markets.filter((m) => m.symbol.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className="flex h-full flex-col border-r border-border bg-surface">

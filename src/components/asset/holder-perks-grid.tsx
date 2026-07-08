@@ -1,11 +1,4 @@
-import {
-  BedDouble,
-  Coins,
-  Lock,
-  Shield,
-  Utensils,
-  Vote,
-} from "lucide-react";
+import { BedDouble, Coins, Lock, Shield, Utensils, Vote } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { AssetPerkDTO, PerkType } from "@/lib/types";
 import { formatPercent } from "@/lib/format";
@@ -42,9 +35,7 @@ export function HolderPerksGrid({ perks, userShareBps = 0 }: HolderPerksGridProp
             key={perk.id}
             className={cn(
               "rounded-xl border p-5 transition-colors",
-              unlocked
-                ? "border-accent/30 bg-gold-soft/30"
-                : "border-border bg-surface opacity-80",
+              unlocked ? "border-accent/30 bg-gold-soft/30" : "border-border bg-surface opacity-80",
             )}
           >
             <div className="flex items-start gap-3">

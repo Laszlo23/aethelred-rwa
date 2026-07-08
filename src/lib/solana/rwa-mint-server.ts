@@ -75,19 +75,11 @@ export async function deployRwaShareMint(params: {
     mintAmount,
   );
 
-  const fullTx = new Transaction().add(
-    createAccountIx,
-    initMintIx,
-    createAtaIx,
-    mintToIx,
-  );
+  const fullTx = new Transaction().add(createAccountIx, initMintIx, createAtaIx, mintToIx);
 
-  const signature = await sendAndConfirmTransaction(
-    connection,
-    fullTx,
-    [deployer, mintKeypair],
-    { commitment: "confirmed" },
-  );
+  const signature = await sendAndConfirmTransaction(connection, fullTx, [deployer, mintKeypair], {
+    commitment: "confirmed",
+  });
 
   void params.symbol;
   void params.assetSlug;

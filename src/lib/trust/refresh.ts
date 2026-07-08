@@ -38,7 +38,12 @@ export async function recomputeUserTrust(walletAddress: string) {
   const tradingScore = liquidations === 0 ? 85 : Math.max(40, 85 - liquidations * 15);
   const communityScore = user.nameRegistration ? 80 : 55;
 
-  const trustScore = computeUserTrustScore({ kycTier, repaymentScore, tradingScore, communityScore });
+  const trustScore = computeUserTrustScore({
+    kycTier,
+    repaymentScore,
+    tradingScore,
+    communityScore,
+  });
   const factors = { repaymentScore, tradingScore, communityScore };
 
   const avgAssetTrust = await prisma.assetPassport.aggregate({ _avg: { trustScore: true } });

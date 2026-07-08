@@ -1,9 +1,4 @@
-import {
-  Connection,
-  PublicKey,
-  sendAndConfirmTransaction,
-  Transaction,
-} from "@solana/web3.js";
+import { Connection, PublicKey, sendAndConfirmTransaction, Transaction } from "@solana/web3.js";
 import {
   createAssociatedTokenAccountInstruction,
   createTransferInstruction,
@@ -60,8 +55,7 @@ export async function verifyUsdcPayment(params: {
   const after = post.find((b) => b.accountIndex === treasuryAtaIndex);
   if (!after || after.mint !== usdcMint || after.owner !== treasury) return false;
 
-  const delta =
-    BigInt(after.uiTokenAmount.amount) - BigInt(before?.uiTokenAmount.amount ?? "0");
+  const delta = BigInt(after.uiTokenAmount.amount) - BigInt(before?.uiTokenAmount.amount ?? "0");
   if (delta < expectedRaw) return false;
 
   const feePayer = accountKeys[0];
@@ -98,14 +92,10 @@ export async function settleShareTransfer(params: {
   try {
     await getAccount(connection, toAta);
   } catch {
-    tx.add(
-      createAssociatedTokenAccountInstruction(deployer.publicKey, toAta, buyer, mint),
-    );
+    tx.add(createAssociatedTokenAccountInstruction(deployer.publicKey, toAta, buyer, mint));
   }
 
-  tx.add(
-    createTransferInstruction(fromAta, toAta, deployer.publicKey, amountRaw),
-  );
+  tx.add(createTransferInstruction(fromAta, toAta, deployer.publicKey, amountRaw));
 
   const signature = await sendAndConfirmTransaction(connection, tx, [deployer], {
     commitment: "confirmed",
@@ -129,9 +119,7 @@ export async function mintTestUsdcToWallet(
   try {
     await getAccount(connection, toAta);
   } catch {
-    tx.add(
-      createAssociatedTokenAccountInstruction(deployer.publicKey, toAta, recipient, usdcMint),
-    );
+    tx.add(createAssociatedTokenAccountInstruction(deployer.publicKey, toAta, recipient, usdcMint));
   }
   tx.add(createTransferInstruction(fromAta, toAta, deployer.publicKey, amountRaw));
   return sendAndConfirmTransaction(connection, tx, [deployer], { commitment: "confirmed" });

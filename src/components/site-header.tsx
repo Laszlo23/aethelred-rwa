@@ -64,7 +64,9 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "inline-flex items-center gap-2 text-sm font-medium text-foreground" }}
+              activeProps={{
+                className: "inline-flex items-center gap-2 text-sm font-medium text-foreground",
+              }}
             >
               <item.icon className="h-4 w-4 opacity-70" strokeWidth={1.75} />
               {item.label}
@@ -105,7 +107,9 @@ export function SiteHeader() {
                     to={item.to}
                     onClick={() => setOpen(false)}
                     className="inline-flex items-center gap-3 text-lg font-medium text-muted-foreground hover:text-foreground"
-                    activeProps={{ className: "inline-flex items-center gap-3 text-lg font-medium text-accent" }}
+                    activeProps={{
+                      className: "inline-flex items-center gap-3 text-lg font-medium text-accent",
+                    }}
                   >
                     <item.icon className="h-5 w-5" strokeWidth={1.75} />
                     {item.label}

@@ -11,5 +11,10 @@ export const DEFI_INTEGRATIONS: DeFiIntegration[] = [
   { name: "Jupiter", description: "EURO swap routing", status: "planned" },
 ];
 
-export { depositToKamino, repayKaminoPosition, withdrawKaminoCollateral, getKaminoHealthFactor } from "./kamino";
+export {
+  depositToKamino,
+  repayKaminoPosition,
+  withdrawKaminoCollateral,
+  getKaminoHealthFactor,
+} from "./kamino";
 export { openDriftPerp, closeDriftPerp, fetchDriftMarketStats, getDriftIndexPrice } from "./drift";

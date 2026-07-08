@@ -33,8 +33,7 @@ function PortfolioPage() {
         <p className="eyebrow">Portfolio</p>
         <h1 className="mt-4 text-3xl font-semibold">Connect your wallet</h1>
         <p className="mt-3 text-muted-foreground">
-          Track PnL, staking yield, lending positions, and holder perks across
-          your RWA portfolio.
+          Track PnL, staking yield, lending positions, and holder perks across your RWA portfolio.
         </p>
         <button
           type="button"
@@ -53,12 +52,11 @@ function PortfolioPage() {
         <div>
           <p className="eyebrow">DeFi portfolio</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight">
-            Your RWA{" "}
-            <span className="text-editorial text-accent">command center.</span>
+            Your RWA <span className="text-editorial text-accent">command center.</span>
           </h1>
           <p className="mt-3 max-w-xl text-muted-foreground">
-            Real-time view of token holdings, yield, collateralized lending, and
-            unrealized PnL — all backed by Guardian-verified assets.
+            Real-time view of token holdings, yield, collateralized lending, and unrealized PnL —
+            all backed by Guardian-verified assets.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -73,9 +71,7 @@ function PortfolioPage() {
 
       <KycStatusBanner walletAddress={wallet} />
 
-      {isLoading && (
-        <p className="text-muted-foreground">Loading portfolio…</p>
-      )}
+      {isLoading && <p className="text-muted-foreground">Loading portfolio…</p>}
 
       {data && <DefiDashboard data={data} walletAddress={wallet} />}
 

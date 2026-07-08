@@ -38,12 +38,11 @@ function ExplorePage() {
       <header className="mb-14 max-w-2xl">
         <p className="eyebrow">Collection</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Curated real assets.{" "}
-          <span className="text-editorial text-accent">Community owned.</span>
+          Curated real assets. <span className="text-editorial text-accent">Community owned.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
-          Building Culture City, Land, and Water — curated cultural real estate on Solana.
-          Bank titles retire; community capital and Guardian verification take over.
+          Building Culture City, Land, and Water — curated cultural real estate on Solana. Bank
+          titles retire; community capital and Guardian verification take over.
         </p>
       </header>
 
@@ -73,9 +72,7 @@ function ExplorePage() {
       {filtered.length === 0 && !isLoading && (
         <p className="text-center text-muted-foreground">No assets in this category.</p>
       )}
-      {isLoading && (
-        <p className="text-center text-muted-foreground">Loading collection…</p>
-      )}
+      {isLoading && <p className="text-center text-muted-foreground">Loading collection…</p>}
     </div>
   );
 }

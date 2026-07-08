@@ -12,12 +12,7 @@ export default defineConfig({
   },
   nitro: {
     preset: "node-server",
-    traceDeps: [
-      "!@coral-xyz/anchor",
-      "!@drift-labs/sdk",
-      "!@solana/web3.js",
-      "!@solana/spl-token",
-    ],
+    traceDeps: ["!@coral-xyz/anchor", "!@drift-labs/sdk", "!@solana/web3.js", "!@solana/spl-token"],
   },
   vite: {
     ssr: {

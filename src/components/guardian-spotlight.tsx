@@ -29,12 +29,11 @@ export function GuardianSpotlight() {
       <div className="max-w-lg">
         <p className="eyebrow">Guardian</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-          Guardian watches{" "}
-          <span className="text-editorial text-accent">your assets.</span>
+          Guardian watches <span className="text-editorial text-accent">your assets.</span>
         </h2>
         <p className="mt-4 leading-relaxed text-muted-foreground">
-          An always-on verification layer. Every passport is re-checked daily so
-          token holders never fly blind on ownership, value, or debt.
+          An always-on verification layer. Every passport is re-checked daily so token holders never
+          fly blind on ownership, value, or debt.
         </p>
         <Link
           to="/guardian"

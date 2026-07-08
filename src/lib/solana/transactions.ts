@@ -119,9 +119,7 @@ export async function buildMintEuroTx(
   try {
     await getAccount(connection, ata);
   } catch {
-    tx.add(
-      createAssociatedTokenAccountInstruction(wallet, ata, wallet, mint),
-    );
+    tx.add(createAssociatedTokenAccountInstruction(wallet, ata, wallet, mint));
   }
   void amountRaw;
   const { blockhash } = await connection.getLatestBlockhash();
@@ -147,9 +145,7 @@ export async function buildClaimRewardTx(
   try {
     await getAccount(connection, ata);
   } catch {
-    tx.add(
-      createAssociatedTokenAccountInstruction(wallet, ata, wallet, mint),
-    );
+    tx.add(createAssociatedTokenAccountInstruction(wallet, ata, wallet, mint));
   }
   void amountRaw;
   void TOKEN_PROGRAM_ID;

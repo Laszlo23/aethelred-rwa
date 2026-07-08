@@ -22,12 +22,11 @@ function TechnologyPage() {
       <header className="max-w-2xl">
         <p className="eyebrow">Protocol</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          The technology{" "}
-          <span className="text-editorial text-accent">underneath.</span>
+          The technology <span className="text-editorial text-accent">underneath.</span>
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Aethelred runs on verified collateral, continuous AI monitoring, and
-          on-chain asset passports. Here is how the protocol works.
+          Aethelred runs on verified collateral, continuous AI monitoring, and on-chain asset
+          passports. Here is how the protocol works.
         </p>
       </header>
 
@@ -41,9 +40,8 @@ function TechnologyPage() {
         <p className="eyebrow">On-chain infrastructure</p>
         <h2 className="mt-3 text-2xl font-semibold">Built on Solana</h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          Every verified asset receives a digital passport anchored on Solana as
-          SPL metadata — ownership, valuation, debt, and audit history in one
-          tamper-evident record.
+          Every verified asset receives a digital passport anchored on Solana as SPL metadata —
+          ownership, valuation, debt, and audit history in one tamper-evident record.
         </p>
         <dl className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[

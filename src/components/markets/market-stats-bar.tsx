@@ -32,11 +32,15 @@ export function MarketStatsBar({ terminal }: MarketStatsBarProps) {
       </div>
       <div>
         <p className="text-muted-foreground">24h High</p>
-        <p className="tabular font-mono">{formatEuro(market.high24hCents ?? market.indexPriceCents)}</p>
+        <p className="tabular font-mono">
+          {formatEuro(market.high24hCents ?? market.indexPriceCents)}
+        </p>
       </div>
       <div>
         <p className="text-muted-foreground">24h Low</p>
-        <p className="tabular font-mono">{formatEuro(market.low24hCents ?? market.indexPriceCents)}</p>
+        <p className="tabular font-mono">
+          {formatEuro(market.low24hCents ?? market.indexPriceCents)}
+        </p>
       </div>
       <div>
         <p className="text-muted-foreground">Volume 24h</p>

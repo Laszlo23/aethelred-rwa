@@ -12,8 +12,8 @@ export function EuroLiquidityPanel() {
         <span className="text-editorial text-accent">not a random stablecoin.</span>
       </h2>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        Every EURO in circulation is backed by Guardian-verified collateral. Users interact
-        with transparent, asset-anchored liquidity — not opaque synthetic exposure.
+        Every EURO in circulation is backed by Guardian-verified collateral. Users interact with
+        transparent, asset-anchored liquidity — not opaque synthetic exposure.
       </p>
       <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
         <div className="panel p-6">

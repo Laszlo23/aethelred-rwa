@@ -56,15 +56,11 @@ async function getAssetDetailHandler(slugOrId: string, _walletAddress?: string) 
   if (!asset) return null;
 
   const shareSummary = computeShareSummary(asset.shares);
-  const totalPrincipalCents = asset.lendingPositions.reduce(
-    (s, p) => s + p.principalCents,
-    0,
-  );
+  const totalPrincipalCents = asset.lendingPositions.reduce((s, p) => s + p.principalCents, 0);
   const avgApyBps =
     asset.lendingPositions.length > 0
       ? Math.round(
-          asset.lendingPositions.reduce((s, p) => s + p.apyBps, 0) /
-            asset.lendingPositions.length,
+          asset.lendingPositions.reduce((s, p) => s + p.apyBps, 0) / asset.lendingPositions.length,
         )
       : computeLendingApyBps(asset.yieldBps);
 
@@ -97,7 +93,13 @@ export const createAssetDraft = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     await ensureSeeded();
-    const slug = data.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 48) + "-" + Date.now().toString(36);
+    const slug =
+      data.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .slice(0, 48) +
+      "-" +
+      Date.now().toString(36);
     let ownerId: string | undefined;
     if (data.ownerWallet) {
       const user = await prisma.user.upsert({

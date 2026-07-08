@@ -29,7 +29,8 @@ export function PropertyStory({ property }: PropertyStoryProps) {
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Community raise</span>
                 <span className="tabular font-mono">
-                  {formatEuro(property.communityRaiseTargetCents)} target · {raiseProgress}% subscribed
+                  {formatEuro(property.communityRaiseTargetCents)} target · {raiseProgress}%
+                  subscribed
                 </span>
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-border">

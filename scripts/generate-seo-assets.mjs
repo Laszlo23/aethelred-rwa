@@ -39,7 +39,10 @@ async function main() {
     console.log(`wrote ${name}`);
   }
 
-  await sharp(ogSvg).resize(1200, 630).jpeg({ quality: 90 }).toFile(path.join(publicDir, "og-image.jpg"));
+  await sharp(ogSvg)
+    .resize(1200, 630)
+    .jpeg({ quality: 90 })
+    .toFile(path.join(publicDir, "og-image.jpg"));
   console.log("wrote og-image.jpg");
 
   const favicon32 = await sharp(faviconSvg).resize(32, 32).png().toBuffer();

@@ -52,15 +52,7 @@ function MetricCard({
   );
 }
 
-function AllocationBar({
-  staked,
-  lent,
-  idle,
-}: {
-  staked: number;
-  lent: number;
-  idle: number;
-}) {
+function AllocationBar({ staked, lent, idle }: { staked: number; lent: number; idle: number }) {
   const total = staked + lent + idle || 1;
   const segments = [
     { pct: (staked / total) * 100, color: "bg-accent", label: "Staked" },
@@ -137,9 +129,7 @@ export function DefiDashboard({ data, walletAddress }: DefiDashboardProps) {
               <Layers className="h-5 w-5 text-accent" />
               Positions
             </h2>
-            <span className="text-xs text-muted-foreground">
-              {positions.length} assets
-            </span>
+            <span className="text-xs text-muted-foreground">{positions.length} assets</span>
           </div>
 
           {positions.length > 0 ? (
@@ -172,12 +162,8 @@ export function DefiDashboard({ data, walletAddress }: DefiDashboardProps) {
                           {p.assetName}
                         </Link>
                       </td>
-                      <td className="tabular py-4 font-mono">
-                        {(p.shareBps / 100).toFixed(2)}%
-                      </td>
-                      <td className="tabular py-4 font-mono">
-                        {formatEuro(p.marketValueCents)}
-                      </td>
+                      <td className="tabular py-4 font-mono">{(p.shareBps / 100).toFixed(2)}%</td>
+                      <td className="tabular py-4 font-mono">{formatEuro(p.marketValueCents)}</td>
                       <td
                         className={cn(
                           "tabular py-4 font-mono",
@@ -220,9 +206,7 @@ export function DefiDashboard({ data, walletAddress }: DefiDashboardProps) {
 
         <section className="rounded-2xl border border-border bg-surface p-6">
           <h2 className="text-lg font-semibold">Capital allocation</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            How your RWA exposure is deployed
-          </p>
+          <p className="mt-1 text-sm text-muted-foreground">How your RWA exposure is deployed</p>
           <div className="mt-6">
             <AllocationBar
               staked={stakedTotal}

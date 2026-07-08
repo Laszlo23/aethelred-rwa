@@ -23,9 +23,7 @@ export const getAuthChallenge = createServerFn({ method: "GET" })
   });
 
 export const verifyAuth = createServerFn({ method: "POST" })
-  .validator(
-    (data: { walletAddress: string; signature: string; message: string }) => data,
-  )
+  .validator((data: { walletAddress: string; signature: string; message: string }) => data)
   .handler(async ({ data }) => {
     await ensureSeeded();
     const user = await requireAuthenticatedWallet(data);

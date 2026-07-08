@@ -79,8 +79,8 @@ function NamesPage() {
           Register your <span className="text-editorial text-accent">.aethel</span> name
         </h1>
         <p className="mt-4 text-muted-foreground">
-          Human-readable Solana identity linked to your trust profile. Premium short handles
-          require trust score ≥ 80.
+          Human-readable Solana identity linked to your trust profile. Premium short handles require
+          trust score ≥ 80.
         </p>
       </header>
 
@@ -89,7 +89,9 @@ function NamesPage() {
           <div className="flex items-center gap-3">
             <User className="h-5 w-5 text-accent" />
             <div>
-              <p className="font-medium">{myName ? `${myName.handle}.aethel` : "No name registered"}</p>
+              <p className="font-medium">
+                {myName ? `${myName.handle}.aethel` : "No name registered"}
+              </p>
               {trust && (
                 <p className="text-xs text-muted-foreground">
                   Trust {trust.trustScore} · Max perp {trust.maxPerpLeverage}x · KYC {trust.kycTier}

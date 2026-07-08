@@ -52,10 +52,7 @@ const steps = [
 
 function FlowConnector() {
   return (
-    <div
-      aria-hidden
-      className="hidden items-center justify-center md:flex md:w-12 lg:w-16"
-    >
+    <div aria-hidden className="hidden items-center justify-center md:flex md:w-12 lg:w-16">
       <div className="relative h-px w-full bg-gradient-to-r from-border via-accent/50 to-border">
         <ArrowRight className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-accent/70" />
       </div>
@@ -63,13 +60,7 @@ function FlowConnector() {
   );
 }
 
-function MiniChip({
-  icon: Icon,
-  label,
-}: {
-  icon: LucideIcon;
-  label: string;
-}) {
+function MiniChip({ icon: Icon, label }: { icon: LucideIcon; label: string }) {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-2.5 py-1 text-[11px] text-muted-foreground">
       <Icon className="h-3 w-3 text-accent" strokeWidth={1.75} />
@@ -84,12 +75,11 @@ export function HowItWorksSection() {
       <div className="mb-16 max-w-2xl">
         <p className="eyebrow">How it works</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-          Verify. Back.{" "}
-          <span className="text-editorial text-accent">Unlock.</span>
+          Verify. Back. <span className="text-editorial text-accent">Unlock.</span>
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Three steps from bricks to on-chain real assets — with bank titles retired
-          and community capital in control.
+          Three steps from bricks to on-chain real assets — with bank titles retired and community
+          capital in control.
         </p>
       </div>
 
@@ -148,10 +138,7 @@ export function HowItWorksSection() {
                 {"outcomes" in step && (
                   <ul className="mt-6 space-y-2">
                     {step.outcomes.map((o) => (
-                      <li
-                        key={o}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
-                      >
+                      <li key={o} className="flex items-center gap-2 text-sm text-muted-foreground">
                         <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                         {o}
                       </li>

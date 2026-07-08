@@ -40,9 +40,8 @@ export function useDriftTrading() {
       if (!wallet.publicKey || !wallet.signTransaction) {
         throw new Error("Connect wallet to trade");
       }
-      const { buildPlacePerpOrderTx, sendSignedTransaction } = await import(
-        "@/lib/solana/integrations/drift"
-      );
+      const { buildPlacePerpOrderTx, sendSignedTransaction } =
+        await import("@/lib/solana/integrations/drift");
       const conn = connection ?? getConnection();
       const driftWallet = {
         publicKey: wallet.publicKey,

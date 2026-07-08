@@ -37,12 +37,10 @@ function GuardianPage() {
       <header className="mb-16 max-w-2xl">
         <p className="eyebrow">Guardian</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Guardian watches{" "}
-          <span className="text-editorial text-accent">your assets.</span>
+          Guardian watches <span className="text-editorial text-accent">your assets.</span>
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Guardian checks every asset every day to make sure the information
-          stays true.
+          Guardian checks every asset every day to make sure the information stays true.
         </p>
       </header>
 

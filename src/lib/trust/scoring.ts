@@ -36,9 +36,18 @@ export function computeUserTrustScore(input: {
   communityScore: number;
 }): number {
   const kyc =
-    input.kycTier === "accredited" ? 95 : input.kycTier === "basic" ? 80 : input.kycTier === "pending" ? 60 : 45;
+    input.kycTier === "accredited"
+      ? 95
+      : input.kycTier === "basic"
+        ? 80
+        : input.kycTier === "pending"
+          ? 60
+          : 45;
   const weighted =
-    kyc * 0.35 + input.repaymentScore * 0.3 + input.tradingScore * 0.25 + input.communityScore * 0.1;
+    kyc * 0.35 +
+    input.repaymentScore * 0.3 +
+    input.tradingScore * 0.25 +
+    input.communityScore * 0.1;
   return Math.min(100, Math.max(30, Math.round(weighted)));
 }
 
@@ -50,7 +59,11 @@ export function trustGatedBorrowLtvBps(userScore: number, assetScore: number): n
   return 4000;
 }
 
-export function trustGatedMaxLeverage(userScore: number, assetScore: number, marketMax: number): number {
+export function trustGatedMaxLeverage(
+  userScore: number,
+  assetScore: number,
+  marketMax: number,
+): number {
   const combined = userScore * 0.4 + assetScore * 0.6;
   if (combined >= 95) return marketMax;
   if (combined >= 85) return Math.min(marketMax, 8);

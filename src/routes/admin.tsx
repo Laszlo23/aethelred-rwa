@@ -66,8 +66,8 @@ function AdminPage() {
           </span>
           <h1 className="mt-4 text-2xl font-semibold">Admin access</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Enter the admin passphrase to review KYC applications. An allowlisted admin wallet
-            also grants access automatically.
+            Enter the admin passphrase to review KYC applications. An allowlisted admin wallet also
+            grants access automatically.
           </p>
           <input
             type="password"
@@ -83,7 +83,11 @@ function AdminPage() {
             disabled={checkAdmin.isPending || !input.trim()}
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 text-sm font-semibold text-accent-foreground hover:brightness-110 disabled:opacity-50"
           >
-            {checkAdmin.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Lock className="h-4 w-4" />}
+            {checkAdmin.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Lock className="h-4 w-4" />
+            )}
             Unlock
           </button>
           {secret && !checkAdmin.isPending && (
@@ -125,7 +129,8 @@ function AdminBoard({
             KYC <span className="text-editorial text-accent">review board.</span>
           </h1>
           <p className="mt-2 text-muted-foreground">
-            Approve or reject identity verification requests. Approving marks the wallet KYC-verified.
+            Approve or reject identity verification requests. Approving marks the wallet
+            KYC-verified.
           </p>
         </div>
         <button
@@ -225,7 +230,11 @@ function ApplicationCard({
               disabled={review.isPending}
               className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/90 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-500 disabled:opacity-50"
             >
-              {review.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <BadgeCheck className="h-4 w-4" />}
+              {review.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <BadgeCheck className="h-4 w-4" />
+              )}
               Approve
             </button>
             <button
@@ -288,7 +297,9 @@ function StatusPill({ status }: { status: KycApplicationDTO["status"] }) {
   const s = map[status];
   const Icon = s.icon;
   return (
-    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium capitalize ${s.cls}`}>
+    <span
+      className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium capitalize ${s.cls}`}
+    >
       <Icon className="h-3 w-3" />
       {status}
     </span>

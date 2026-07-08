@@ -2,15 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import {
-  BadgeCheck,
-  Clock,
-  ShieldCheck,
-  ShieldX,
-  Loader2,
-  Wallet,
-  Compass,
-} from "lucide-react";
+import { BadgeCheck, Clock, ShieldCheck, ShieldX, Loader2, Wallet, Compass } from "lucide-react";
 import { toast } from "sonner";
 import { useKycStatus, useSubmitKyc } from "@/hooks/use-kyc";
 import { useSiwsSignIn } from "@/hooks/use-siws";
@@ -21,7 +13,8 @@ export const Route = createFileRoute("/profile")({
   head: () =>
     pageSeo({
       title: "Profile",
-      description: "Connect your wallet, complete KYC verification, and unlock restricted share purchases.",
+      description:
+        "Connect your wallet, complete KYC verification, and unlock restricted share purchases.",
       path: "/profile",
       noIndex: true,
     }),
@@ -85,7 +78,7 @@ function ProfilePage() {
 
   const application = status?.application ?? null;
   const verified = status?.verified ?? false;
-  const appStatus = verified ? "approved" : application?.status ?? "none";
+  const appStatus = verified ? "approved" : (application?.status ?? "none");
 
   const handleSubmit = async () => {
     if (!fullName.trim() || !docNumber.trim()) {
@@ -249,7 +242,8 @@ function ProfilePage() {
             {isSigningIn ? "Sign in wallet…" : "Submit for verification"}
           </button>
           <p className="text-center text-xs text-muted-foreground">
-            You'll sign a message to prove wallet ownership. No document images are stored in this demo.
+            You'll sign a message to prove wallet ownership. No document images are stored in this
+            demo.
           </p>
         </form>
       )}
@@ -276,7 +270,9 @@ function StatusBadge({ status }: { status: string }) {
   const s = map[status] ?? map.none;
   const Icon = s.icon;
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${s.cls}`}>
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${s.cls}`}
+    >
       <Icon className="h-3.5 w-3.5" />
       {s.label}
     </span>
@@ -308,7 +304,8 @@ function PendingPanel() {
       <Clock className="mx-auto h-10 w-10 text-amber-400" />
       <h2 className="mt-3 text-lg font-semibold">Application under review</h2>
       <p className="mt-1 text-sm text-muted-foreground">
-        A compliance reviewer will approve or reject your KYC shortly. This page updates automatically.
+        A compliance reviewer will approve or reject your KYC shortly. This page updates
+        automatically.
       </p>
     </div>
   );

@@ -144,11 +144,7 @@ export const BUILDING_CULTURE_ASSETS: BuildingCultureAssetSeed[] = [
     yieldBps: 840,
     evmShareToken: "0xeaeA7594011b4331bCdAe974C7Aa9138C175c004",
     imageUrl: "/bc/keutschach-hero.jpg",
-    galleryUrls: [
-      "/bc/keutschach-hero.jpg",
-      "/bc/keutschach-02.jpg",
-      "/bc/keutschach-03.jpg",
-    ],
+    galleryUrls: ["/bc/keutschach-hero.jpg", "/bc/keutschach-02.jpg", "/bc/keutschach-03.jpg"],
     tagline: "Timber façades and full-height glazing on the Carinthian lakeside.",
     description:
       "Water Side gathers thirty-four apartments across six buildings into a single landscape idea: horizontality, warmth of wood, and glass that dissolves the boundary between interior and panorama. Private lake access with jetty and bathhouse.",
@@ -301,24 +297,72 @@ export const BC_PERKS = [
   {
     slug: "berggasse-35",
     perks: [
-      { perkType: "RENT_SHARE", title: "Pro-rata rent", description: "Quarterly rent distributions when declared by issuer SPV.", minShareBps: 50, sortOrder: 0 },
-      { perkType: "GOVERNANCE", title: "Heritage votes", description: "Vote on facade and courtyard stewardship.", minShareBps: 100, sortOrder: 1 },
-      { perkType: "STAY", title: "Servitenviertel stays", description: "Priority booking in portfolio units when vacant.", minShareBps: 300, sortOrder: 2 },
+      {
+        perkType: "RENT_SHARE",
+        title: "Pro-rata rent",
+        description: "Quarterly rent distributions when declared by issuer SPV.",
+        minShareBps: 50,
+        sortOrder: 0,
+      },
+      {
+        perkType: "GOVERNANCE",
+        title: "Heritage votes",
+        description: "Vote on facade and courtyard stewardship.",
+        minShareBps: 100,
+        sortOrder: 1,
+      },
+      {
+        perkType: "STAY",
+        title: "Servitenviertel stays",
+        description: "Priority booking in portfolio units when vacant.",
+        minShareBps: 300,
+        sortOrder: 2,
+      },
     ],
   },
   {
     slug: "water-side-keutschach",
     perks: [
-      { perkType: "STAY", title: "Lake access weeks", description: "Holder stays with lake and bathhouse access per offering.", minShareBps: 250, sortOrder: 0 },
-      { perkType: "RENT_SHARE", title: "Lakeside rent share", description: "Pro-rata share of net rental income.", minShareBps: 50, sortOrder: 1 },
-      { perkType: "PRIORITY_ACCESS", title: "Season priority", description: "Early booking for peak summer weeks.", minShareBps: 400, sortOrder: 2 },
+      {
+        perkType: "STAY",
+        title: "Lake access weeks",
+        description: "Holder stays with lake and bathhouse access per offering.",
+        minShareBps: 250,
+        sortOrder: 0,
+      },
+      {
+        perkType: "RENT_SHARE",
+        title: "Lakeside rent share",
+        description: "Pro-rata share of net rental income.",
+        minShareBps: 50,
+        sortOrder: 1,
+      },
+      {
+        perkType: "PRIORITY_ACCESS",
+        title: "Season priority",
+        description: "Early booking for peak summer weeks.",
+        minShareBps: 400,
+        sortOrder: 2,
+      },
     ],
   },
   {
     slug: "landmark-bernhardsthal",
     perks: [
-      { perkType: "GOVERNANCE", title: "Mixed-use votes", description: "Shape ground-floor activation and tenant mix.", minShareBps: 150, sortOrder: 0 },
-      { perkType: "RENT_SHARE", title: "Mixed rent flows", description: "Revenue split by lease type per disclosure.", minShareBps: 50, sortOrder: 1 },
+      {
+        perkType: "GOVERNANCE",
+        title: "Mixed-use votes",
+        description: "Shape ground-floor activation and tenant mix.",
+        minShareBps: 150,
+        sortOrder: 0,
+      },
+      {
+        perkType: "RENT_SHARE",
+        title: "Mixed rent flows",
+        description: "Revenue split by lease type per disclosure.",
+        minShareBps: 50,
+        sortOrder: 1,
+      },
     ],
   },
 ] as const;

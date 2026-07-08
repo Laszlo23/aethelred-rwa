@@ -20,7 +20,9 @@ export function GuardianStatusPanel() {
       <dl className="mt-6 grid grid-cols-3 gap-6">
         <div>
           <dt className="eyebrow !text-[9px]">Assets monitored</dt>
-          <dd className="tabular mt-1 font-mono text-xl">{data?.assetsMonitored?.toLocaleString() ?? "—"}</dd>
+          <dd className="tabular mt-1 font-mono text-xl">
+            {data?.assetsMonitored?.toLocaleString() ?? "—"}
+          </dd>
         </div>
         <div>
           <dt className="eyebrow !text-[9px]">Healthy</dt>

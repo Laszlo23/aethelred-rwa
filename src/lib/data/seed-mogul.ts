@@ -6,7 +6,8 @@ export const COMMUNITY_TREASURY_WALLET = "AethelredCommunityTreasury111111111111
 export const SEED_PROPERTIES = [
   {
     slug: "apartment-complex-vi-09",
-    tagline: "Forty-two units in Vienna's 9th district — income-producing, bank-encumbered, community-bound.",
+    tagline:
+      "Forty-two units in Vienna's 9th district — income-producing, bank-encumbered, community-bound.",
     description:
       "A meticulously maintained apartment block steps from the Danube canal. Erste Bank holds the title today. We're raising community capital to retire the lien and place ownership in token holders' hands — with verified rent flows, Guardian oversight, and holder stays built in.",
     galleryUrls: [ASSET_IMAGES.vienna, ASSET_IMAGES.hero, ASSET_IMAGES.vienna],
@@ -38,7 +39,8 @@ export const SEED_PROPERTIES = [
   },
   {
     slug: "vienna-commercial-hub",
-    tagline: "Mixed-use commercial hub — retail, hotel rooms, and restaurant concessions under one roof.",
+    tagline:
+      "Mixed-use commercial hub — retail, hotel rooms, and restaurant concessions under one roof.",
     description:
       "A landmark commercial property anchoring a Vienna business district. Bank Austria holds title on the underlying deed. Community raise targets retiring senior debt and fractionalizing hospitality cash flows — hotel nights, dining credits, and governance over capex.",
     galleryUrls: [ASSET_IMAGES.vienna, ASSET_IMAGES.industrial, ASSET_IMAGES.hero],
@@ -58,28 +60,101 @@ export const SEED_PERKS = [
   {
     slug: "apartment-complex-vi-09",
     perks: [
-      { perkType: "STAY", title: "One week per year", description: "Book a complimentary week in any vacant portfolio unit — your home in Vienna.", minShareBps: 250, sortOrder: 0 },
-      { perkType: "GOVERNANCE", title: "Renovation votes", description: "Vote on facade, lobby, and energy upgrades for the building.", minShareBps: 100, sortOrder: 1 },
-      { perkType: "RENT_SHARE", title: "Pro-rata rent", description: "Receive your share of net rental income from occupied units quarterly.", minShareBps: 50, sortOrder: 2 },
-      { perkType: "PRIORITY_ACCESS", title: "Early unit access", description: "First right to newly vacated units at holder rates.", minShareBps: 500, sortOrder: 3 },
+      {
+        perkType: "STAY",
+        title: "One week per year",
+        description:
+          "Book a complimentary week in any vacant portfolio unit — your home in Vienna.",
+        minShareBps: 250,
+        sortOrder: 0,
+      },
+      {
+        perkType: "GOVERNANCE",
+        title: "Renovation votes",
+        description: "Vote on facade, lobby, and energy upgrades for the building.",
+        minShareBps: 100,
+        sortOrder: 1,
+      },
+      {
+        perkType: "RENT_SHARE",
+        title: "Pro-rata rent",
+        description: "Receive your share of net rental income from occupied units quarterly.",
+        minShareBps: 50,
+        sortOrder: 2,
+      },
+      {
+        perkType: "PRIORITY_ACCESS",
+        title: "Early unit access",
+        description: "First right to newly vacated units at holder rates.",
+        minShareBps: 500,
+        sortOrder: 3,
+      },
     ],
   },
   {
     slug: "zurich-residential-ix",
     perks: [
-      { perkType: "STAY", title: "Guest suite priority", description: "Priority booking in the building's owner guest suite, 14 nights/year.", minShareBps: 300, sortOrder: 0 },
-      { perkType: "LOUNGE", title: "Owner lounge access", description: "Private lounge, concierge, and co-working on the penthouse level.", minShareBps: 200, sortOrder: 1 },
-      { perkType: "RENT_SHARE", title: "Rent dividend tier", description: "Enhanced rent distribution at 5%+ holding — paid in USDC.", minShareBps: 500, sortOrder: 2 },
-      { perkType: "GOVERNANCE", title: "Tenant policy votes", description: "Shape lease terms, amenities, and building standards.", minShareBps: 100, sortOrder: 3 },
+      {
+        perkType: "STAY",
+        title: "Guest suite priority",
+        description: "Priority booking in the building's owner guest suite, 14 nights/year.",
+        minShareBps: 300,
+        sortOrder: 0,
+      },
+      {
+        perkType: "LOUNGE",
+        title: "Owner lounge access",
+        description: "Private lounge, concierge, and co-working on the penthouse level.",
+        minShareBps: 200,
+        sortOrder: 1,
+      },
+      {
+        perkType: "RENT_SHARE",
+        title: "Rent dividend tier",
+        description: "Enhanced rent distribution at 5%+ holding — paid in USDC.",
+        minShareBps: 500,
+        sortOrder: 2,
+      },
+      {
+        perkType: "GOVERNANCE",
+        title: "Tenant policy votes",
+        description: "Shape lease terms, amenities, and building standards.",
+        minShareBps: 100,
+        sortOrder: 3,
+      },
     ],
   },
   {
     slug: "vienna-commercial-hub",
     perks: [
-      { perkType: "STAY", title: "Hotel night credits", description: "12 hotel room nights per year at partner rates within the hub.", minShareBps: 400, sortOrder: 0 },
-      { perkType: "DINING", title: "Restaurant allowance", description: "€500 quarterly dining credit across hub restaurants.", minShareBps: 250, sortOrder: 1 },
-      { perkType: "GOVERNANCE", title: "Capex governance", description: "Vote on lobby, signage, and tenant mix for the commercial core.", minShareBps: 150, sortOrder: 2 },
-      { perkType: "RENT_SHARE", title: "Hospitality revenue share", description: "Pro-rata share of hotel, retail, and F&B net operating income.", minShareBps: 100, sortOrder: 3 },
+      {
+        perkType: "STAY",
+        title: "Hotel night credits",
+        description: "12 hotel room nights per year at partner rates within the hub.",
+        minShareBps: 400,
+        sortOrder: 0,
+      },
+      {
+        perkType: "DINING",
+        title: "Restaurant allowance",
+        description: "€500 quarterly dining credit across hub restaurants.",
+        minShareBps: 250,
+        sortOrder: 1,
+      },
+      {
+        perkType: "GOVERNANCE",
+        title: "Capex governance",
+        description: "Vote on lobby, signage, and tenant mix for the commercial core.",
+        minShareBps: 150,
+        sortOrder: 2,
+      },
+      {
+        perkType: "RENT_SHARE",
+        title: "Hospitality revenue share",
+        description: "Pro-rata share of hotel, retail, and F&B net operating income.",
+        minShareBps: 100,
+        sortOrder: 3,
+      },
     ],
   },
 ] as const;
@@ -112,8 +187,18 @@ export const SEED_DISTRIBUTIONS = [
   {
     slug: "vienna-commercial-hub",
     distributions: [
-      { periodLabel: "Q1 2026 Hospitality", totalCents: 1_240_000, source: "operations", daysAgo: 50 },
-      { periodLabel: "Q4 2025 Hospitality", totalCents: 1_180_000, source: "operations", daysAgo: 140 },
+      {
+        periodLabel: "Q1 2026 Hospitality",
+        totalCents: 1_240_000,
+        source: "operations",
+        daysAgo: 50,
+      },
+      {
+        periodLabel: "Q4 2025 Hospitality",
+        totalCents: 1_180_000,
+        source: "operations",
+        daysAgo: 140,
+      },
       { periodLabel: "Lending yield share", totalCents: 95_000, source: "lending", daysAgo: 30 },
     ],
   },

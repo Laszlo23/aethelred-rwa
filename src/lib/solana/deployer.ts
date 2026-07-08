@@ -22,10 +22,7 @@ export function loadDeployerKeypair(): Keypair {
 }
 
 export function getTreasuryAddress(): string {
-  return (
-    process.env.TREASURY_WALLET_ADDRESS?.trim() ||
-    loadDeployerKeypair().publicKey.toBase58()
-  );
+  return process.env.TREASURY_WALLET_ADDRESS?.trim() || loadDeployerKeypair().publicKey.toBase58();
 }
 
 /** Guardian co-signer for passport mints; defaults to deployer on devnet. */

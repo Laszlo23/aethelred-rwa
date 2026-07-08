@@ -4,7 +4,9 @@ export function WalletButton() {
   const [Inner, setInner] = useState<ComponentType | null>(null);
 
   useEffect(() => {
-    void import("@/components/wallet-button-inner").then((m) => setInner(() => m.WalletButtonInner));
+    void import("@/components/wallet-button-inner").then((m) =>
+      setInner(() => m.WalletButtonInner),
+    );
   }, []);
 
   if (!Inner) {

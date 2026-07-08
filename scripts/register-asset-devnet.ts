@@ -14,7 +14,9 @@ const navCents = Number(process.argv[4] ?? 0);
 const trustScore = Number(process.argv[5] ?? 85);
 
 if (!slug || !mint) {
-  console.error("Usage: npx tsx scripts/register-asset-devnet.ts <slug> <mint> [navCents] [trustScore]");
+  console.error(
+    "Usage: npx tsx scripts/register-asset-devnet.ts <slug> <mint> [navCents] [trustScore]",
+  );
   process.exit(1);
 }
 

@@ -32,7 +32,8 @@ export function VerificationPassport({
   variant = "full",
   className = "",
 }: PassportProps) {
-  const liquidity = availableLiquidityCents ?? Math.max(0, Math.floor(valuationCents / 1.5) - debtCents);
+  const liquidity =
+    availableLiquidityCents ?? Math.max(0, Math.floor(valuationCents / 1.5) - debtCents);
   const auditLabel = lastAuditAt
     ? formatDistanceToNow(new Date(lastAuditAt), { addSuffix: true })
     : "12m ago";
@@ -42,7 +43,9 @@ export function VerificationPassport({
       <div className={`rounded-lg border border-border bg-surface p-4 ${className}`}>
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold">{name}</span>
-          <span className="rounded-sm bg-verified/20 px-1.5 py-0.5 text-[10px] text-verified">VERIFIED</span>
+          <span className="rounded-sm bg-verified/20 px-1.5 py-0.5 text-[10px] text-verified">
+            VERIFIED
+          </span>
         </div>
         <p className="mt-1 font-mono text-xs text-accent">{truncateAddress(tokenId)}</p>
       </div>
@@ -57,7 +60,9 @@ export function VerificationPassport({
             <p className="eyebrow !text-[9px]">Asset Passport™</p>
             <h3 className="mt-1 font-semibold">{name}</h3>
           </div>
-          <span className="rounded-sm bg-verified/20 px-2 py-0.5 text-[10px] text-verified">VERIFIED</span>
+          <span className="rounded-sm bg-verified/20 px-2 py-0.5 text-[10px] text-verified">
+            VERIFIED
+          </span>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
           <div>

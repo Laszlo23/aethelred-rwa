@@ -1,12 +1,5 @@
-import {
-  SEED_GUARDIAN_LOG,
-  SEED_PROPOSALS,
-  SEED_TASKS,
-} from "@/lib/data/seed";
-import {
-  COMMUNITY_TREASURY_WALLET,
-  DEMO_INVESTOR_WALLET,
-} from "@/lib/data/seed-mogul";
+import { SEED_GUARDIAN_LOG, SEED_PROPOSALS, SEED_TASKS } from "@/lib/data/seed";
+import { COMMUNITY_TREASURY_WALLET, DEMO_INVESTOR_WALLET } from "@/lib/data/seed-mogul";
 import {
   BC_PERKS,
   BC_TREASURY_SHARES,
@@ -15,10 +8,12 @@ import {
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+
 const { PrismaClient } = require("@prisma/client") as typeof import("@prisma/client");
 
-const globalForPrisma = globalThis as unknown as { prisma: InstanceType<typeof PrismaClient> | undefined };
+const globalForPrisma = globalThis as unknown as {
+  prisma: InstanceType<typeof PrismaClient> | undefined;
+};
 
 export const prisma: InstanceType<typeof PrismaClient> =
   globalForPrisma.prisma ?? new PrismaClient();

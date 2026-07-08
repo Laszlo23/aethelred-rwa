@@ -5,10 +5,7 @@ export function computeLendingApyBps(assetYieldBps: number): number {
   return Math.max(100, assetYieldBps - PROTOCOL_SPREAD_BPS);
 }
 
-export function maxPrincipalCents(
-  assetValueCents: number,
-  collateralShareBps: number,
-): number {
+export function maxPrincipalCents(assetValueCents: number, collateralShareBps: number): number {
   const collateralValue = Math.floor((assetValueCents * collateralShareBps) / 10000);
   return Math.floor((collateralValue * MAX_LTV_BPS) / 10000);
 }
