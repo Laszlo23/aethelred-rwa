@@ -2,9 +2,14 @@ import type { TaskDTO } from "@/lib/types";
 import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useStartTask, useSubmitTaskProof, useClaimTaskReward, useTasks } from "@/hooks/use-api";
-import { defaultActionLabel, GROK_SHARE_URL, resolveTaskActionUrl } from "@/lib/tasks/social-actions";
+import {
+  enrichTaskAction,
+  GROK_SHARE_URL,
+  isQuickSocialTask,
+  platformLabel,
+} from "@/lib/tasks/social-actions";
 import { SOCIAL_LINKS } from "@/lib/data/seed";
-import { ExternalLink, Sparkles } from "lucide-react";
+import { CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 const CATEGORY_META: Record<string, { label: string; color: string; hint: string }> = {
@@ -15,25 +20,13 @@ const CATEGORY_META: Record<string, { label: string; color: string; hint: string
 
 const FILTERS = ["ALL", "EASY", "COMMUNITY", "BUILDER"] as const;
 
-function taskOpenUrl(task: TaskDTO): string | undefined {
-  return resolveTaskActionUrl({
-    actionUrl: task.actionUrl,
-    intentUrl: task.intentUrl,
-    actionLabel: task.actionLabel,
-    requiresProof: task.requiresProof,
-  });
-}
-
 function taskButtonLabel(task: TaskDTO): string {
   const status = task.completion?.status;
+  const enriched = enrichTaskAction(task);
   if (status === "CLAIMED") return "Claimed";
   if (status === "CLAIMABLE") return `Claim +${task.rewardPoints}`;
-  if (status === "STARTED" || status === "SUBMITTED") return "Done — claim reward";
-  return defaultActionLabel({ actionLabel: task.actionLabel });
-}
-
-function isQuickSocialTask(task: TaskDTO): boolean {
-  return task.verificationType === "SOCIAL_FOLLOW" && task.requiresProof !== true;
+  if (status === "STARTED" || status === "SUBMITTED") return "I followed — claim";
+  return enriched.label;
 }
 
 function TaskCard({
@@ -56,13 +49,16 @@ function TaskCard({
   const claimed = status === "CLAIMED";
   const claimable = status === "CLAIMABLE";
   const inProgress = status === "STARTED" || status === "SUBMITTED";
+  const quick = isQuickSocialTask(task);
 
   return (
     <article
       className={`flex flex-col rounded-2xl border bg-surface p-6 transition-all ${
         claimed
           ? "border-verified/30 opacity-80"
-          : "border-border hover:border-accent/30"
+          : inProgress
+            ? "border-verified/40 shadow-[0_0_0_1px_rgba(34,197,94,0.15)]"
+            : "border-border hover:border-accent/30"
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -80,13 +76,16 @@ function TaskCard({
       </div>
       <h3 className="mt-4 text-base font-semibold leading-snug">{task.title}</h3>
       <p className="mt-2 flex-1 text-sm text-muted-foreground">{task.description}</p>
+      {inProgress && quick && (
+        <p className="mt-3 text-xs font-medium text-verified">Step 2: confirm on X, then claim below</p>
+      )}
       <div className="mt-6 flex items-center justify-between gap-3">
         <span className="text-xs text-muted-foreground">⚡ {task.timeEstimate}</span>
         <button
           type="button"
           disabled={busy || claimed}
           onClick={() => onAction(task)}
-          className={`inline-flex min-w-[8.5rem] items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
+          className={`inline-flex min-w-[9rem] items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
             claimed
               ? "bg-verified/15 text-verified"
               : claimable
@@ -96,13 +95,102 @@ function TaskCard({
                   : "bg-accent text-accent-foreground hover:brightness-110"
           }`}
         >
-          {claimed ? "Claimed ✓" : taskButtonLabel(task)}
-          {!claimed && isQuickSocialTask(task) && !claimable && !inProgress && (
+          {claimed ? (
+            <>
+              <CheckCircle2 className="h-4 w-4" />
+              Claimed
+            </>
+          ) : (
+            taskButtonLabel(task)
+          )}
+          {!claimed && quick && !claimable && !inProgress && (
             <ExternalLink className="h-3.5 w-3.5 opacity-80" />
           )}
         </button>
       </div>
     </article>
+  );
+}
+
+function SocialDoneSheet({
+  task,
+  openUrl,
+  busy,
+  onOpenAgain,
+  onLater,
+  onDone,
+}: {
+  task: TaskDTO;
+  openUrl?: string;
+  busy: boolean;
+  onOpenAgain: () => void;
+  onLater: () => void;
+  onDone: () => void;
+}) {
+  const platform = platformLabel(task);
+  const enriched = enrichTaskAction(task);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm">
+      <div className="w-full max-w-lg animate-in slide-in-from-bottom-4 rounded-t-3xl border border-border bg-surface p-6 pb-8 shadow-2xl sm:rounded-3xl sm:m-4">
+        <div className="mx-auto mb-5 h-1 w-10 rounded-full bg-border" />
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-foreground text-background text-lg font-bold">
+            𝕏
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-verified">Almost done</p>
+            <h3 className="text-lg font-semibold">{enriched.label}</h3>
+          </div>
+        </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          We opened {platform} in a new tab. Follow{" "}
+          <span className="font-medium text-foreground">@buildingcultu3</span>, then come back and
+          claim your +{task.rewardPoints} points.
+        </p>
+        <ol className="mt-5 space-y-3">
+          {[
+            `Complete the action on ${platform}`,
+            "Return to this tab",
+            "Tap I followed — claim reward",
+          ].map((step, i) => (
+            <li key={step} className="flex items-center gap-3 text-sm">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-semibold">
+                {i + 1}
+              </span>
+              <span className="text-muted-foreground">{step}</span>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-6 flex flex-col gap-3">
+          {openUrl && (
+            <button
+              type="button"
+              onClick={onOpenAgain}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-medium hover:bg-white/5"
+            >
+              Open {platform} again
+              <ExternalLink className="h-4 w-4" />
+            </button>
+          )}
+          <button
+            type="button"
+            disabled={busy}
+            onClick={onDone}
+            className="inline-flex w-full items-center justify-center rounded-xl bg-verified px-4 py-3.5 text-sm font-semibold text-background hover:brightness-110 disabled:opacity-50"
+          >
+            I followed — claim reward
+          </button>
+          <button
+            type="button"
+            onClick={onLater}
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            I&apos;ll finish later
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -148,13 +236,20 @@ export function TaskBoard() {
 
   const handleComplete = async (task: TaskDTO) => {
     if (!wallet) return;
-    await submitProof.mutateAsync({
-      data: { taskSlug: task.slug, walletAddress: wallet, proofUrl: proofUrl || undefined },
-    });
-    toast.success("Nice — reward ready to claim");
-    setActiveTask(null);
-    setProofUrl("");
-    void refetch();
+    setBusySlug(task.slug);
+    try {
+      await submitProof.mutateAsync({
+        data: { taskSlug: task.slug, walletAddress: wallet, proofUrl: proofUrl || undefined },
+      });
+      toast.success("Reward ready — tap Claim on the card");
+      setActiveTask(null);
+      setProofUrl("");
+      void refetch();
+    } catch {
+      toast.error("Could not complete task");
+    } finally {
+      setBusySlug(null);
+    }
   };
 
   const handleAction = async (task: TaskDTO) => {
@@ -166,6 +261,9 @@ export function TaskBoard() {
     const status = task.completion?.status;
     if (status === "CLAIMED") return;
 
+    const enriched = enrichTaskAction(task);
+    const quick = isQuickSocialTask(task);
+
     setBusySlug(task.slug);
     try {
       if (status === "CLAIMABLE") {
@@ -174,6 +272,10 @@ export function TaskBoard() {
       }
 
       if (status === "STARTED" || status === "SUBMITTED") {
+        if (quick) {
+          await handleComplete(task);
+          return;
+        }
         if (task.verificationType === "MANUAL_REVIEW" || task.requiresProof) {
           setActiveTask(task);
           return;
@@ -184,13 +286,17 @@ export function TaskBoard() {
 
       await startTask.mutateAsync({ data: { taskSlug: task.slug, walletAddress: wallet } });
 
-      const url = taskOpenUrl(task);
-      if (url && (task.verificationType === "SOCIAL_FOLLOW" || url)) {
-        openExternal(url);
-        if (isQuickSocialTask(task)) {
-          setActiveTask(task);
-          return;
-        }
+      if (enriched.openUrl && quick) {
+        openExternal(enriched.openUrl);
+        toast.message(`Opened ${platformLabel(task)}`, {
+          description: "Complete the action, then tap I followed — claim reward",
+        });
+        setActiveTask(task);
+        return;
+      }
+
+      if (enriched.openUrl) {
+        openExternal(enriched.openUrl);
       }
 
       if (task.verificationType === "MANUAL_REVIEW" || task.requiresProof) {
@@ -213,10 +319,14 @@ export function TaskBoard() {
       return;
     }
     openExternal("https://x.com/intent/follow?screen_name=buildingcultu3");
+    toast.message("Opened X", { description: "Follow @buildingcultu3 to stay in the loop" });
   };
 
   const totalCount = tasks.length;
-  const activeUrl = activeTask ? taskOpenUrl(activeTask) : undefined;
+  const activeEnriched = activeTask ? enrichTaskAction(activeTask) : null;
+  const showSocialSheet = activeTask && isQuickSocialTask(activeTask);
+  const showManualSheet =
+    activeTask && !isQuickSocialTask(activeTask) && activeTask.verificationType === "MANUAL_REVIEW";
 
   return (
     <div className="space-y-10">
@@ -229,8 +339,7 @@ export function TaskBoard() {
             </p>
             <h2 className="text-2xl font-semibold tracking-tight">Follow @buildingcultu3 on X</h2>
             <p className="text-sm text-muted-foreground">
-              Tap start — we open the right X page for you. Finish the action, tap Done, claim your
-              points. Share with X / Grok to pull more builders in.
+              One tap opens X with the follow screen ready. Confirm, claim points — no links to paste.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -302,93 +411,59 @@ export function TaskBoard() {
         );
       })}
 
-      {activeTask && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 sm:items-center">
+      {showSocialSheet && activeTask && (
+        <SocialDoneSheet
+          task={activeTask}
+          openUrl={activeEnriched?.openUrl}
+          busy={busySlug === activeTask.slug}
+          onOpenAgain={() => {
+            if (activeEnriched?.openUrl) openExternal(activeEnriched.openUrl);
+          }}
+          onLater={() => setActiveTask(null)}
+          onDone={() => void handleComplete(activeTask)}
+        />
+      )}
+
+      {showManualSheet && activeTask && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 sm:items-center">
           <div className="w-full max-w-md rounded-2xl border border-border bg-surface p-6 shadow-2xl sm:p-8">
-            {isQuickSocialTask(activeTask) ? (
-              <>
-                <p className="eyebrow">Almost done</p>
-                <h3 className="mt-2 text-xl font-semibold">{activeTask.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  We opened {activeTask.actionLabel?.includes("Farcaster") ? "Farcaster" : "X"} in a
-                  new tab. Complete the action, then claim your reward.
-                </p>
-                <ol className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  <li>1. Finish on {activeTask.actionLabel?.includes("Telegram") ? "Telegram" : "X"}</li>
-                  <li>2. Come back here</li>
-                  <li>3. Tap Done below</li>
-                </ol>
-                <div className="mt-6 flex flex-col gap-3">
-                  {activeUrl && (
-                    <button
-                      type="button"
-                      onClick={() => openExternal(activeUrl)}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-border px-4 py-3 text-sm font-medium hover:bg-white/5"
-                    >
-                      Open again
-                      <ExternalLink className="h-4 w-4" />
-                    </button>
-                  )}
-                  <div className="flex gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setActiveTask(null)}
-                      className="flex-1 rounded-lg border border-border py-2.5 text-sm"
-                    >
-                      Later
-                    </button>
-                    <button
-                      type="button"
-                      disabled={busySlug === activeTask.slug}
-                      onClick={() => void handleComplete(activeTask)}
-                      className="flex-1 rounded-lg bg-verified py-2.5 text-sm font-semibold text-background"
-                    >
-                      Done — claim reward
-                    </button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="eyebrow">{activeTask.category}</p>
-                <h3 className="mt-2 text-xl font-semibold">{activeTask.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{activeTask.description}</p>
-                {activeUrl && (
-                  <a
-                    href={activeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-accent/40 bg-gold-soft/40 px-4 py-3 text-sm font-semibold text-accent hover:bg-accent hover:text-accent-foreground"
-                  >
-                    {activeTask.actionLabel ?? "Open task"}
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                )}
-                <input
-                  value={proofUrl}
-                  onChange={(e) => setProofUrl(e.target.value)}
-                  placeholder={activeTask.proofHint ?? "Optional link to your work"}
-                  className="mt-4 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
-                />
-                <div className="mt-6 flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTask(null)}
-                    className="flex-1 rounded-lg border border-border py-2.5 text-sm"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    disabled={busySlug === activeTask.slug}
-                    onClick={() => void handleComplete(activeTask)}
-                    className="flex-1 rounded-lg bg-accent py-2.5 text-sm font-semibold text-accent-foreground"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </>
+            <p className="eyebrow">{activeTask.category}</p>
+            <h3 className="mt-2 text-xl font-semibold">{activeTask.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{activeTask.description}</p>
+            {activeEnriched?.openUrl && (
+              <a
+                href={activeEnriched.openUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-accent/40 bg-gold-soft/40 px-4 py-3 text-sm font-semibold text-accent hover:bg-accent hover:text-accent-foreground"
+              >
+                {activeEnriched.label}
+                <ExternalLink className="h-4 w-4" />
+              </a>
             )}
+            <input
+              value={proofUrl}
+              onChange={(e) => setProofUrl(e.target.value)}
+              placeholder={activeTask.proofHint ?? "Optional link to your work"}
+              className="mt-4 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
+            />
+            <div className="mt-6 flex gap-3">
+              <button
+                type="button"
+                onClick={() => setActiveTask(null)}
+                className="flex-1 rounded-lg border border-border py-2.5 text-sm"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={busySlug === activeTask.slug}
+                onClick={() => void handleComplete(activeTask)}
+                className="flex-1 rounded-lg bg-accent py-2.5 text-sm font-semibold text-accent-foreground"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       )}

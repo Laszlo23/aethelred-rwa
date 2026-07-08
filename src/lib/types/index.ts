@@ -5,6 +5,16 @@ export type VerificationType =
 export type TaskCompletionStatus =
   "STARTED" | "SUBMITTED" | "VERIFIED" | "CLAIMABLE" | "CLAIMED" | "REJECTED";
 
+export type SocialAction =
+  | "follow"
+  | "like"
+  | "repost"
+  | "comment"
+  | "farcaster"
+  | "telegram"
+  | "share"
+  | "open";
+
 export interface AssetDTO {
   id: string;
   slug: string;
@@ -70,11 +80,13 @@ export interface TaskDTO {
   rewardTokenAmount: number;
   timeEstimate: string;
   verificationType: VerificationType;
+  action?: SocialAction;
   actionUrl?: string;
   intentUrl?: string;
   actionLabel?: string;
   requiresProof?: boolean;
   proofHint?: string;
+  flowVersion?: number;
   completion?: TaskCompletionDTO | null;
 }
 

@@ -22,6 +22,7 @@ export const SEED_TASKS = [
       intentUrl: "https://x.com/intent/follow?screen_name=buildingcultu3",
       actionLabel: "Follow on X",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -38,6 +39,7 @@ export const SEED_TASKS = [
       actionUrl: SOCIAL_LINKS.telegram,
       actionLabel: "Join Telegram",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -54,6 +56,7 @@ export const SEED_TASKS = [
       actionUrl: SOCIAL_LINKS.rwaLaunchPost,
       actionLabel: "Like on X",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -70,6 +73,7 @@ export const SEED_TASKS = [
       intentUrl: "https://x.com/intent/retweet?tweet_id=2074869766225867136",
       actionLabel: "Repost on X",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -86,6 +90,7 @@ export const SEED_TASKS = [
       intentUrl: "https://x.com/intent/retweet?tweet_id=2074296249377788348",
       actionLabel: "Repost on X",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -102,6 +107,7 @@ export const SEED_TASKS = [
       actionUrl: SOCIAL_LINKS.farcasterRwaCast,
       actionLabel: "Open on Farcaster",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -119,6 +125,7 @@ export const SEED_TASKS = [
         "https://x.com/intent/tweet?in_reply_to=2074869766225867136&text=Tokenized%20real%20assets%20with%20transparent%20debt%20and%20Guardian%20verification.",
       actionLabel: "Comment on X",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {
@@ -136,6 +143,7 @@ export const SEED_TASKS = [
         "https://x.com/intent/tweet?text=Own%20a%20piece%20of%20the%20real%20world%20%E2%80%94%20verified%20buildings%2C%20land%20%26%20water%20on%20Solana.%0A%0Ahttps%3A%2F%2Frwa.buildingcultureid.space%0A%0A%40buildingcultu3",
       actionLabel: "Share on X",
       requiresProof: false,
+      flowVersion: 2,
     }),
   },
   {

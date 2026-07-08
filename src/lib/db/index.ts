@@ -1,4 +1,5 @@
 import { SEED_GUARDIAN_LOG, SEED_PROPOSALS, SEED_TASKS } from "@/lib/data/seed";
+import { TASK_FLOW_VERSION } from "@/lib/tasks/social-actions";
 import { COMMUNITY_TREASURY_WALLET, DEMO_INVESTOR_WALLET } from "@/lib/data/seed-mogul";
 import {
   BC_PERKS,
@@ -36,11 +37,24 @@ export async function ensureSeeded() {
 async function syncSeedTasksIfNeeded() {
   if (tasksSyncedThisProcess) return;
 
-  const hasLatestTasks = await prisma.task.findUnique({
-    where: { slug: "share-on-x" },
-    select: { id: true },
+  const followTask = await prisma.task.findUnique({
+    where: { slug: "follow-bc-x" },
+    select: { verificationConfig: true },
   });
-  if (hasLatestTasks) {
+
+  let needsSync = !followTask;
+  if (followTask?.verificationConfig) {
+    try {
+      const config = JSON.parse(followTask.verificationConfig) as { flowVersion?: number };
+      needsSync = config.flowVersion !== TASK_FLOW_VERSION;
+    } catch {
+      needsSync = true;
+    }
+  } else if (followTask) {
+    needsSync = true;
+  }
+
+  if (!needsSync) {
     tasksSyncedThisProcess = true;
     return;
   }

@@ -2,6 +2,8 @@ import { prisma, ensureSeeded } from "@/lib/db";
 import { mapTask } from "@/lib/db/mappers";
 import { createServerFn } from "@tanstack/react-start";
 
+// Future: POST /api/tasks/x-callback webhook for real X follow verification via OAuth/API tier.
+
 export const listTasks = createServerFn({ method: "GET" })
   .validator((data: { walletAddress?: string; category?: string } | undefined) => data ?? {})
   .handler(async ({ data }) => {

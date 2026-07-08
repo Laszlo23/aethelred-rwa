@@ -10,6 +10,7 @@ import type {
   PassportDTO,
   ProposalDTO,
   ShareSummaryDTO,
+  SocialAction,
   TaskDTO,
   UserDTO,
   YieldDistributionDTO,
@@ -136,28 +137,46 @@ export function mapProposal(p: {
 }
 
 function parseTaskConfig(raw: string | null | undefined): {
+  action?: SocialAction;
   actionUrl?: string;
   intentUrl?: string;
   actionLabel?: string;
   requiresProof?: boolean;
   proofHint?: string;
+  flowVersion?: number;
 } {
   if (!raw) return {};
   try {
     const parsed = JSON.parse(raw) as {
+      action?: string;
       actionUrl?: string;
       intentUrl?: string;
       actionLabel?: string;
       requiresProof?: boolean;
       proofHint?: string;
+      flowVersion?: number;
     };
+    const validActions = [
+      "follow",
+      "like",
+      "repost",
+      "comment",
+      "farcaster",
+      "telegram",
+      "share",
+      "open",
+    ] as const;
     return {
+      action: validActions.includes(parsed.action as (typeof validActions)[number])
+        ? (parsed.action as SocialAction)
+        : undefined,
       actionUrl: typeof parsed.actionUrl === "string" ? parsed.actionUrl : undefined,
       intentUrl: typeof parsed.intentUrl === "string" ? parsed.intentUrl : undefined,
       actionLabel: typeof parsed.actionLabel === "string" ? parsed.actionLabel : undefined,
       requiresProof:
         typeof parsed.requiresProof === "boolean" ? parsed.requiresProof : undefined,
       proofHint: typeof parsed.proofHint === "string" ? parsed.proofHint : undefined,
+      flowVersion: typeof parsed.flowVersion === "number" ? parsed.flowVersion : undefined,
     };
   } catch {
     return {};
@@ -195,11 +214,13 @@ export function mapTask(
     rewardTokenAmount: t.rewardTokenAmount,
     timeEstimate: t.timeEstimate,
     verificationType: t.verificationType as TaskDTO["verificationType"],
+    action: config.action,
     actionUrl: config.actionUrl,
     intentUrl: config.intentUrl,
     actionLabel: config.actionLabel,
     requiresProof: config.requiresProof,
     proofHint: config.proofHint,
+    flowVersion: config.flowVersion,
     completion: completion
       ? {
           id: completion.id,
