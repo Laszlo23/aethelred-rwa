@@ -160,4 +160,4 @@ Do not use with real funds on mainnet until an external audit and mainnet harden
 
 ## License
 
-[MIT](LICENSE) — Copyright (c) 2026 Building Culture
+[MIT](LICENSE) — Copyright (c) 2026 Building Culture LLC

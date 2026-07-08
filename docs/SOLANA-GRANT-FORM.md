@@ -1,6 +1,6 @@
 # Solana Foundation — Form Answers (copy-paste)
 
-Use at **https://solana.org/grants** when submitting. Adjust names, email, and wallet before sending.
+Use at **https://solana.org/grants** when submitting. Confirm wallet address before sending.
 
 ---
 
@@ -9,9 +9,9 @@ Use at **https://solana.org/grants** when submitting. Adjust names, email, and w
 | Field | Answer |
 |-------|--------|
 | **Project name** | Aethelred RWA |
-| **Legal entity / org** | Building Culture |
-| **Primary contact** | [Your full name] |
-| **Email** | [Your email] |
+| **Legal entity / org** | Building Culture LLC |
+| **Primary contact** | Laszlo Bihary |
+| **Email** | laszlo.bihary@gmail.com |
 | **GitHub** | https://github.com/Laszlo23/aethelred-rwa |
 | **Website** | https://rwa.buildingcultureid.space |
 | **About / metrics** | https://rwa.buildingcultureid.space/about |
@@ -114,9 +114,9 @@ Building Culture also operates cross-chain (Places on Base), but **Solana is the
 
 ## Team (≈100 words)
 
-**Building Culture** curates European heritage real estate — city, land, and water assets across Austria and the EU — with a live property catalog and cross-ecosystem Places integration.
+**Building Culture LLC** curates European heritage real estate — city, land, and water assets across Austria and the EU — with a live property catalog and cross-ecosystem Places integration.
 
-**Aethelred engineering** built the full stack: TanStack Start app, Prisma backend, six Anchor programs, KYC/admin flows, production deployment, and open-source documentation.
+**Laszlo Bihary** (primary contact, laszlo.bihary@gmail.com) leads Aethelred engineering: TanStack Start app, Prisma backend, six Anchor programs, KYC/admin flows, production deployment, and open-source documentation.
 
 We have demonstrated execution: live URL, GitHub repo, CI, security audit, and scripted demo flows. Grant funding accelerates audit + mainnet — not initial prototyping.
 
@@ -196,13 +196,13 @@ We have demonstrated execution: live URL, GitHub repo, CI, security audit, and s
 
 ## Optional: convertible grant / investment note
 
-If asked whether we are raising investment: Aethelred is primarily a **public-good protocol layer** (MIT). Building Culture may pursue commercial operations separately for asset management. We are applying for a **standard milestone grant** first; open to SF guidance on convertible structure if aligned.
+If asked whether we are raising investment: Aethelred is primarily a **public-good protocol layer** (MIT). Building Culture LLC may pursue commercial operations separately for asset management. We are applying for a **standard milestone grant** first; open to SF guidance on convertible structure if aligned.
 
 ---
 
 ## Pre-submit checklist
 
-- [ ] Replace `[Your full name]` and `[Your email]`
+- [x] Replace `[Your full name]` and `[Your email]`
 - [ ] Record 2-min Loom (see [LOOM-SCRIPT.md](./LOOM-SCRIPT.md)) and paste URL
 - [ ] Confirm wallet address for grant disbursement
 - [ ] Review amount vs SF tier expectations ($10k–$250k range)

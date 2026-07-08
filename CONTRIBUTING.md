@@ -1,6 +1,6 @@
 # Contributing to Aethelred
 
-Thank you for helping improve Aethelred RWA. This project is maintained by Building Culture and open to ecosystem contributors.
+Thank you for helping improve Aethelred RWA. This project is maintained by Building Culture LLC and open to ecosystem contributors.
 
 ## Getting started
 

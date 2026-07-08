@@ -5,8 +5,8 @@
 | Field | Value |
 |-------|-------|
 | **Project** | Aethelred RWA |
-| **Organization** | Building Culture |
-| **Applicant** | Laszlo23 / Building Culture core team |
+| **Organization** | Building Culture LLC |
+| **Applicant** | Laszlo Bihary (Building Culture LLC) |
 | **Live demo** | https://rwa.buildingcultureid.space |
 | **About page** | https://rwa.buildingcultureid.space/about |
 | **Repository** | https://github.com/Laszlo23/aethelred-rwa |
@@ -106,11 +106,11 @@ We are applying for Solana Foundation support to complete a **third-party securi
 
 ## Team
 
-**Building Culture** — European heritage real estate collective with live property catalog and cross-chain Places integration.
+**Building Culture LLC** — European heritage real estate collective with live property catalog and cross-chain Places integration.
 
-**Aethelred engineering** — Full-stack Solana + TanStack team; open-source maintainers of the protocol layer.
+**Laszlo Bihary** — Primary contact and Aethelred engineering lead; full-stack Solana + TanStack; open-source maintainer of the protocol layer.
 
-Contact: GitHub issues on [aethelred-rwa](https://github.com/Laszlo23/aethelred-rwa) or Building Culture ecosystem channels.
+Contact: laszlo.bihary@gmail.com · GitHub issues on [aethelred-rwa](https://github.com/Laszlo23/aethelred-rwa)
 
 ---
 
@@ -156,4 +156,4 @@ Grant funds accelerate **real** paths, not demo polish.
 
 ---
 
-*Prepared July 2026 — Aethelred by Building Culture*
+*Prepared July 2026 — Aethelred by Building Culture LLC*

@@ -1,6 +1,6 @@
 # Aethelred — Grant Application Package
 
-**Project:** Aethelred RWA by Building Culture  
+**Project:** Aethelred RWA by Building Culture LLC  
 **Live demo:** https://rwa.buildingcultureid.space  
 **Repository:** https://github.com/Laszlo23/aethelred-rwa  
 **Chain:** Solana devnet (mainnet planned)  
@@ -70,10 +70,10 @@ Honest labeling is a core grant commitment — see [docs/ARCHITECTURE.md](docs/A
 
 ## 5. Team
 
-**Building Culture** — European heritage real estate collective.  
+**Building Culture LLC** — European heritage real estate collective.  
 **Aethelred** — Solana RWA infrastructure layer for the Building Culture portfolio.
 
-_Contact maintainers via GitHub issues or Building Culture ecosystem channels._
+**Primary contact:** Laszlo Bihary — laszlo.bihary@gmail.com · [GitHub issues](https://github.com/Laszlo23/aethelred-rwa/issues)
 
 ---
 

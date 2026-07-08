@@ -15,7 +15,7 @@ export const SITE = {
   title: "Aethelred — Real Assets. Verified. Accessible.",
   description:
     "Tokenize verified real-world assets on Solana. See debt clearly, pass Guardian audits, and unlock Euro-backed liquidity with Building Culture.",
-  author: "Building Culture",
+  author: "Building Culture LLC",
   locale: "en_US",
         twitterSite: "@buildingcultu3",
   themeColor: "#1c1d21",
@@ -79,7 +79,7 @@ export function rootSeo() {
             {
               "@type": "Organization",
               "@id": `${siteUrl}/#organization`,
-              name: "Building Culture",
+              name: "Building Culture LLC",
               url: "https://buildingcultureid.space",
               logo: absoluteUrl("/icon-512.png"),
               sameAs: ["https://buildingcultureid.space", "https://solana.com"],
