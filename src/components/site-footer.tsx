@@ -10,6 +10,9 @@ export function SiteFooter() {
           <a href="/about" className="eyebrow hover:!text-foreground">
             About
           </a>
+          <a href="/team" className="eyebrow hover:!text-foreground">
+            Team
+          </a>
           <a href="/technology" className="eyebrow hover:!text-foreground">
             Technology
           </a>

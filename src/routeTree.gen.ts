@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VaultRouteImport } from './routes/vault'
 import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -18,11 +19,13 @@ import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PassportRouteImport } from './routes/passport'
 import { Route as NamesRouteImport } from './routes/names'
 import { Route as MarketsRouteImport } from './routes/markets'
+import { Route as LearnRouteImport } from './routes/learn'
 import { Route as GuardianRouteImport } from './routes/guardian'
 import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as FundsRouteImport } from './routes/funds'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as CreateRouteImport } from './routes/create'
+import { Route as ChooseRouteImport } from './routes/choose'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -41,6 +44,11 @@ const VaultRoute = VaultRouteImport.update({
 const TechnologyRoute = TechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TasksRoute = TasksRouteImport.update({
@@ -78,6 +86,11 @@ const MarketsRoute = MarketsRouteImport.update({
   path: '/markets',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuardianRoute = GuardianRouteImport.update({
   id: '/guardian',
   path: '/guardian',
@@ -101,6 +114,11 @@ const ExploreRoute = ExploreRouteImport.update({
 const CreateRoute = CreateRouteImport.update({
   id: '/create',
   path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChooseRoute = ChooseRouteImport.update({
+  id: '/choose',
+  path: '/choose',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -153,11 +171,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/choose': typeof ChooseRoute
   '/create': typeof CreateRoute
   '/explore': typeof ExploreRoute
   '/funds': typeof FundsRoute
   '/governance': typeof GovernanceRoute
   '/guardian': typeof GuardianRoute
+  '/learn': typeof LearnRoute
   '/markets': typeof MarketsRouteWithChildren
   '/names': typeof NamesRoute
   '/passport': typeof PassportRoute
@@ -165,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tasks': typeof TasksRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/vault': typeof VaultRoute
   '/assets/$assetId': typeof AssetsAssetIdRoute
@@ -178,17 +199,20 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/choose': typeof ChooseRoute
   '/create': typeof CreateRoute
   '/explore': typeof ExploreRoute
   '/funds': typeof FundsRoute
   '/governance': typeof GovernanceRoute
   '/guardian': typeof GuardianRoute
+  '/learn': typeof LearnRoute
   '/names': typeof NamesRoute
   '/passport': typeof PassportRoute
   '/portfolio': typeof PortfolioRoute
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tasks': typeof TasksRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/vault': typeof VaultRoute
   '/assets/$assetId': typeof AssetsAssetIdRoute
@@ -203,11 +227,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/choose': typeof ChooseRoute
   '/create': typeof CreateRoute
   '/explore': typeof ExploreRoute
   '/funds': typeof FundsRoute
   '/governance': typeof GovernanceRoute
   '/guardian': typeof GuardianRoute
+  '/learn': typeof LearnRoute
   '/markets': typeof MarketsRouteWithChildren
   '/names': typeof NamesRoute
   '/passport': typeof PassportRoute
@@ -215,6 +241,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tasks': typeof TasksRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/vault': typeof VaultRoute
   '/assets/$assetId': typeof AssetsAssetIdRoute
@@ -230,11 +257,13 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/choose'
     | '/create'
     | '/explore'
     | '/funds'
     | '/governance'
     | '/guardian'
+    | '/learn'
     | '/markets'
     | '/names'
     | '/passport'
@@ -242,6 +271,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sitemap.xml'
     | '/tasks'
+    | '/team'
     | '/technology'
     | '/vault'
     | '/assets/$assetId'
@@ -255,17 +285,20 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/choose'
     | '/create'
     | '/explore'
     | '/funds'
     | '/governance'
     | '/guardian'
+    | '/learn'
     | '/names'
     | '/passport'
     | '/portfolio'
     | '/profile'
     | '/sitemap.xml'
     | '/tasks'
+    | '/team'
     | '/technology'
     | '/vault'
     | '/assets/$assetId'
@@ -279,11 +312,13 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/choose'
     | '/create'
     | '/explore'
     | '/funds'
     | '/governance'
     | '/guardian'
+    | '/learn'
     | '/markets'
     | '/names'
     | '/passport'
@@ -291,6 +326,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sitemap.xml'
     | '/tasks'
+    | '/team'
     | '/technology'
     | '/vault'
     | '/assets/$assetId'
@@ -305,11 +341,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  ChooseRoute: typeof ChooseRoute
   CreateRoute: typeof CreateRoute
   ExploreRoute: typeof ExploreRoute
   FundsRoute: typeof FundsRoute
   GovernanceRoute: typeof GovernanceRoute
   GuardianRoute: typeof GuardianRoute
+  LearnRoute: typeof LearnRoute
   MarketsRoute: typeof MarketsRouteWithChildren
   NamesRoute: typeof NamesRoute
   PassportRoute: typeof PassportRoute
@@ -317,6 +355,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TasksRoute: typeof TasksRoute
+  TeamRoute: typeof TeamRoute
   TechnologyRoute: typeof TechnologyRoute
   VaultRoute: typeof VaultRoute
   AssetsAssetIdRoute: typeof AssetsAssetIdRoute
@@ -339,6 +378,13 @@ declare module '@tanstack/react-router' {
       path: '/technology'
       fullPath: '/technology'
       preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tasks': {
@@ -390,6 +436,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guardian': {
       id: '/guardian'
       path: '/guardian'
@@ -423,6 +476,13 @@ declare module '@tanstack/react-router' {
       path: '/create'
       fullPath: '/create'
       preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/choose': {
+      id: '/choose'
+      path: '/choose'
+      fullPath: '/choose'
+      preLoaderRoute: typeof ChooseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -508,11 +568,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  ChooseRoute: ChooseRoute,
   CreateRoute: CreateRoute,
   ExploreRoute: ExploreRoute,
   FundsRoute: FundsRoute,
   GovernanceRoute: GovernanceRoute,
   GuardianRoute: GuardianRoute,
+  LearnRoute: LearnRoute,
   MarketsRoute: MarketsRouteWithChildren,
   NamesRoute: NamesRoute,
   PassportRoute: PassportRoute,
@@ -520,6 +582,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TasksRoute: TasksRoute,
+  TeamRoute: TeamRoute,
   TechnologyRoute: TechnologyRoute,
   VaultRoute: VaultRoute,
   AssetsAssetIdRoute: AssetsAssetIdRoute,
