@@ -1,0 +1,45 @@
+{
+  "address": "AQXb8Z29qSxco5h5qSWfUnwZd7DgSuFhxXjeB25FMtEU",
+  "metadata": {
+    "name": "aethelred_registry",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_config",
+      "discriminator": [208, 127, 21, 1, 194, 190, 196, 70],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "registry_authority", "type": "pubkey" }]
+    },
+    {
+      "name": "register_asset",
+      "discriminator": [21, 80, 155, 149, 117, 207, 235, 16],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": false, "signer": false },
+        { "name": "mint", "writable": false, "signer": false },
+        { "name": "registry", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [
+        { "name": "slug", "type": "string" },
+        { "name": "nav_cents", "type": "u64" },
+        { "name": "trust_score", "type": "u8" }
+      ]
+    },
+    {
+      "name": "update_nav",
+      "discriminator": [56, 16, 234, 109, 155, 165, 5, 0],
+      "accounts": [
+        { "name": "authority", "writable": false, "signer": true },
+        { "name": "registry", "writable": true, "signer": false }
+      ],
+      "args": [{ "name": "nav_cents", "type": "u64" }]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "address": "4tzFUjGPaiENbHR3vZE9bLEdjrMSbewZqizkwP5m5t9X",
+  "metadata": {
+    "name": "aethelred_vault",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "deposit_collateral",
+      "discriminator": [156, 131, 142, 116, 146, 247, 162, 120],
+      "accounts": [
+        { "name": "owner", "writable": true, "signer": true },
+        { "name": "vault", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    },
+    {
+      "name": "compute_max_mint",
+      "discriminator": [32, 190, 181, 142, 118, 219, 40, 188],
+      "accounts": [{ "name": "vault", "writable": false, "signer": false }],
+      "args": []
+    }
+  ]
+}

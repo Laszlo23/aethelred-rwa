@@ -1,0 +1,32 @@
+{
+  "address": "H3DagyBbC86U62PVkPV6pgtJcuuhhK7FpWwoLWsYHboL",
+  "metadata": {
+    "name": "aethelred_euro",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_config",
+      "discriminator": [208, 127, 21, 1, 194, 190, 196, 70],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "minter", "type": "pubkey" }]
+    },
+    {
+      "name": "mint_euro",
+      "discriminator": [208, 75, 189, 34, 144, 113, 30, 139],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": false, "signer": false },
+        { "name": "mint", "writable": true, "signer": false },
+        { "name": "destination", "writable": true, "signer": false },
+        { "name": "token_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    }
+  ]
+}

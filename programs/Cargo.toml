@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "aethelred_passport",
+    "aethelred_registry",
+    "aethelred_names",
+    "aethelred_vault",
+    "aethelred_euro",
+    "aethelred_rewards",
+]
+resolver = "2"
+
+[profile.release]
+overflow-checks = true

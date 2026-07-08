@@ -1,0 +1,32 @@
+{
+  "address": "4j6QfsG5mbZ6RaYZpdnzpk5zYfiJJWex2YA6TjsBhnhE",
+  "metadata": {
+    "name": "aethelred_rewards",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_config",
+      "discriminator": [208, 127, 21, 1, 194, 190, 196, 70],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "minter", "type": "pubkey" }]
+    },
+    {
+      "name": "claim_reward",
+      "discriminator": [149, 95, 181, 242, 94, 90, 158, 162],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": false, "signer": false },
+        { "name": "mint", "writable": true, "signer": false },
+        { "name": "destination", "writable": true, "signer": false },
+        { "name": "token_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    }
+  ]
+}

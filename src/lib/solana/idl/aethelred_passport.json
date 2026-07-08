@@ -1,0 +1,52 @@
+{
+  "address": "9wMCFvTTgyVuzB2yCNtC2G9ZcVDHrxpBmBnW2BSZoy1A",
+  "metadata": {
+    "name": "aethelred_passport",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_config",
+      "discriminator": [208, 127, 21, 1, 194, 190, 196, 70],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "config", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "guardian", "type": "pubkey" }]
+    },
+    {
+      "name": "mint_passport",
+      "discriminator": [191, 229, 65, 107, 110, 33, 228, 202],
+      "accounts": [
+        { "name": "owner", "writable": true, "signer": true },
+        { "name": "guardian", "writable": false, "signer": true },
+        { "name": "config", "writable": false, "signer": false },
+        { "name": "passport", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [
+        { "name": "asset_id", "type": "string" },
+        { "name": "trust_score", "type": "u8" },
+        { "name": "guardian_grade", "type": "string" },
+        { "name": "attestation_sig", "type": "string" },
+        { "name": "nav_cents", "type": "u64" }
+      ]
+    },
+    {
+      "name": "update_attestation",
+      "discriminator": [251, 244, 74, 129, 95, 36, 57, 101],
+      "accounts": [
+        { "name": "guardian", "writable": false, "signer": true },
+        { "name": "passport", "writable": true, "signer": false }
+      ],
+      "args": [
+        { "name": "trust_score", "type": "u8" },
+        { "name": "guardian_grade", "type": "string" },
+        { "name": "attestation_sig", "type": "string" },
+        { "name": "nav_cents", "type": "u64" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,510 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String           @id @default(cuid())
+  walletAddress  String           @unique
+  pointsBalance  Int              @default(0)
+  signingNonce   String?
+  lastSignedAt   DateTime?
+  kycTier        String           @default("unverified")
+  kycVerifiedAt  DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  assets         Asset[]
+  taskCompletions TaskCompletion[]
+  lendingPositions LendingPosition[]
+  votes          Vote[]
+  trustProfile   UserTrustProfile?
+  nameRegistration NameRegistration?
+  onChainPositions OnChainPosition[]
+  perpPositions  PerpPosition[]
+  perpOrders     PerpOrder[]
+
+  @@index([walletAddress])
+}
+
+model Asset {
+  id              String          @id @default(cuid())
+  slug            String          @unique
+  name            String
+  location        String
+  assetType       String
+  imageUrl        String
+  valueCents      Int
+  debtCents       Int
+  originalDebtCents Int
+  debtRepaidCents Int             @default(0)
+  health          Int
+  yieldBps        Int
+  status          String          @default("DRAFT")
+  vaultTier       String          @default("STANDARD")
+  fractionalized  Boolean         @default(false)
+  ownerId         String?
+  owner           User?           @relation(fields: [ownerId], references: [id])
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  passport        AssetPassport?
+  property        AssetProperty?
+  documents       Document[]
+  debtSnapshots   DebtSnapshot[]
+  shares          AssetShare[]
+  perks           AssetPerk[]
+  lendingPositions LendingPosition[]
+  yieldDistributions YieldDistribution[]
+  oracleSnapshots  OracleSnapshot[]
+  fundLedgerEntries FundLedgerEntry[]
+  onChainPositions OnChainPosition[]
+  perpMarkets      PerpMarket[]
+
+  @@index([status])
+  @@index([assetType])
+}
+
+model AssetPassport {
+  id               String   @id @default(cuid())
+  assetId          String   @unique
+  asset            Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  trustScore       Int
+  collateralRatio  Int
+  guardianGrade    String
+  solanaMint       String?
+  registryPda      String?
+  navOraclePda     String?
+  lastAuditAt      DateTime @default(now())
+  attestationSig   String?
+  trustFactorsJson String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Document {
+  id         String   @id @default(cuid())
+  assetId    String
+  asset      Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  storageKey String
+  fileName   String
+  mimeType   String
+  verified   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model DebtSnapshot {
+  id            String   @id @default(cuid())
+  assetId       String
+  asset         Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  remainingDebtCents Int
+  repaidCents   Int
+  health        Int
+  recordedAt    DateTime @default(now())
+
+  @@index([assetId, recordedAt])
+}
+
+model GuardianAudit {
+  id            String   @id @default(cuid())
+  event         String
+  target        String
+  result        String
+  riskLevel     String?
+  signedPayload String?
+  createdAt     DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model LiquidityPool {
+  id               String   @id @default("singleton")
+  collateralCents  BigInt
+  backingRatioBps  Int
+  euroSupplyCents  BigInt
+  assetsMonitored  Int
+  healthyPercent   Int
+  riskChecksToday  Int
+  updatedAt        DateTime @updatedAt
+}
+
+model Task {
+  id                String           @id @default(cuid())
+  slug              String           @unique
+  category          String
+  title             String
+  description       String
+  rewardPoints      Int
+  rewardTokenAmount Int              @default(0)
+  timeEstimate      String
+  verificationType  String
+  verificationConfig String?
+  active            Boolean          @default(true)
+  createdAt         DateTime         @default(now())
+  completions       TaskCompletion[]
+}
+
+model TaskCompletion {
+  id           String               @id @default(cuid())
+  userId       String
+  user         User                 @relation(fields: [userId], references: [id])
+  taskId       String
+  task         Task                 @relation(fields: [taskId], references: [id])
+  status       String               @default("STARTED")
+  proofUrl     String?
+  txSignature  String?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+
+  @@unique([userId, taskId])
+}
+
+model Proposal {
+  id          String         @id @default(cuid())
+  title       String
+  description String
+  status      String         @default("ACTIVE")
+  votesFor    Int            @default(0)
+  votesAgainst Int           @default(0)
+  endsAt      DateTime
+  createdAt   DateTime       @default(now())
+  votes       Vote[]
+}
+
+model Vote {
+  id         String   @id @default(cuid())
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id])
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  support    Boolean
+  weight     Int      @default(1)
+  createdAt  DateTime @default(now())
+
+  @@unique([proposalId, userId])
+}
+
+model LendingPosition {
+  id                   String   @id @default(cuid())
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id])
+  assetId              String
+  asset                Asset    @relation(fields: [assetId], references: [id])
+  principalCents       Int
+  collateralShareBps   Int      @default(0)
+  currency             String   @default("USDC")
+  accruedInterestCents Int      @default(0)
+  apyBps               Int
+  status               String   @default("active")
+  protocol             String   @default("kamino")
+  onChainPubkey        String?
+  healthFactorBps      Int?
+  liquidationPriceCents Int?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([assetId])
+  @@index([userId])
+  @@index([onChainPubkey])
+}
+
+model AssetShare {
+  id           String   @id @default(cuid())
+  assetId      String
+  asset        Asset    @relation(fields: [assetId], references: [id])
+  shareBps     Int
+  holderWallet String
+  createdAt    DateTime @default(now())
+
+  @@index([assetId, holderWallet])
+}
+
+model AssetProperty {
+  id                        String   @id @default(cuid())
+  assetId                   String   @unique
+  asset                     Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  tagline                   String
+  description               String
+  galleryUrls               String
+  propertyClass             String
+  cultureSegment            String?
+  sqm                       Int?
+  units                     Int?
+  beds                      Int?
+  yearBuilt                 Int?
+  occupancyBps              Int?
+  bankHolder                String?
+  communityRaiseTargetCents Int?
+  tokensSoldBps             Int      @default(0)
+  placesPropertyId          Int?
+  externalRef               String?
+  tokenSymbol               String?
+  jurisdiction              String?
+  evmShareToken             String?
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@index([cultureSegment])
+  @@index([placesPropertyId])
+}
+
+model AssetPerk {
+  id          String   @id @default(cuid())
+  assetId     String
+  asset       Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  perkType    String
+  title       String
+  description String
+  minShareBps Int
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([assetId])
+}
+
+model YieldDistribution {
+  id            String        @id @default(cuid())
+  assetId       String
+  asset         Asset         @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  periodLabel   String
+  totalCents    Int
+  source        String
+  distributedAt DateTime
+  payouts       SharePayout[]
+  createdAt     DateTime      @default(now())
+
+  @@index([assetId, distributedAt])
+}
+
+model SharePayout {
+  id               String            @id @default(cuid())
+  distributionId   String
+  distribution     YieldDistribution @relation(fields: [distributionId], references: [id], onDelete: Cascade)
+  holderWallet     String
+  amountCents      Int
+  shareBpsAtSnapshot Int
+  createdAt        DateTime          @default(now())
+
+  @@index([holderWallet])
+  @@index([distributionId])
+}
+
+model GuardianJob {
+  id          String   @id @default(cuid())
+  assetId     String
+  status      String   @default("queued")
+  naturalLanguage String?
+  extractedJson String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model OnChainPosition {
+  id            String   @id @default(cuid())
+  walletAddress String
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id])
+  assetId       String?
+  asset         Asset?   @relation(fields: [assetId], references: [id])
+  program       String
+  positionType  String
+  pubkey        String   @unique
+  mint          String?
+  amountRaw     String?
+  metadataJson  String?
+  lastSyncedAt  DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([walletAddress])
+  @@index([assetId])
+  @@index([program, positionType])
+}
+
+model OracleSnapshot {
+  id          String   @id @default(cuid())
+  assetId     String
+  asset       Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  navCents    Int
+  debtCents   Int      @default(0)
+  yieldBps    Int      @default(0)
+  occupancyBps Int?
+  source      String
+  attestationSig String?
+  recordedAt  DateTime @default(now())
+
+  @@index([assetId, recordedAt])
+}
+
+model FundLedgerEntry {
+  id            String   @id @default(cuid())
+  assetId       String?
+  asset         Asset?   @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  direction     String
+  amountCents   Int
+  currency      String   @default("USDC")
+  proofHash     String?
+  txSignature   String?
+  attestationSig String?
+  note          String?
+  recordedAt    DateTime @default(now())
+
+  @@index([assetId, recordedAt])
+  @@index([txSignature])
+}
+
+model UserTrustProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  walletAddress   String   @unique
+  trustScore      Int      @default(50)
+  kycTier         String   @default("unverified")
+  maxBorrowLtvBps Int      @default(4000)
+  maxPerpLeverage Int      @default(3)
+  factorsJson     String?
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  @@index([trustScore])
+}
+
+model NameRegistration {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  walletAddress String   @unique
+  handle        String   @unique
+  solanaPda     String?
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([handle])
+}
+
+model WalletCompliance {
+  id            String   @id @default(cuid())
+  walletAddress String   @unique
+  kycTier       String   @default("unverified")
+  verifiedAt    DateTime?
+  provider      String?
+  externalRef   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model KycApplication {
+  id             String   @id @default(cuid())
+  walletAddress  String   @unique
+  fullName       String
+  country        String
+  dateOfBirth    String?
+  docType        String
+  docNumber      String
+  requestedTier  String   @default("basic")
+  status         String   @default("pending")
+  reviewerNote   String?
+  reviewedBy     String?
+  submittedAt    DateTime @default(now())
+  reviewedAt     DateTime?
+  updatedAt      DateTime @updatedAt
+
+  @@index([status])
+}
+
+model PerpMarket {
+  id                String   @id @default(cuid())
+  assetId           String?
+  asset             Asset?   @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  symbol            String   @unique
+  indexPriceCents   Int
+  fundingRateBps    Int      @default(0)
+  openInterestCents Int      @default(0)
+  volume24hCents    Int      @default(0)
+  maxLeverage       Int      @default(10)
+  trustMinScore     Int      @default(50)
+  driftMarketIndex  Int?
+  change24hBps      Int      @default(0)
+  high24hCents      Int?
+  low24hCents       Int?
+  updatedAt         DateTime @updatedAt
+  createdAt         DateTime @default(now())
+  positions         PerpPosition[]
+  candles           PerpCandle[]
+  trades            PerpTrade[]
+  orders            PerpOrder[]
+}
+
+model PerpCandle {
+  id           String   @id @default(cuid())
+  symbol       String
+  market       PerpMarket @relation(fields: [symbol], references: [symbol], onDelete: Cascade)
+  interval     String
+  openCents    Int
+  highCents    Int
+  lowCents     Int
+  closeCents   Int
+  volumeCents  Int      @default(0)
+  recordedAt   DateTime
+
+  @@unique([symbol, interval, recordedAt])
+  @@index([symbol, interval, recordedAt])
+}
+
+model PerpTrade {
+  id           String   @id @default(cuid())
+  symbol       String
+  market       PerpMarket @relation(fields: [symbol], references: [symbol], onDelete: Cascade)
+  side         String
+  priceCents   Int
+  sizeCents    Int
+  txSignature  String?
+  recordedAt   DateTime @default(now())
+
+  @@index([symbol, recordedAt])
+}
+
+model PerpOrder {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  symbol        String
+  market        PerpMarket @relation(fields: [symbol], references: [symbol], onDelete: Cascade)
+  side          String
+  orderType     String
+  priceCents    Int?
+  sizeCents     Int
+  leverage      Int      @default(1)
+  status        String   @default("open")
+  driftOrderId  Int?
+  txSignature   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([userId, status])
+  @@index([symbol, status])
+}
+
+model PerpPosition {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  marketId        String
+  market          PerpMarket @relation(fields: [marketId], references: [id])
+  side            String
+  sizeCents       Int
+  entryPriceCents Int
+  leverage        Int
+  marginCents     Int
+  unrealizedPnlCents Int   @default(0)
+  status          String   @default("open")
+  onChainPubkey   String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId, status])
+  @@index([marketId])
+}

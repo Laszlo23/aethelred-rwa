@@ -1,0 +1,20 @@
+{
+  "address": "APU7238FpwdCWTrx5jSKpQYnkrrHiT1HgQgtPPRY3aDd",
+  "metadata": {
+    "name": "aethelred_names",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "register_name",
+      "discriminator": [101, 120, 221, 151, 68, 123, 191, 103],
+      "accounts": [
+        { "name": "owner", "writable": true, "signer": true },
+        { "name": "name_record", "writable": true, "signer": false },
+        { "name": "system_program", "writable": false, "signer": false }
+      ],
+      "args": [{ "name": "handle", "type": "string" }]
+    }
+  ]
+}
