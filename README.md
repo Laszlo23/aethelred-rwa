@@ -2,6 +2,9 @@
 
 **Real Assets. Verified. Accessible.**
 
+> **Grant reviewers:** Start at **[rwa.buildingcultureid.space/grant](https://rwa.buildingcultureid.space/grant)** — walkthrough, on-chain accounts, docs.  
+> [![CI](https://github.com/Laszlo23/aethelred-rwa/actions/workflows/ci.yml/badge.svg)](https://github.com/Laszlo23/aethelred-rwa/actions) · [Grant package](GRANT.md) · [On-chain accounts](docs/ON-CHAIN.md)
+
 Aethelred is a Solana-native platform for tokenizing verified real-world assets (RWAs), built by [Building Culture](https://buildingcultureid.space). Investors connect a wallet, complete KYC, and purchase fractional shares in curated European properties. Issuers mint Asset Passports, run Guardian verification, and publish transparent debt and fund data on-chain.
 
 **Live demo:** https://rwa.buildingcultureid.space  

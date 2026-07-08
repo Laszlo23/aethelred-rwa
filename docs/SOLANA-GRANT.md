@@ -152,7 +152,7 @@ Grant funds accelerate **real** paths, not demo polish.
 - [x] Public about / metrics page
 - [ ] Third-party audit (Milestone 1)
 - [ ] Mainnet deployment (Milestone 3)
-- [ ] Solana Foundation application form submitted
+- [x] Solana Foundation application form submitted
 
 ---
 

@@ -120,6 +120,10 @@ _Adjust figures per grant program requirements._
 - [docs/DEMO.md](docs/DEMO.md) — 5-minute reviewer demo script
 - [docs/SOLANA-GRANT.md](docs/SOLANA-GRANT.md) — Solana Foundation one-pager
 - [docs/SOLANA-GRANT-FORM.md](docs/SOLANA-GRANT-FORM.md) — copy-paste form answers
+- [docs/GRANT-REVIEWER.md](docs/GRANT-REVIEWER.md) — reviewer entry point
+- [docs/ON-CHAIN.md](docs/ON-CHAIN.md) — devnet program + mint addresses
+- [docs/SME-CALL.md](docs/SME-CALL.md) — diligence call talking points
+- [docs/SUPERTEAM-GRANT.md](docs/SUPERTEAM-GRANT.md) — Superteam Instagrants draft
 - [docs/LOOM-SCRIPT.md](docs/LOOM-SCRIPT.md) — 2-minute video script
 
 ---

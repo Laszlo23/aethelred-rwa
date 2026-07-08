@@ -5,6 +5,7 @@ import { formatUsdc, formatPercent } from "@/lib/format";
 import { maxPrincipalCents } from "@/lib/lending/config";
 import { useCreateLendingPosition } from "@/hooks/use-api";
 import { useSiwsSignIn } from "@/hooks/use-siws";
+import { ModuleStatusBadge } from "@/components/module-status-badge";
 
 interface LendAgainstSharesProps {
   asset: AssetDetailDTO;
@@ -49,7 +50,10 @@ export function LendAgainstShares({
 
   return (
     <div className="rounded-xl border border-border bg-surface p-6">
-      <p className="eyebrow">Lend against your shares</p>
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="eyebrow">Lend against your shares</p>
+        <ModuleStatusBadge status="stub" />
+      </div>
       <p className="mt-2 text-sm text-muted-foreground">
         Pledge tokenized property shares as collateral. Borrow USDC at{" "}
         <span className="text-foreground">{formatPercent(asset.lendingSummary.avgApyBps)}</span> APY

@@ -17,6 +17,7 @@ import { OrderBook } from "@/components/markets/order-book";
 import { TradesTape } from "@/components/markets/trades-tape";
 import { OrderTicket } from "@/components/markets/order-ticket";
 import { PositionsDock } from "@/components/markets/positions-dock";
+import { ModuleStatusBadge } from "@/components/module-status-badge";
 
 interface TradingTerminalProps {
   symbol: string;
@@ -51,6 +52,10 @@ export function TradingTerminal({ symbol }: TradingTerminalProps) {
 
   return (
     <div className="flex h-[calc(100vh-4rem)] flex-col overflow-hidden">
+      <div className="flex items-center gap-2 border-b border-border bg-amber-500/5 px-4 py-2 text-sm text-muted-foreground">
+        <ModuleStatusBadge status="demo" />
+        <span>Synthetic order book for UI exploration — not production trading.</span>
+      </div>
       <div className="flex min-h-0 flex-1">
         <div className="hidden w-56 shrink-0 lg:block">
           <MarketSelector

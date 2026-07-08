@@ -14,6 +14,7 @@ import { getPublicMetrics } from "@/api/metrics";
 import { formatEuroCompact } from "@/lib/format";
 import { pageSeo, SITE } from "@/lib/seo";
 import { BC_REFERENCE_YIELD_BAND } from "@/lib/data/seed-building-culture";
+import { ON_CHAIN_PROGRAMS } from "@/lib/data/on-chain-programs";
 
 export const Route = createFileRoute("/about")({
   loader: async ({ context: { queryClient } }) => {
@@ -58,14 +59,7 @@ const ROADMAP = [
   },
 ] as const;
 
-const PROGRAMS = [
-  { name: "passport", id: "9wMCFvTTgyVuzB2yCNtC2G9ZcVDHrxpBmBnW2BSZoy1A" },
-  { name: "registry", id: "AQXb8Z29qSxco5h5qSWfUnwZd7DgSuFhxXjeB25FMtEU" },
-  { name: "names", id: "APU7238FpwdCWTrx5jSKpQYnkrrHiT1HgQgtPPRY3aDd" },
-  { name: "vault", id: "4tzFUjGPaiENbHR3vZE9bLEdjrMSbewZqizkwP5m5t9X" },
-  { name: "euro", id: "H3DagyBbC86U62PVkPV6pgtJcuuhhK7FpWwoLWsYHboL" },
-  { name: "rewards", id: "4j6QfsG5mbZ6RaYZpdnzpk5zYfiJJWex2YA6TjsBhnhE" },
-] as const;
+const PROGRAMS = ON_CHAIN_PROGRAMS;
 
 function AboutPage() {
   const { data: metrics } = useQuery({
@@ -244,6 +238,12 @@ function AboutPage() {
             Open-source MIT repo, passing CI, live demo, and grant application package on GitHub.
           </p>
           <div className="mt-4 flex flex-col gap-2">
+            <Link
+              to="/grant"
+              className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
+            >
+              Grant reviewer hub <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
             <a
               href="https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT-FORM.md"
               target="_blank"

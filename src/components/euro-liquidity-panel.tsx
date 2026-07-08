@@ -1,3 +1,4 @@
+import { ModuleStatusBadge } from "@/components/module-status-badge";
 import { useLiquidityPool } from "@/hooks/use-api";
 import { formatEuroCompact, formatPercent } from "@/lib/format";
 
@@ -6,14 +7,22 @@ export function EuroLiquidityPanel() {
 
   return (
     <section className="rounded-2xl border border-border bg-surface p-8 lg:p-10">
-      <p className="eyebrow">EURO Liquidity Layer</p>
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="eyebrow">EURO Liquidity Layer</p>
+        <ModuleStatusBadge status="in_progress" />
+      </div>
       <h2 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight md:text-3xl">
         Verified asset-backed liquidity —{" "}
         <span className="text-editorial text-accent">not a random stablecoin.</span>
       </h2>
       <p className="mt-4 max-w-2xl text-muted-foreground">
         Every EURO in circulation is backed by Guardian-verified collateral. Users interact with
-        transparent, asset-anchored liquidity — not opaque synthetic exposure.
+        transparent, asset-anchored liquidity — not opaque synthetic exposure. Vault SPL custody and
+        EURO mint CPIs are in progress on devnet — see{" "}
+        <a href="/technology" className="text-accent hover:underline">
+          Technology
+        </a>{" "}
+        and the architecture doc.
       </p>
       <dl className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
         <div className="panel p-6">

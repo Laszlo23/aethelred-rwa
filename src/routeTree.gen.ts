@@ -21,6 +21,7 @@ import { Route as NamesRouteImport } from './routes/names'
 import { Route as MarketsRouteImport } from './routes/markets'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as GuardianRouteImport } from './routes/guardian'
+import { Route as GrantRouteImport } from './routes/grant'
 import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as FundsRouteImport } from './routes/funds'
 import { Route as ExploreRouteImport } from './routes/explore'
@@ -94,6 +95,11 @@ const LearnRoute = LearnRouteImport.update({
 const GuardianRoute = GuardianRouteImport.update({
   id: '/guardian',
   path: '/guardian',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrantRoute = GrantRouteImport.update({
+  id: '/grant',
+  path: '/grant',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GovernanceRoute = GovernanceRouteImport.update({
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/explore': typeof ExploreRoute
   '/funds': typeof FundsRoute
   '/governance': typeof GovernanceRoute
+  '/grant': typeof GrantRoute
   '/guardian': typeof GuardianRoute
   '/learn': typeof LearnRoute
   '/markets': typeof MarketsRouteWithChildren
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreRoute
   '/funds': typeof FundsRoute
   '/governance': typeof GovernanceRoute
+  '/grant': typeof GrantRoute
   '/guardian': typeof GuardianRoute
   '/learn': typeof LearnRoute
   '/names': typeof NamesRoute
@@ -232,6 +240,7 @@ export interface FileRoutesById {
   '/explore': typeof ExploreRoute
   '/funds': typeof FundsRoute
   '/governance': typeof GovernanceRoute
+  '/grant': typeof GrantRoute
   '/guardian': typeof GuardianRoute
   '/learn': typeof LearnRoute
   '/markets': typeof MarketsRouteWithChildren
@@ -262,6 +271,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/funds'
     | '/governance'
+    | '/grant'
     | '/guardian'
     | '/learn'
     | '/markets'
@@ -290,6 +300,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/funds'
     | '/governance'
+    | '/grant'
     | '/guardian'
     | '/learn'
     | '/names'
@@ -317,6 +328,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/funds'
     | '/governance'
+    | '/grant'
     | '/guardian'
     | '/learn'
     | '/markets'
@@ -346,6 +358,7 @@ export interface RootRouteChildren {
   ExploreRoute: typeof ExploreRoute
   FundsRoute: typeof FundsRoute
   GovernanceRoute: typeof GovernanceRoute
+  GrantRoute: typeof GrantRoute
   GuardianRoute: typeof GuardianRoute
   LearnRoute: typeof LearnRoute
   MarketsRoute: typeof MarketsRouteWithChildren
@@ -448,6 +461,13 @@ declare module '@tanstack/react-router' {
       path: '/guardian'
       fullPath: '/guardian'
       preLoaderRoute: typeof GuardianRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grant': {
+      id: '/grant'
+      path: '/grant'
+      fullPath: '/grant'
+      preLoaderRoute: typeof GrantRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/governance': {
@@ -573,6 +593,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreRoute: ExploreRoute,
   FundsRoute: FundsRoute,
   GovernanceRoute: GovernanceRoute,
+  GrantRoute: GrantRoute,
   GuardianRoute: GuardianRoute,
   LearnRoute: LearnRoute,
   MarketsRoute: MarketsRouteWithChildren,

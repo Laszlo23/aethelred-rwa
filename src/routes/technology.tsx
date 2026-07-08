@@ -43,6 +43,27 @@ function TechnologyPage() {
           Every verified asset receives a digital passport anchored on Solana as SPL metadata —
           ownership, valuation, debt, and audit history in one tamper-evident record.
         </p>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+          EURO vault SPL custody and on-chain mint CPIs are in progress (devnet POC). See{" "}
+          <a
+            href="https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/ARCHITECTURE.md"
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
+            architecture
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/security-audit-v1.md"
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
+            security audit v1
+          </a>{" "}
+          for module status.
+        </p>
         <dl className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["Asset Passports", "Living digital identity for every RWA"],

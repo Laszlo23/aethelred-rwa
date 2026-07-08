@@ -180,17 +180,17 @@ We have demonstrated execution: live URL, GitHub repo, CI, security audit, and s
 
 ## Links to attach
 
-| Label               | URL                                                                           |
-| ------------------- | ----------------------------------------------------------------------------- |
-| Live demo           | https://rwa.buildingcultureid.space                                           |
-| About / metrics     | https://rwa.buildingcultureid.space/about                                     |
-| GitHub              | https://github.com/Laszlo23/aethelred-rwa                                     |
-| Grant one-pager     | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT.md      |
-| Architecture        | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/ARCHITECTURE.md      |
-| Security audit v1   | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/security-audit-v1.md |
-| Demo script (5 min) | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/DEMO.md              |
-| Video demo (2 min)  | [Paste Loom URL after recording]                                              |
-| CI                  | https://github.com/Laszlo23/aethelred-rwa/actions                             |
+| Label               | URL                                                                            |
+| ------------------- | ------------------------------------------------------------------------------ |
+| Live demo           | https://rwa.buildingcultureid.space                                            |
+| About / metrics     | https://rwa.buildingcultureid.space/about                                      |
+| GitHub              | https://github.com/Laszlo23/aethelred-rwa                                      |
+| Grant one-pager     | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT.md       |
+| Architecture        | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/ARCHITECTURE.md       |
+| Security audit v1   | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/security-audit-v1.md  |
+| Demo script (5 min) | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/DEMO.md               |
+| Video demo (2 min)  | Set `VITE_LOOM_DEMO_URL` — embeds on https://rwa.buildingcultureid.space/grant |
+| CI                  | https://github.com/Laszlo23/aethelred-rwa/actions                              |
 
 ---
 
@@ -203,10 +203,17 @@ If asked whether we are raising investment: Aethelred is primarily a **public-go
 ## Pre-submit checklist
 
 - [x] Replace `[Your full name]` and `[Your email]`
-- [ ] Record 2-min Loom (see [LOOM-SCRIPT.md](./LOOM-SCRIPT.md)) and paste URL
-- [ ] Confirm wallet address for grant disbursement
-- [ ] Review amount vs SF tier expectations ($10k–$250k range)
-- [ ] Submit at https://solana.org/grants
+- [ ] Record 2-min Loom (see [LOOM-SCRIPT.md](./LOOM-SCRIPT.md)) and set `VITE_LOOM_DEMO_URL` on `/grant`
+- [ ] Confirm wallet address for grant disbursement (see [ON-CHAIN.md](./ON-CHAIN.md))
+- [x] Review amount vs SF tier expectations ($10k–$250k range)
+- [x] Submit at https://solana.org/grants
+
+---
+
+## Reviewer hub
+
+Live: https://rwa.buildingcultureid.space/grant  
+Guide: [GRANT-REVIEWER.md](./GRANT-REVIEWER.md)
 
 ---
 
