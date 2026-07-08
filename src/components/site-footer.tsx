@@ -7,6 +7,9 @@ export function SiteFooter() {
           <p className="eyebrow !tracking-[0.3em]">© Aethelred by Building Culture</p>
         </div>
         <div className="flex flex-wrap justify-center gap-8">
+          <a href="/about" className="eyebrow hover:!text-foreground">
+            About
+          </a>
           <a href="/technology" className="eyebrow hover:!text-foreground">
             Technology
           </a>

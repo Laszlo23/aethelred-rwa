@@ -15,6 +15,7 @@ import {
   AtSign,
   UserRound,
   ShieldCheck,
+  Info,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { WalletButton } from "@/components/wallet-button";
@@ -41,6 +42,7 @@ const moreNav: { to: string; label: string; icon: LucideIcon }[] = [
   { to: "/technology", label: "Technology", icon: Cpu },
   { to: "/tasks", label: "Community", icon: Users },
   { to: "/governance", label: "Governance", icon: Scale },
+  { to: "/about", label: "About", icon: Info },
   { to: "/admin", label: "Admin · KYC", icon: ShieldCheck },
 ];
 

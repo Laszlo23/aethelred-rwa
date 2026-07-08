@@ -118,6 +118,7 @@ _Adjust figures per grant program requirements._
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — system design
 - [docs/security-audit-v1.md](docs/security-audit-v1.md) — threat model and findings
 - [docs/DEMO.md](docs/DEMO.md) — 5-minute reviewer demo script
+- [docs/SOLANA-GRANT.md](docs/SOLANA-GRANT.md) — Solana Foundation one-pager
 
 ---
 

@@ -150,6 +150,7 @@ Do not use with real funds on mainnet until an external audit and mainnet harden
 ## Grants & contributions
 
 - Grant application package: [GRANT.md](GRANT.md)
+- Solana Foundation one-pager: [docs/SOLANA-GRANT.md](docs/SOLANA-GRANT.md)
 - 5-minute demo script: [docs/DEMO.md](docs/DEMO.md)
 - Contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 

@@ -300,6 +300,22 @@ export interface FundLedgerEntryDTO {
   recordedAt: string;
 }
 
+export interface PublicMetricsDTO {
+  assetCount: number;
+  totalNavCents: number;
+  taskCount: number;
+  kycApproved: number;
+  kycPending: number;
+  walletCount: number;
+  onChainPrograms: number;
+  ledgerEntries: number;
+  uniqueShareholders: number;
+  liveUrl: string;
+  repositoryUrl: string;
+  ecosystemUrl: string;
+  chain: string;
+}
+
 export interface FundsTransparencyDTO {
   totalAumCents: number;
   onChainReserveCents: number;
