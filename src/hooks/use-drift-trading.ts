@@ -1,6 +1,5 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getConnection } from "@/lib/solana/transactions";
 import type { DriftPlaceOrderParams } from "@/lib/solana/integrations/drift";
 
 export function useDriftTrading() {
@@ -18,6 +17,7 @@ export function useDriftTrading() {
     void (async () => {
       try {
         const { createDriftClient } = await import("@/lib/solana/integrations/drift");
+        const { getConnection } = await import("@/lib/solana/connection-client");
         const conn = connection ?? getConnection();
         const driftWallet = {
           publicKey: wallet.publicKey!,

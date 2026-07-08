@@ -70,6 +70,11 @@ export interface TaskDTO {
   rewardTokenAmount: number;
   timeEstimate: string;
   verificationType: VerificationType;
+  actionUrl?: string;
+  intentUrl?: string;
+  actionLabel?: string;
+  requiresProof?: boolean;
+  proofHint?: string;
   completion?: TaskCompletionDTO | null;
 }
 

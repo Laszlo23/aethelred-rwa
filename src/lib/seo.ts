@@ -17,7 +17,7 @@ export const SITE = {
     "Tokenize verified real-world assets on Solana. See debt clearly, pass Guardian audits, and unlock Euro-backed liquidity with Building Culture.",
   author: "Building Culture",
   locale: "en_US",
-  twitterSite: "@buildingculture",
+        twitterSite: "@buildingcultu3",
   themeColor: "#1c1d21",
   ogImage: "/og-image.jpg",
   ogImageAlt: "Aethelred — Real Assets. Verified. Accessible.",

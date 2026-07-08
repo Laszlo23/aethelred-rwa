@@ -24,10 +24,46 @@ if (process.env.NODE_ENV !== "production") {
 
 const BC_SLUGS = BUILDING_CULTURE_ASSETS.map((a) => a.slug);
 
+let tasksSyncedThisProcess = false;
+
 export async function ensureSeeded() {
   await seedAuxiliaryIfEmpty();
+  await syncSeedTasksIfNeeded();
   await ensureBuildingCultureSeeded();
   await pruneNonBuildingCultureAssets();
+}
+
+async function syncSeedTasksIfNeeded() {
+  if (tasksSyncedThisProcess) return;
+
+  const hasLatestTasks = await prisma.task.findUnique({
+    where: { slug: "share-on-x" },
+    select: { id: true },
+  });
+  if (hasLatestTasks) {
+    tasksSyncedThisProcess = true;
+    return;
+  }
+
+  for (const t of SEED_TASKS) {
+    await prisma.task.upsert({
+      where: { slug: t.slug },
+      create: { ...t, active: true },
+      update: {
+        category: t.category,
+        title: t.title,
+        description: t.description,
+        rewardPoints: t.rewardPoints,
+        rewardTokenAmount: t.rewardTokenAmount,
+        timeEstimate: t.timeEstimate,
+        verificationType: t.verificationType,
+        verificationConfig: t.verificationConfig ?? null,
+        active: true,
+      },
+    });
+  }
+
+  tasksSyncedThisProcess = true;
 }
 
 async function seedAuxiliaryIfEmpty() {

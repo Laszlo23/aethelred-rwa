@@ -1,6 +1,5 @@
 import { prisma, ensureSeeded } from "@/lib/db";
 import { BUILDING_CULTURE_ASSETS } from "@/lib/data/seed-building-culture";
-import { deployRwaShareMint } from "@/lib/solana/rwa-mint-server";
 import { createServerFn } from "@tanstack/react-start";
 
 export const deployBuildingCultureMint = createServerFn({ method: "POST" })
@@ -28,6 +27,7 @@ export const deployBuildingCultureMint = createServerFn({ method: "POST" })
       };
     }
 
+    const { deployRwaShareMint } = await import("@/lib/solana/rwa-mint-server");
     const deployed = await deployRwaShareMint({
       symbol: bc.symbol,
       assetSlug: bc.slug,

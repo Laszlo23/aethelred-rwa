@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { rootSeo } from "../lib/seo";
+import { googleTagHead } from "../lib/analytics/google-tag";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { SolanaProviderWrapper } from "../providers/solana-provider-wrapper";
@@ -81,10 +82,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => {
     const seo = rootSeo();
+    const ga = googleTagHead();
     return {
       ...seo,
       links: [
         ...(seo.links ?? []),
+        ...ga.links,
         { rel: "stylesheet", href: appCss },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {
@@ -97,6 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,700&display=swap",
         },
       ],
+      scripts: ga.scripts,
     };
   },
   shellComponent: RootShell,

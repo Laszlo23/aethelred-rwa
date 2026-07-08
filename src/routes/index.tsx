@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { HubPillars } from "@/components/hub/hub-pillars";
 import { BuildingCultureNetwork } from "@/components/hub/building-culture-network";
 import { SimplePassportCard } from "@/components/simple-passport-card";
@@ -13,7 +13,6 @@ import { useAssets } from "@/hooks/use-api";
 import { listAssets } from "@/api/assets";
 import { BC_FEATURED_SLUGS } from "@/lib/data/seed-building-culture";
 import { pageSeo } from "@/lib/seo";
-import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context: { queryClient } }) => {

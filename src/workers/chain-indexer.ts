@@ -1,5 +1,8 @@
-import { Connection, PublicKey } from "@solana/web3.js";
+import { createRequire } from "node:module";
 import { prisma } from "@/lib/db";
+
+const require = createRequire(import.meta.url);
+const { Connection, PublicKey } = require("@solana/web3.js") as typeof import("@solana/web3.js");
 
 const TOKEN_PROGRAM_ID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
 

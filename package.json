@@ -20,6 +20,8 @@
     "indexer:sync": "npx tsx scripts/run-indexer.ts",
     "test:e2e": "npx tsx scripts/e2e-test-matrix.ts",
     "test:kyc": "npx tsx scripts/test-kyc-flow.ts",
+    "grove:push": "node scripts/grove-push-campaign.mjs",
+    "grove:push:dry": "node scripts/grove-push-campaign.mjs --dry-run",
     "postinstall": "prisma generate"
   },
   "dependencies": {

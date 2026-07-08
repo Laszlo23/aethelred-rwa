@@ -1,7 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { PublicKey } from "@solana/web3.js";
-import { mintTestUsdcToWallet } from "@/lib/solana/primary-sale-server";
-import { getSolanaConnection } from "@/lib/solana/anchor/connection";
 
 const MAX_FAUCET_UI = 1_000;
 const COOLDOWN_MS = 60_000;
@@ -44,6 +41,11 @@ export const faucetTestUsdc = createServerFn({ method: "POST" })
       throw new Error("USDC mint not configured — run npm run setup:chain");
     }
 
+    const [{ PublicKey }, { getSolanaConnection }, { mintTestUsdcToWallet }] = await Promise.all([
+      import("@solana/web3.js"),
+      import("@/lib/solana/anchor/connection"),
+      import("@/lib/solana/primary-sale-server"),
+    ]);
     const connection = getSolanaConnection();
     const signature = await mintTestUsdcToWallet(
       connection,

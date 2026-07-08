@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { VerificationPassport } from "@/components/verification-passport";
@@ -10,6 +10,8 @@ import { InvestPanel } from "@/components/asset/invest-panel";
 import { HolderPerksGrid } from "@/components/asset/holder-perks-grid";
 import { LendAgainstShares } from "@/components/asset/lend-against-shares";
 import { YieldDistributions } from "@/components/asset/yield-distributions";
+import { PassportStory } from "@/components/asset/passport-story";
+import { FunnelProgress } from "@/components/hub/funnel-progress";
 import {
   useAssetDetail,
   useGuardianAudits,
@@ -21,8 +23,15 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { pageSeo, absoluteUrl } from "@/lib/seo";
 
+type AssetSearch = {
+  from?: string;
+};
+
 export const Route = createFileRoute("/assets/$assetId")({
   ssr: false,
+  validateSearch: (search: Record<string, unknown>): AssetSearch => ({
+    from: typeof search.from === "string" ? search.from : undefined,
+  }),
   loader: async ({ context: { queryClient }, params }) => {
     return queryClient.ensureQueryData({
       queryKey: ["asset-detail", params.assetId, undefined],
@@ -33,8 +42,8 @@ export const Route = createFileRoute("/assets/$assetId")({
     const asset = loaderData;
     const title = asset?.name ?? params.assetId;
     const description =
-      asset?.tagline ??
-      asset?.description ??
+      asset?.property?.tagline ??
+      asset?.property?.description ??
       `Invest in ${title} — a verified Building Culture real-world asset on Aethelred.`;
     const image = asset?.imageUrl ? absoluteUrl(asset.imageUrl) : undefined;
     return pageSeo({
@@ -52,14 +61,33 @@ type Tab = (typeof tabs)[number];
 
 function AssetDetailPage() {
   const { assetId } = Route.useParams();
+  const { from } = Route.useSearch();
+  const fromHub = from === "hub";
   const { publicKey } = useWallet();
   const walletAddress = publicKey?.toBase58();
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
+  const investPanelRef = useRef<HTMLDivElement>(null);
+  const debtDetailsRef = useRef<HTMLDetailsElement>(null);
 
   const { data: asset, isLoading } = useAssetDetail(assetId, walletAddress);
   const { data: audits = [] } = useGuardianAudits(10);
   const { data: holdings = [] } = useWalletHoldings(walletAddress, assetId);
   const { data: payouts = [] } = useHolderPayouts(walletAddress, assetId);
+
+  const scrollToInvest = () => {
+    setActiveTab("Invest");
+    requestAnimationFrame(() => {
+      investPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
+  const scrollToDebt = () => {
+    const details = debtDetailsRef.current;
+    if (details) {
+      details.open = true;
+      details.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   if (isLoading) {
     return <div className="mx-auto max-w-7xl px-6 py-24 text-muted-foreground">Loading…</div>;
@@ -70,7 +98,7 @@ function AssetDetailPage() {
       <div className="mx-auto max-w-lg px-6 py-32 text-center">
         <h1 className="text-2xl font-semibold">Asset not found</h1>
         <Link to="/explore" className="mt-4 inline-block text-accent">
-          ← Back to explore
+          ← Back to discovery
         </Link>
       </div>
     );
@@ -85,8 +113,16 @@ function AssetDetailPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-12 lg:py-20">
-      <Link to="/explore" className="text-sm text-accent hover:underline">
-        ← Back to collection
+      {fromHub && (
+        <FunnelProgress currentStep={4} label="Step 4 — Asset passport" />
+      )}
+
+      <Link
+        to="/explore"
+        search={fromHub ? { from: "hub" } : undefined}
+        className="text-sm text-accent hover:underline"
+      >
+        {fromHub ? "← Back to discovery" : "← Back to collection"}
       </Link>
 
       {isPropertyListing ? (
@@ -104,57 +140,85 @@ function AssetDetailPage() {
                 <p className="mt-2 text-muted-foreground">{asset.location}</p>
               </div>
             </div>
-            <InvestPanel asset={asset} />
+            <div ref={investPanelRef} id="invest-panel" className="scroll-mt-24">
+              <InvestPanel asset={asset} />
+            </div>
           </div>
 
-          <div className="mt-12 border-b border-border">
-            <nav className="-mb-px flex gap-6 overflow-x-auto">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  onClick={() => setActiveTab(tab)}
-                  className={cn(
-                    "shrink-0 border-b-2 pb-3 text-sm font-medium transition-colors",
-                    activeTab === tab
-                      ? "border-accent text-foreground"
-                      : "border-transparent text-muted-foreground hover:text-foreground",
-                  )}
-                >
-                  {tab}
-                </button>
-              ))}
-            </nav>
+          <div className="mt-16">
+            <p className="eyebrow">Asset passport</p>
+            <PassportStory
+              asset={asset}
+              onBecomeHolder={scrollToInvest}
+              onViewPerks={() => {
+                setActiveTab("Perks");
+                requestAnimationFrame(() => {
+                  document.getElementById("asset-tabs")?.scrollIntoView({ behavior: "smooth" });
+                });
+              }}
+              onViewLend={() => {
+                setActiveTab("Lend");
+                requestAnimationFrame(() => {
+                  document.getElementById("asset-tabs")?.scrollIntoView({ behavior: "smooth" });
+                });
+              }}
+              onViewDebt={scrollToDebt}
+            />
           </div>
 
-          <div className="py-12">
-            {activeTab === "Overview" && (
-              <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr]">
-                <PropertyStory property={asset.property!} />
-                <PropertySpecs property={asset.property!} />
-              </div>
-            )}
-            {activeTab === "Invest" && (
-              <div className="max-w-lg">
-                <InvestPanel asset={asset} />
-              </div>
-            )}
-            {activeTab === "Perks" && (
-              <HolderPerksGrid perks={asset.perks} userShareBps={userShareBps} />
-            )}
-            {activeTab === "Lend" && (
-              <div className="max-w-md">
-                <LendAgainstShares
-                  asset={asset}
-                  walletAddress={walletAddress}
-                  userShareBps={userShareBps}
-                />
-              </div>
-            )}
-            {activeTab === "Yield" && (
-              <YieldDistributions distributions={asset.recentDistributions} payouts={payouts} />
-            )}
-          </div>
+          <details id="asset-tabs" className="mt-16 scroll-mt-24" open={!fromHub}>
+            <summary className="cursor-pointer rounded-xl border border-border bg-surface px-6 py-4 text-sm font-semibold">
+              Advanced details
+            </summary>
+            <div className="mt-6 border-b border-border">
+              <nav className="-mb-px flex gap-6 overflow-x-auto">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={cn(
+                      "shrink-0 border-b-2 pb-3 text-sm font-medium transition-colors",
+                      activeTab === tab
+                        ? "border-accent text-foreground"
+                        : "border-transparent text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </nav>
+            </div>
+
+            <div className="py-12">
+              {activeTab === "Overview" && (
+                <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr]">
+                  <PropertyStory property={asset.property!} />
+                  <PropertySpecs property={asset.property!} />
+                </div>
+              )}
+              {activeTab === "Invest" && (
+                <div className="max-w-lg">
+                  <InvestPanel asset={asset} />
+                </div>
+              )}
+              {activeTab === "Perks" && (
+                <HolderPerksGrid perks={asset.perks} userShareBps={userShareBps} />
+              )}
+              {activeTab === "Lend" && (
+                <div className="max-w-md">
+                  <LendAgainstShares
+                    asset={asset}
+                    walletAddress={walletAddress}
+                    userShareBps={userShareBps}
+                  />
+                </div>
+              )}
+              {activeTab === "Yield" && (
+                <YieldDistributions distributions={asset.recentDistributions} payouts={payouts} />
+              )}
+            </div>
+          </details>
         </>
       ) : (
         <div className="mt-8 space-y-16">
@@ -183,10 +247,25 @@ function AssetDetailPage() {
               lastAuditAt={asset.passport?.lastAuditAt}
             />
           </div>
+
+          <PassportStory
+            asset={asset}
+            onBecomeHolder={scrollToInvest}
+            onViewPerks={() => setActiveTab("Perks")}
+            onViewLend={() => setActiveTab("Lend")}
+            onViewDebt={scrollToDebt}
+          />
+
+          <div ref={investPanelRef} id="invest-panel" className="max-w-lg scroll-mt-24">
+            <InvestPanel asset={asset} />
+          </div>
         </div>
       )}
 
-      <details className="mt-8 rounded-xl border border-border bg-surface">
+      <details
+        ref={debtDetailsRef}
+        className="mt-8 scroll-mt-24 rounded-xl border border-border bg-surface"
+      >
         <summary className="cursor-pointer px-6 py-4 text-sm font-semibold">
           Verification & financials
         </summary>

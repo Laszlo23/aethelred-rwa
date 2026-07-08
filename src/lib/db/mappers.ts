@@ -135,6 +135,35 @@ export function mapProposal(p: {
   };
 }
 
+function parseTaskConfig(raw: string | null | undefined): {
+  actionUrl?: string;
+  intentUrl?: string;
+  actionLabel?: string;
+  requiresProof?: boolean;
+  proofHint?: string;
+} {
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw) as {
+      actionUrl?: string;
+      intentUrl?: string;
+      actionLabel?: string;
+      requiresProof?: boolean;
+      proofHint?: string;
+    };
+    return {
+      actionUrl: typeof parsed.actionUrl === "string" ? parsed.actionUrl : undefined,
+      intentUrl: typeof parsed.intentUrl === "string" ? parsed.intentUrl : undefined,
+      actionLabel: typeof parsed.actionLabel === "string" ? parsed.actionLabel : undefined,
+      requiresProof:
+        typeof parsed.requiresProof === "boolean" ? parsed.requiresProof : undefined,
+      proofHint: typeof parsed.proofHint === "string" ? parsed.proofHint : undefined,
+    };
+  } catch {
+    return {};
+  }
+}
+
 export function mapTask(
   t: {
     id: string;
@@ -146,6 +175,7 @@ export function mapTask(
     rewardTokenAmount: number;
     timeEstimate: string;
     verificationType: string;
+    verificationConfig?: string | null;
   },
   completion?: {
     id: string;
@@ -154,6 +184,7 @@ export function mapTask(
     txSignature: string | null;
   } | null,
 ): TaskDTO {
+  const config = parseTaskConfig(t.verificationConfig);
   return {
     id: t.id,
     slug: t.slug,
@@ -164,6 +195,11 @@ export function mapTask(
     rewardTokenAmount: t.rewardTokenAmount,
     timeEstimate: t.timeEstimate,
     verificationType: t.verificationType as TaskDTO["verificationType"],
+    actionUrl: config.actionUrl,
+    intentUrl: config.intentUrl,
+    actionLabel: config.actionLabel,
+    requiresProof: config.requiresProof,
+    proofHint: config.proofHint,
     completion: completion
       ? {
           id: completion.id,

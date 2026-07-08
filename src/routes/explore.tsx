@@ -1,11 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AssetCard } from "@/components/asset-card";
+import { MarketplaceAssetCard } from "@/components/hub/marketplace-asset-card";
+import { FunnelProgress } from "@/components/hub/funnel-progress";
 import { useAssets } from "@/hooks/use-api";
 import { listAssets } from "@/api/assets";
 import { pageSeo } from "@/lib/seo";
 
+type ExploreSearch = {
+  from?: string;
+};
+
 export const Route = createFileRoute("/explore")({
+  validateSearch: (search: Record<string, unknown>): ExploreSearch => ({
+    from: typeof search.from === "string" ? search.from : undefined,
+  }),
   loader: async ({ context: { queryClient } }) => {
     await queryClient.ensureQueryData({
       queryKey: ["assets", undefined],
@@ -14,9 +22,9 @@ export const Route = createFileRoute("/explore")({
   },
   head: () =>
     pageSeo({
-      title: "Explore",
+      title: "Discover real assets",
       description:
-        "Browse verified Building Culture real-world assets. Curated properties, transparent debt, and on-chain passports.",
+        "Browse verified Building Culture real-world assets. Guardian verified, community owned, with transparent passports.",
       path: "/explore",
     }),
   component: ExplorePage,
@@ -25,6 +33,8 @@ export const Route = createFileRoute("/explore")({
 const categories = ["All", "City", "Land", "Water"] as const;
 
 function ExplorePage() {
+  const { from } = Route.useSearch();
+  const fromHub = from === "hub";
   const [filter, setFilter] = useState<string>("All");
   const { data: assets = [], isLoading } = useAssets();
 
@@ -35,14 +45,19 @@ function ExplorePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
+      {fromHub && (
+        <FunnelProgress currentStep={3} label="Step 3 — Discover verified assets" />
+      )}
+
       <header className="mb-14 max-w-2xl">
-        <p className="eyebrow">Collection</p>
+        <p className="eyebrow">Discover</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Curated real assets. <span className="text-editorial text-accent">Community owned.</span>
+          Verified real assets,{" "}
+          <span className="text-editorial text-accent">ready to explore.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
-          Building Culture City, Land, and Water — curated cultural real estate on Solana. Bank
-          titles retire; community capital and Guardian verification take over.
+          Every asset is Guardian verified with transparent debt, community ownership progress, and
+          an on-chain passport. Pick a property and view its full story.
         </p>
       </header>
 
@@ -65,7 +80,7 @@ function ExplorePage() {
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((a) => (
-          <AssetCard key={a.id} asset={a} />
+          <MarketplaceAssetCard key={a.id} asset={a} fromHub={fromHub} />
         ))}
       </div>
 

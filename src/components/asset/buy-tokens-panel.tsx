@@ -11,7 +11,6 @@ import { formatEuro, formatPercent } from "@/lib/format";
 import { usePurchaseShares } from "@/hooks/use-api";
 import { useSiwsSignIn } from "@/hooks/use-siws";
 import { getWalletCompliance } from "@/api/compliance";
-import { faucetTestUsdc } from "@/api/faucet";
 import { SOLANA_CONFIG } from "@/lib/solana/config";
 
 interface BuyTokensPanelProps {
@@ -45,6 +44,7 @@ export function BuyTokensPanel({ asset }: BuyTokensPanelProps) {
     if (!wallet) return;
     setFauceting(true);
     try {
+      const { faucetTestUsdc } = await import("@/api/faucet");
       await faucetTestUsdc({ data: { walletAddress: wallet, amountUi: 50_000 } });
       toast.success("Test USDC sent to your wallet");
     } catch (err) {

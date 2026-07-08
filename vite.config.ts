@@ -12,13 +12,25 @@ export default defineConfig({
   },
   nitro: {
     preset: "node-server",
-    traceDeps: ["!@coral-xyz/anchor", "!@drift-labs/sdk", "!@solana/web3.js", "!@solana/spl-token"],
+    traceDeps: [
+      "!@coral-xyz/anchor",
+      "!@drift-labs/sdk",
+      "!@solana/web3.js",
+      "!@solana/spl-token",
+      "!@openbook-dex/openbook-v2",
+      "!bn.js",
+      "!buffer",
+    ],
   },
   vite: {
+    resolve: {
+      dedupe: ["@solana/web3.js"],
+    },
     ssr: {
       external: [
         "@prisma/client",
         "@coral-xyz/anchor",
+        "@openbook-dex/openbook-v2",
         "@solana/spl-token",
         "@solana/web3.js",
         "@solana/wallet-adapter-react",

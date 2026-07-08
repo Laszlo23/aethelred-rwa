@@ -16,9 +16,7 @@ import { getPassportProgram } from "./anchor/client";
 import { passportConfigPda, passportPda } from "./anchor/pdas";
 import { SOLANA_CONFIG } from "./config";
 
-export function getConnection(): Connection {
-  return new Connection(SOLANA_CONFIG.rpcUrl, "confirmed");
-}
+export { getConnection } from "./connection-client";
 
 /** Build on-chain passport mint instruction (owner + guardian must sign). */
 export async function buildMintPassportTx(

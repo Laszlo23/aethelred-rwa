@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { handleHeliusWebhook } from "@/workers/chain-indexer";
 
 export const Route = createFileRoute("/api/indexer/webhook")({
   server: {
@@ -14,6 +13,7 @@ export const Route = createFileRoute("/api/indexer/webhook")({
         }
 
         const payload = await request.json();
+        const { handleHeliusWebhook } = await import("@/workers/chain-indexer");
         const result = await handleHeliusWebhook(payload);
         return new Response(JSON.stringify(result), {
           headers: { "Content-Type": "application/json" },
