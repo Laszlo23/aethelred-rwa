@@ -53,40 +53,40 @@ Buyer                Server                    Chain
 
 ## Anchor programs
 
-| Program | Responsibility | Client wiring |
-|---------|----------------|---------------|
-| `aethelred_passport` | Passport accounts, Guardian attestation | Create flow, PDAs |
-| `aethelred_registry` | Asset registry, NAV | Setup chain, registry PDA |
-| `aethelred_names` | On-chain handles | Partial — DB names primary |
-| `aethelred_vault` | Collateral ratio tracking | **Counter only** — no SPL custody yet |
-| `aethelred_euro` | EURO stable mint | Mint CPI **incomplete** in client |
-| `aethelred_rewards` | BCT reward mint | Claim CPI **incomplete** in client |
+| Program              | Responsibility                          | Client wiring                         |
+| -------------------- | --------------------------------------- | ------------------------------------- |
+| `aethelred_passport` | Passport accounts, Guardian attestation | Create flow, PDAs                     |
+| `aethelred_registry` | Asset registry, NAV                     | Setup chain, registry PDA             |
+| `aethelred_names`    | On-chain handles                        | Partial — DB names primary            |
+| `aethelred_vault`    | Collateral ratio tracking               | **Counter only** — no SPL custody yet |
+| `aethelred_euro`     | EURO stable mint                        | Mint CPI **incomplete** in client     |
+| `aethelred_rewards`  | BCT reward mint                         | Claim CPI **incomplete** in client    |
 
 ---
 
 ## Module status matrix
 
-| Module | Data store | On-chain | Notes |
-|--------|------------|----------|-------|
-| Assets / properties | Prisma + seed | Share mints per asset | 13 BC properties |
-| Primary sale | Prisma ledger + chain | USDC + SPL transfer | KYC gated |
-| KYC | Prisma `KycApplication` | None | Admin review at `/admin` |
-| Guardian audits | Prisma jobs | Optional co-sign | Simulated steps + extract |
-| Tasks / points | Prisma | Points mostly off-chain | 17 tasks |
-| Governance | Prisma votes | None | Seeded proposals |
-| Perp markets | Prisma + synthetic | Drift stub server-side | UI demo |
-| Kamino lend | Prisma positions | Stub tx | Zero-lamport placeholder |
-| Fund transparency | Prisma + seed | None | Treasury bands |
-| Names | Prisma | Program exists | Registration DB-first |
+| Module              | Data store              | On-chain                | Notes                     |
+| ------------------- | ----------------------- | ----------------------- | ------------------------- |
+| Assets / properties | Prisma + seed           | Share mints per asset   | 13 BC properties          |
+| Primary sale        | Prisma ledger + chain   | USDC + SPL transfer     | KYC gated                 |
+| KYC                 | Prisma `KycApplication` | None                    | Admin review at `/admin`  |
+| Guardian audits     | Prisma jobs             | Optional co-sign        | Simulated steps + extract |
+| Tasks / points      | Prisma                  | Points mostly off-chain | 17 tasks                  |
+| Governance          | Prisma votes            | None                    | Seeded proposals          |
+| Perp markets        | Prisma + synthetic      | Drift stub server-side  | UI demo                   |
+| Kamino lend         | Prisma positions        | Stub tx                 | Zero-lamport placeholder  |
+| Fund transparency   | Prisma + seed           | None                    | Treasury bands            |
+| Names               | Prisma                  | Program exists          | Registration DB-first     |
 
 ---
 
 ## Deployment
 
-| Environment | URL | Database | Chain |
-|-------------|-----|----------|-------|
-| Local | localhost:8080 | `prisma/dev.db` | localnet / devnet |
-| Production | rwa.buildingcultureid.space | SQLite `prod.db` | devnet |
+| Environment | URL                         | Database         | Chain             |
+| ----------- | --------------------------- | ---------------- | ----------------- |
+| Local       | localhost:8080              | `prisma/dev.db`  | localnet / devnet |
+| Production  | rwa.buildingcultureid.space | SQLite `prod.db` | devnet            |
 
 Deploy: `scripts/deploy-production.sh` → systemd + nginx on VPS.
 

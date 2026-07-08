@@ -6,20 +6,20 @@ Use at **https://solana.org/grants** when submitting. Confirm wallet address bef
 
 ## Basic information
 
-| Field | Answer |
-|-------|--------|
-| **Project name** | Aethelred RWA |
-| **Legal entity / org** | Building Culture LLC |
-| **Primary contact** | Laszlo Bihary |
-| **Email** | laszlo.bihary@gmail.com |
-| **GitHub** | https://github.com/Laszlo23/aethelred-rwa |
-| **Website** | https://rwa.buildingcultureid.space |
-| **About / metrics** | https://rwa.buildingcultureid.space/about |
-| **Twitter / X** | @buildingculture |
-| **License** | MIT (open source) |
-| **Grant type** | Milestone-based grant (public good) |
-| **Amount requested** | $125,000 USDC (flexible; see milestones) |
-| **Timeline** | 12 months |
+| Field                  | Answer                                    |
+| ---------------------- | ----------------------------------------- |
+| **Project name**       | Aethelred RWA                             |
+| **Legal entity / org** | Building Culture LLC                      |
+| **Primary contact**    | Laszlo Bihary                             |
+| **Email**              | laszlo.bihary@gmail.com                   |
+| **GitHub**             | https://github.com/Laszlo23/aethelred-rwa |
+| **Website**            | https://rwa.buildingcultureid.space       |
+| **About / metrics**    | https://rwa.buildingcultureid.space/about |
+| **Twitter / X**        | @buildingculture                          |
+| **License**            | MIT (open source)                         |
+| **Grant type**         | Milestone-based grant (public good)       |
+| **Amount requested**   | $125,000 USDC (flexible; see milestones)  |
+| **Timeline**           | 12 months                                 |
 
 ---
 
@@ -99,16 +99,16 @@ Building Culture also operates cross-chain (Places on Base), but **Solana is the
 
 ## Traction & current stage
 
-| Item | Detail |
-|------|--------|
-| Stage | Devnet POC with live production UI |
-| Assets | 13 Building Culture properties |
-| Portfolio NAV | ~€50M+ curated seed portfolio |
-| Programs | 6 Anchor programs on devnet |
-| Tests | KYC 7/7 automated; E2E purchase matrix |
-| Deployment | Production at rwa.buildingcultureid.space |
-| Docs | README, GRANT.md, architecture, audit v1, demo script |
-| CI | GitHub Actions — lint, KYC tests, build |
+| Item          | Detail                                                |
+| ------------- | ----------------------------------------------------- |
+| Stage         | Devnet POC with live production UI                    |
+| Assets        | 13 Building Culture properties                        |
+| Portfolio NAV | ~€50M+ curated seed portfolio                         |
+| Programs      | 6 Anchor programs on devnet                           |
+| Tests         | KYC 7/7 automated; E2E purchase matrix                |
+| Deployment    | Production at rwa.buildingcultureid.space             |
+| Docs          | README, GRANT.md, architecture, audit v1, demo script |
+| CI            | GitHub Actions — lint, KYC tests, build               |
 
 ---
 
@@ -128,11 +128,11 @@ We have demonstrated execution: live URL, GitHub repo, CI, security audit, and s
 
 ### Milestone 1 — Audit & hardening ($40,000) · Months 1–3
 
-| Line item | Amount |
-|-----------|--------|
+| Line item                                               | Amount  |
+| ------------------------------------------------------- | ------- |
 | Third-party security audit (6 programs + purchase flow) | $32,000 |
-| Remediation engineering | $5,000 |
-| Squads multisig setup + migration | $3,000 |
+| Remediation engineering                                 | $5,000  |
+| Squads multisig setup + migration                       | $3,000  |
 
 **Deliverables:** Published audit PDF, remediated devnet deployment, upgrade authority on multisig.
 
@@ -140,13 +140,13 @@ We have demonstrated execution: live URL, GitHub repo, CI, security audit, and s
 
 ### Milestone 2 — On-chain completion ($35,000) · Months 4–6
 
-| Line item | Amount |
-|-----------|--------|
+| Line item                        | Amount  |
+| -------------------------------- | ------- |
 | EURO mint + BCT claim CPI wiring | $12,000 |
 | Vault SPL custody implementation | $10,000 |
-| On-chain names registration | $5,000 |
-| E2E devnet tests in CI | $5,000 |
-| Postgres production migration | $3,000 |
+| On-chain names registration      | $5,000  |
+| E2E devnet tests in CI           | $5,000  |
+| Postgres production migration    | $3,000  |
 
 **Deliverables:** Documented full primary-market on-chain path, CI E2E against devnet, updated architecture docs.
 
@@ -154,13 +154,13 @@ We have demonstrated execution: live URL, GitHub repo, CI, security audit, and s
 
 ### Milestone 3 — Mainnet pilot ($50,000) · Months 7–12
 
-| Line item | Amount |
-|-----------|--------|
+| Line item                                                | Amount  |
+| -------------------------------------------------------- | ------- |
 | Regulated KYC partner integration (Veriff or equivalent) | $15,000 |
-| Mainnet deploy + ops (RPC, monitoring) | $12,000 |
-| Issuer onboarding guide + ecosystem docs | $8,000 |
-| Mainnet pilot engineering (1–2 assets) | $10,000 |
-| Legal / compliance review support | $5,000 |
+| Mainnet deploy + ops (RPC, monitoring)                   | $12,000 |
+| Issuer onboarding guide + ecosystem docs                 | $8,000  |
+| Mainnet pilot engineering (1–2 assets)                   | $10,000 |
+| Legal / compliance review support                        | $5,000  |
 
 **Deliverables:** Mainnet tx signatures for pilot purchases, issuer onboarding guide, public metrics on /about.
 
@@ -180,17 +180,17 @@ We have demonstrated execution: live URL, GitHub repo, CI, security audit, and s
 
 ## Links to attach
 
-| Label | URL |
-|-------|-----|
-| Live demo | https://rwa.buildingcultureid.space |
-| About / metrics | https://rwa.buildingcultureid.space/about |
-| GitHub | https://github.com/Laszlo23/aethelred-rwa |
-| Grant one-pager | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT.md |
-| Architecture | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/ARCHITECTURE.md |
-| Security audit v1 | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/security-audit-v1.md |
-| Demo script (5 min) | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/DEMO.md |
-| Video demo (2 min) | [Paste Loom URL after recording] |
-| CI | https://github.com/Laszlo23/aethelred-rwa/actions |
+| Label               | URL                                                                           |
+| ------------------- | ----------------------------------------------------------------------------- |
+| Live demo           | https://rwa.buildingcultureid.space                                           |
+| About / metrics     | https://rwa.buildingcultureid.space/about                                     |
+| GitHub              | https://github.com/Laszlo23/aethelred-rwa                                     |
+| Grant one-pager     | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT.md      |
+| Architecture        | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/ARCHITECTURE.md      |
+| Security audit v1   | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/security-audit-v1.md |
+| Demo script (5 min) | https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/DEMO.md              |
+| Video demo (2 min)  | [Paste Loom URL after recording]                                              |
+| CI                  | https://github.com/Laszlo23/aethelred-rwa/actions                             |
 
 ---
 
@@ -210,4 +210,4 @@ If asked whether we are raising investment: Aethelred is primarily a **public-go
 
 ---
 
-*Last updated: July 2026*
+_Last updated: July 2026_

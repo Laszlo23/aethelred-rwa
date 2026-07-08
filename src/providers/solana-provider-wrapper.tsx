@@ -33,9 +33,7 @@ export function SolanaProviderWrapper({ children }: { children: ReactNode }) {
   }, []);
 
   if (!Provider) {
-    return (
-      <SolanaReadyContext.Provider value={false}>{children}</SolanaReadyContext.Provider>
-    );
+    return <SolanaReadyContext.Provider value={false}>{children}</SolanaReadyContext.Provider>;
   }
 
   return (

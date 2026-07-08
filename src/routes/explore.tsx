@@ -45,9 +45,7 @@ function ExplorePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16 lg:py-28">
-      {fromHub && (
-        <FunnelProgress currentStep={3} label="Step 3 — Discover verified assets" />
-      )}
+      {fromHub && <FunnelProgress currentStep={3} label="Step 3 — Discover verified assets" />}
 
       <header className="mb-14 max-w-2xl">
         <p className="eyebrow">Discover</p>

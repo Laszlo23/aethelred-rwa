@@ -107,7 +107,10 @@ async function main() {
       const tick = await grovePost("/api/marketing/grove/tick", { pillar: "rwa_proof" });
       console.log("\nTick result:", JSON.stringify(tick, null, 2));
     } catch (err) {
-      console.warn("\nTick skipped:", err.payload?.cooldownActive ? "cooldown_active" : err.message);
+      console.warn(
+        "\nTick skipped:",
+        err.payload?.cooldownActive ? "cooldown_active" : err.message,
+      );
     }
   }
 

@@ -49,8 +49,7 @@ function HubPage() {
             </span>
 
             <h1 className="text-5xl font-semibold leading-[1.02] tracking-tight text-balance text-white md:text-6xl lg:text-7xl">
-              Own a piece of the{" "}
-              <span className="text-gold-gradient">real world.</span>
+              Own a piece of the <span className="text-gold-gradient">real world.</span>
             </h1>
 
             <p className="max-w-lg text-lg leading-relaxed text-white/65">
@@ -62,7 +61,10 @@ function HubPage() {
               <ActionLink to="/choose" icon={ArrowRight} variant="hero-primary">
                 Explore Real Assets
               </ActionLink>
-              <a href="#how-it-works" className="btn-hero-secondary inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold">
+              <a
+                href="#how-it-works"
+                className="btn-hero-secondary inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold"
+              >
                 How it Works
               </a>
             </div>

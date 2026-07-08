@@ -10,6 +10,7 @@ assignees: ""
 A clear description of what went wrong.
 
 **Steps to reproduce**
+
 1. Go to '...'
 2. Click '...'
 3. See error
@@ -18,6 +19,7 @@ A clear description of what went wrong.
 What you expected to happen.
 
 **Environment**
+
 - URL (local / production):
 - Wallet:
 - Network (devnet / mainnet):

@@ -11,17 +11,17 @@ Aethelred is a Solana-native platform for tokenizing verified real-world assets 
 
 ## Features
 
-| Area | Status | Description |
-|------|--------|-------------|
-| Asset registry | Live | 13 Building Culture properties with passports, galleries, NAV |
-| Primary market | Live (devnet) | KYC-gated USDC purchase → on-chain share settlement |
-| KYC + admin | Live | Wallet SIWS, application flow, admin review board |
-| Asset creation | Live | NL wizard, doc upload, Guardian audit pipeline |
-| Community tasks | Live | 17 tasks, points and BCT rewards (DB ledger) |
-| Fund transparency | Live | Treasury allocation and yield bands |
-| Perp markets UI | Demo | Synthetic order book — not production trading |
-| Kamino lending UI | Demo | Stub integration — see [Architecture](docs/ARCHITECTURE.md) |
-| EURO vault / BCT claim | In progress | Programs deployed; client CPI wiring incomplete |
+| Area                   | Status        | Description                                                   |
+| ---------------------- | ------------- | ------------------------------------------------------------- |
+| Asset registry         | Live          | 13 Building Culture properties with passports, galleries, NAV |
+| Primary market         | Live (devnet) | KYC-gated USDC purchase → on-chain share settlement           |
+| KYC + admin            | Live          | Wallet SIWS, application flow, admin review board             |
+| Asset creation         | Live          | NL wizard, doc upload, Guardian audit pipeline                |
+| Community tasks        | Live          | 17 tasks, points and BCT rewards (DB ledger)                  |
+| Fund transparency      | Live          | Treasury allocation and yield bands                           |
+| Perp markets UI        | Demo          | Synthetic order book — not production trading                 |
+| Kamino lending UI      | Demo          | Stub integration — see [Architecture](docs/ARCHITECTURE.md)   |
+| EURO vault / BCT claim | In progress   | Programs deployed; client CPI wiring incomplete               |
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for an honest module-by-module breakdown.
 
@@ -112,14 +112,14 @@ public/          Static assets, property images, SEO
 
 ## Anchor programs (devnet)
 
-| Program | ID |
-|---------|-----|
+| Program              | ID                                             |
+| -------------------- | ---------------------------------------------- |
 | `aethelred_passport` | `9wMCFvTTgyVuzB2yCNtC2G9ZcVDHrxpBmBnW2BSZoy1A` |
 | `aethelred_registry` | `AQXb8Z29qSxco5h5qSWfUnwZd7DgSuFhxXjeB25FMtEU` |
-| `aethelred_names` | `APU7238FpwdCWTrx5jSKpQYnkrrHiT1HgQgtPPRY3aDd` |
-| `aethelred_vault` | `4tzFUjGPaiENbHR3vZE9bLEdjrMSbewZqizkwP5m5t9X` |
-| `aethelred_euro` | `H3DagyBbC86U62PVkPV6pgtJcuuhhK7FpWwoLWsYHboL` |
-| `aethelred_rewards` | `4j6QfsG5mbZ6RaYZpdnzpk5zYfiJJWex2YA6TjsBhnhE` |
+| `aethelred_names`    | `APU7238FpwdCWTrx5jSKpQYnkrrHiT1HgQgtPPRY3aDd` |
+| `aethelred_vault`    | `4tzFUjGPaiENbHR3vZE9bLEdjrMSbewZqizkwP5m5t9X` |
+| `aethelred_euro`     | `H3DagyBbC86U62PVkPV6pgtJcuuhhK7FpWwoLWsYHboL` |
+| `aethelred_rewards`  | `4j6QfsG5mbZ6RaYZpdnzpk5zYfiJJWex2YA6TjsBhnhE` |
 
 Details: [programs/README.md](programs/README.md)
 

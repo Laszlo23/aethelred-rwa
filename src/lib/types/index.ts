@@ -6,14 +6,7 @@ export type TaskCompletionStatus =
   "STARTED" | "SUBMITTED" | "VERIFIED" | "CLAIMABLE" | "CLAIMED" | "REJECTED";
 
 export type SocialAction =
-  | "follow"
-  | "like"
-  | "repost"
-  | "comment"
-  | "farcaster"
-  | "telegram"
-  | "share"
-  | "open";
+  "follow" | "like" | "repost" | "comment" | "farcaster" | "telegram" | "share" | "open";
 
 export interface AssetDTO {
   id: string;

@@ -11,14 +11,7 @@ export const TASK_FLOW_VERSION = 2;
 const TASK_REF = "aethelred_tasks";
 
 export type SocialAction =
-  | "follow"
-  | "like"
-  | "repost"
-  | "comment"
-  | "farcaster"
-  | "telegram"
-  | "share"
-  | "open";
+  "follow" | "like" | "repost" | "comment" | "farcaster" | "telegram" | "share" | "open";
 
 export interface TaskActionConfig {
   action?: SocialAction;

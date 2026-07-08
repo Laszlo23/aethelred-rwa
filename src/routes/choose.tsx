@@ -31,8 +31,7 @@ function ChoosePage() {
       <header className="mb-12 max-w-2xl">
         <p className="eyebrow">Your journey</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          What brings you to{" "}
-          <span className="text-editorial text-accent">Aethelred?</span>
+          What brings you to <span className="text-editorial text-accent">Aethelred?</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
           Pick a path — you can always explore everything later from the main navigation.

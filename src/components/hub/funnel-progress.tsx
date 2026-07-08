@@ -4,11 +4,7 @@ interface FunnelProgressProps {
   label?: string;
 }
 
-export function FunnelProgress({
-  currentStep,
-  totalSteps = 5,
-  label,
-}: FunnelProgressProps) {
+export function FunnelProgress({ currentStep, totalSteps = 5, label }: FunnelProgressProps) {
   const pct = Math.min(100, Math.round((currentStep / totalSteps) * 100));
 
   return (

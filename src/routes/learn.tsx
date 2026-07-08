@@ -32,8 +32,7 @@ function LearnPage() {
       <header className="mb-14 max-w-2xl">
         <p className="eyebrow">Start guide</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Real-world assets,{" "}
-          <span className="text-editorial text-accent">made simple.</span>
+          Real-world assets, <span className="text-editorial text-accent">made simple.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
           No crypto jargon required. Here is how Aethelred connects physical assets with digital

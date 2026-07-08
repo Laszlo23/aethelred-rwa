@@ -29,14 +29,18 @@ export const BUILDING_CULTURE_TEAM: TeamMember[] = [
     role: "Co-founder & real estate",
     tagline: "Physical assets, development, and the Building Culture property portfolio.",
     bio: "Reinhard has been active in real estate development in Vienna and in holiday regions of Austria since 1997. Since 2013, his own company has implemented projects with total investment costs of €1.3 billion. These projects include new construction, comprehensive renovations, and conversions — primarily residential, with offices, retail, and data centers.",
-    links: [{ label: "Building Culture profile", href: "https://app.buildingcultureid.space/team" }],
+    links: [
+      { label: "Building Culture profile", href: "https://app.buildingcultureid.space/team" },
+    ],
   },
   {
     name: "Roman Horvath",
     role: "Accountant",
     tagline: "Financial reporting and compliance-oriented bookkeeping for the venture.",
     bio: "Financial reporting and compliance-oriented bookkeeping for Building Culture and Aethelred — keeping capital flows, asset records, and investor reporting audit-ready.",
-    links: [{ label: "Building Culture profile", href: "https://app.buildingcultureid.space/team" }],
+    links: [
+      { label: "Building Culture profile", href: "https://app.buildingcultureid.space/team" },
+    ],
   },
 ];
 

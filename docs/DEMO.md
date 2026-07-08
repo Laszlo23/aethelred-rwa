@@ -86,9 +86,9 @@ _If purchase fails on devnet, show portfolio with a pre-funded demo wallet._
 
 ## Troubleshooting
 
-| Issue | Fix |
-|-------|-----|
-| “Connecting to Solana…” hangs | Refresh; check devnet RPC |
-| Purchase blocked | Complete KYC first |
-| No USDC | Fund devnet wallet or use setup scripts |
-| Admin 403 | Check `DEPLOY_ADMIN_SECRET` in server env |
+| Issue                         | Fix                                       |
+| ----------------------------- | ----------------------------------------- |
+| “Connecting to Solana…” hangs | Refresh; check devnet RPC                 |
+| Purchase blocked              | Complete KYC first                        |
+| No USDC                       | Fund devnet wallet or use setup scripts   |
+| Admin 403                     | Check `DEPLOY_ADMIN_SECRET` in server env |

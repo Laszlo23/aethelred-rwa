@@ -173,8 +173,7 @@ function parseTaskConfig(raw: string | null | undefined): {
       actionUrl: typeof parsed.actionUrl === "string" ? parsed.actionUrl : undefined,
       intentUrl: typeof parsed.intentUrl === "string" ? parsed.intentUrl : undefined,
       actionLabel: typeof parsed.actionLabel === "string" ? parsed.actionLabel : undefined,
-      requiresProof:
-        typeof parsed.requiresProof === "boolean" ? parsed.requiresProof : undefined,
+      requiresProof: typeof parsed.requiresProof === "boolean" ? parsed.requiresProof : undefined,
       proofHint: typeof parsed.proofHint === "string" ? parsed.proofHint : undefined,
       flowVersion: typeof parsed.flowVersion === "number" ? parsed.flowVersion : undefined,
     };

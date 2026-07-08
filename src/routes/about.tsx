@@ -41,12 +41,20 @@ const ROADMAP = [
   {
     quarter: "Q4 2026",
     title: "Mainnet pilot",
-    items: ["Postgres production DB", "Squads multisig upgrades", "Regulated KYC partner integration"],
+    items: [
+      "Postgres production DB",
+      "Squads multisig upgrades",
+      "Regulated KYC partner integration",
+    ],
   },
   {
     quarter: "Q1 2027",
     title: "Institutional readiness",
-    items: ["Vault SPL custody", "Token-2022 compliance hooks", "Real DeFi integrations or demo removal"],
+    items: [
+      "Vault SPL custody",
+      "Token-2022 compliance hooks",
+      "Real DeFi integrations or demo removal",
+    ],
   },
 ] as const;
 
@@ -119,8 +127,8 @@ function AboutPage() {
           ))}
         </div>
         <p className="mt-4 text-xs text-muted-foreground">
-          Reference yield band {BC_REFERENCE_YIELD_BAND} · Chain: {metrics?.chain ?? "Solana devnet"} ·{" "}
-          {metrics?.ledgerEntries ?? 0} ledger entries
+          Reference yield band {BC_REFERENCE_YIELD_BAND} · Chain:{" "}
+          {metrics?.chain ?? "Solana devnet"} · {metrics?.ledgerEntries ?? 0} ledger entries
         </p>
       </section>
 
@@ -179,7 +187,10 @@ function AboutPage() {
         <p className="eyebrow mb-8">Roadmap</p>
         <div className="grid gap-6 md:grid-cols-3">
           {ROADMAP.map((phase) => (
-            <article key={phase.quarter} className="rounded-2xl border border-border bg-surface p-6">
+            <article
+              key={phase.quarter}
+              className="rounded-2xl border border-border bg-surface p-6"
+            >
               <p className="text-xs font-semibold uppercase tracking-widest text-accent">
                 {phase.quarter}
               </p>

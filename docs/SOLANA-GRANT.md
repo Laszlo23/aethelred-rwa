@@ -2,18 +2,18 @@
 
 **One-page summary for ecosystem grant reviewers**
 
-| Field | Value |
-|-------|-------|
-| **Project** | Aethelred RWA |
-| **Organization** | Building Culture LLC |
-| **Applicant** | Laszlo Bihary (Building Culture LLC) |
-| **Live demo** | https://rwa.buildingcultureid.space |
-| **About page** | https://rwa.buildingcultureid.space/about |
-| **Repository** | https://github.com/Laszlo23/aethelred-rwa |
-| **License** | MIT |
-| **Chain** | Solana devnet (mainnet pilot Q4 2026) |
-| **Requested amount** | $75,000 – $150,000 USDC |
-| **Timeline** | 12 months |
+| Field                | Value                                     |
+| -------------------- | ----------------------------------------- |
+| **Project**          | Aethelred RWA                             |
+| **Organization**     | Building Culture LLC                      |
+| **Applicant**        | Laszlo Bihary (Building Culture LLC)      |
+| **Live demo**        | https://rwa.buildingcultureid.space       |
+| **About page**       | https://rwa.buildingcultureid.space/about |
+| **Repository**       | https://github.com/Laszlo23/aethelred-rwa |
+| **License**          | MIT                                       |
+| **Chain**            | Solana devnet (mainnet pilot Q4 2026)     |
+| **Requested amount** | $75,000 – $150,000 USDC                   |
+| **Timeline**         | 12 months                                 |
 
 ---
 
@@ -35,14 +35,14 @@ We are applying for Solana Foundation support to complete a **third-party securi
 
 ## Solution (what we built)
 
-| Component | Description |
-|-----------|-------------|
+| Component             | Description                                                       |
+| --------------------- | ----------------------------------------------------------------- |
 | **6 Anchor programs** | passport, registry, names, vault, euro, rewards — devnet deployed |
-| **Primary market** | KYC-gated USDC → SPL share settlement with tx dedup |
-| **Guardian** | Continuous attestation pipeline + trust scoring |
-| **Issuer tools** | NL asset creation wizard, doc upload, audit jobs |
-| **Transparency** | Fund ledger, debt panels, oracle snapshots |
-| **Community** | 17 tasks, BCT rewards, governance (DB) |
+| **Primary market**    | KYC-gated USDC → SPL share settlement with tx dedup               |
+| **Guardian**          | Continuous attestation pipeline + trust scoring                   |
+| **Issuer tools**      | NL asset creation wizard, doc upload, audit jobs                  |
+| **Transparency**      | Fund ledger, debt panels, oracle snapshots                        |
+| **Community**         | 17 tasks, BCT rewards, governance (DB)                            |
 
 **Cross-ecosystem:** Properties link to Building Culture Places on Base; Solana is the investor settlement layer.
 
@@ -50,15 +50,15 @@ We are applying for Solana Foundation support to complete a **third-party securi
 
 ## Traction
 
-| Metric | Value |
-|--------|-------|
-| Live production URL | rwa.buildingcultureid.space |
-| Curated assets | 13 properties |
-| Portfolio NAV | ~€50M+ (seed portfolio) |
-| Anchor programs | 6 on devnet |
-| Open source | MIT, GitHub, CI passing |
-| KYC flow | End-to-end (7/7 automated tests) |
-| Security | Self-audit v1 + remediation tracker |
+| Metric              | Value                               |
+| ------------------- | ----------------------------------- |
+| Live production URL | rwa.buildingcultureid.space         |
+| Curated assets      | 13 properties                       |
+| Portfolio NAV       | ~€50M+ (seed portfolio)             |
+| Anchor programs     | 6 on devnet                         |
+| Open source         | MIT, GitHub, CI passing             |
+| KYC flow            | End-to-end (7/7 automated tests)    |
+| Security            | Self-audit v1 + remediation tracker |
 
 ---
 
@@ -118,13 +118,13 @@ Contact: laszlo.bihary@gmail.com · GitHub issues on [aethelred-rwa](https://git
 
 We label demo modules clearly:
 
-| Module | Status |
-|--------|--------|
-| Primary sale + KYC | **Production (devnet)** |
-| Asset passports + registry | **Production (devnet)** |
-| Perp markets UI | Demo (synthetic order book) |
-| Kamino lending | Stub |
-| EURO / BCT claim | CPI in progress |
+| Module                     | Status                      |
+| -------------------------- | --------------------------- |
+| Primary sale + KYC         | **Production (devnet)**     |
+| Asset passports + registry | **Production (devnet)**     |
+| Perp markets UI            | Demo (synthetic order book) |
+| Kamino lending             | Stub                        |
+| EURO / BCT claim           | CPI in progress             |
 
 Grant funds accelerate **real** paths, not demo polish.
 
@@ -156,4 +156,4 @@ Grant funds accelerate **real** paths, not demo polish.
 
 ---
 
-*Prepared July 2026 — Aethelred by Building Culture LLC*
+_Prepared July 2026 — Aethelred by Building Culture LLC_

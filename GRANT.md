@@ -32,14 +32,14 @@ Cross-ecosystem: properties reference Building Culture Places on Base; Solana is
 
 ## 3. Traction (POC)
 
-| Metric | Value |
-|--------|-------|
-| Live deployment | rwa.buildingcultureid.space |
-| Curated assets | 13 Building Culture properties |
-| Anchor programs | 6 deployed on devnet |
-| Community tasks | 17 |
-| KYC flow | End-to-end (submit → admin → purchase gate) |
-| Security doc | Self-audit v1 with remediation tracker |
+| Metric          | Value                                          |
+| --------------- | ---------------------------------------------- |
+| Live deployment | rwa.buildingcultureid.space                    |
+| Curated assets  | 13 Building Culture properties                 |
+| Anchor programs | 6 deployed on devnet                           |
+| Community tasks | 17                                             |
+| KYC flow        | End-to-end (submit → admin → purchase gate)    |
+| Security doc    | Self-audit v1 with remediation tracker         |
 | Automated tests | KYC 7/7; E2E purchase matrix (chain-dependent) |
 
 ---
@@ -79,26 +79,26 @@ Honest labeling is a core grant commitment — see [docs/ARCHITECTURE.md](docs/A
 
 ## 6. Roadmap (12 months)
 
-| Quarter | Milestone |
-|---------|-----------|
-| Q3 2026 | Third-party audit (purchase flow + passport + registry) |
-| Q3 2026 | Complete EURO/BCT transaction builders; wire names on-chain |
+| Quarter | Milestone                                                    |
+| ------- | ------------------------------------------------------------ |
+| Q3 2026 | Third-party audit (purchase flow + passport + registry)      |
+| Q3 2026 | Complete EURO/BCT transaction builders; wire names on-chain  |
 | Q4 2026 | Postgres production DB; Squads multisig for program upgrades |
-| Q4 2026 | Mainnet pilot — 1–2 assets, regulated KYC partner |
-| Q1 2027 | Real Kamino/Drift integrations or remove demo modules |
-| Q1 2027 | Vault SPL custody; Token-2022 transfer hooks for compliance |
+| Q4 2026 | Mainnet pilot — 1–2 assets, regulated KYC partner            |
+| Q1 2027 | Real Kamino/Drift integrations or remove demo modules        |
+| Q1 2027 | Vault SPL custody; Token-2022 transfer hooks for compliance  |
 
 ---
 
 ## 7. Budget request (template)
 
-| Item | Est. | Purpose |
-|------|------|---------|
-| Security audit | $40–80k | External firm, 6 programs + purchase flow |
-| Mainnet deploy + ops | $15k | RPC, infra, multisig, monitoring |
-| Compliance review | $20k | KYC vendor integration, legal opinion |
-| Engineering | $60k | CPI completion, Postgres, indexer, CI |
-| **Total** | **~$135–175k** | 12-month milestone delivery |
+| Item                 | Est.           | Purpose                                   |
+| -------------------- | -------------- | ----------------------------------------- |
+| Security audit       | $40–80k        | External firm, 6 programs + purchase flow |
+| Mainnet deploy + ops | $15k           | RPC, infra, multisig, monitoring          |
+| Compliance review    | $20k           | KYC vendor integration, legal opinion     |
+| Engineering          | $60k           | CPI completion, Postgres, indexer, CI     |
+| **Total**            | **~$135–175k** | 12-month milestone delivery               |
 
 _Adjust figures per grant program requirements._
 

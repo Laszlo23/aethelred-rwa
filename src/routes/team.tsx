@@ -1,9 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import {
-  BC_TEAM_SOURCE_URL,
-  BUILDING_CULTURE_TEAM,
-} from "@/lib/data/building-culture-team";
+import { BC_TEAM_SOURCE_URL, BUILDING_CULTURE_TEAM } from "@/lib/data/building-culture-team";
 import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/team")({
@@ -66,7 +63,9 @@ function TeamPage() {
                 <p className="mt-1 text-sm font-medium text-accent">{member.role}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{member.tagline}</p>
               </div>
-              <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">{member.bio}</p>
+              <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                {member.bio}
+              </p>
               {member.links && member.links.length > 0 && (
                 <div className="flex flex-wrap gap-3 pt-1">
                   {member.links.map((link) => (

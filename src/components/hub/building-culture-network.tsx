@@ -13,9 +13,7 @@ export function BuildingCultureNetwork({ assets }: BuildingCultureNetworkProps) 
   const { data: metrics } = usePublicMetrics();
   const { data: proposals = [] } = useProposals();
 
-  const upcomingAssets = assets
-    .filter((a) => !BC_FEATURED_SLUGS.includes(a.slug))
-    .slice(0, 2);
+  const upcomingAssets = assets.filter((a) => !BC_FEATURED_SLUGS.includes(a.slug)).slice(0, 2);
 
   return (
     <section className="border-t border-border">
@@ -23,8 +21,7 @@ export function BuildingCultureNetwork({ assets }: BuildingCultureNetworkProps) 
         <div className="mb-12 max-w-2xl">
           <p className="eyebrow">Building Culture Network</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Community-owned{" "}
-            <span className="text-editorial text-accent">real assets.</span>
+            Community-owned <span className="text-editorial text-accent">real assets.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             We are building the world&apos;s largest community-owned real asset network.

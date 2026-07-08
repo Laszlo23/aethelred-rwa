@@ -89,14 +89,14 @@
 
 ## Timing cheat sheet
 
-| Segment | Duration | URL |
-|---------|----------|-----|
-| Hook | 15s | `/` |
-| Asset detail | 30s | `/explore` → asset |
-| KYC / buy | 30s | `/profile` or Invest |
-| About / metrics | 25s | `/about` |
-| Close | 15s | GitHub or `/about` |
-| **Total** | **~2:05** | |
+| Segment         | Duration  | URL                  |
+| --------------- | --------- | -------------------- |
+| Hook            | 15s       | `/`                  |
+| Asset detail    | 30s       | `/explore` → asset   |
+| KYC / buy       | 30s       | `/profile` or Invest |
+| About / metrics | 25s       | `/about`             |
+| Close           | 15s       | GitHub or `/about`   |
+| **Total**       | **~2:05** |                      |
 
 ---
 

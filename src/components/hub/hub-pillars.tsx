@@ -47,12 +47,11 @@ export function HubPillars() {
         <div className="mb-12 max-w-2xl">
           <p className="eyebrow">One ecosystem</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Discover. Verify. Own.{" "}
-            <span className="text-editorial text-accent">Participate.</span>
+            Discover. Verify. Own. <span className="text-editorial text-accent">Participate.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Aethelred Hub connects real assets, Guardian verification, community capital, and
-            yield — in one place anyone can understand.
+            Aethelred Hub connects real assets, Guardian verification, community capital, and yield
+            — in one place anyone can understand.
           </p>
         </div>
 

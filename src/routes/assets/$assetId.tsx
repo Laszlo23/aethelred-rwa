@@ -113,9 +113,7 @@ function AssetDetailPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-12 lg:py-20">
-      {fromHub && (
-        <FunnelProgress currentStep={4} label="Step 4 — Asset passport" />
-      )}
+      {fromHub && <FunnelProgress currentStep={4} label="Step 4 — Asset passport" />}
 
       <Link
         to="/explore"

@@ -129,12 +129,7 @@
 }
 
 @utility gold-hairline {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    oklch(0.78 0.13 78 / 0.4),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, oklch(0.78 0.13 78 / 0.4), transparent);
 }
 
 @utility text-gold-gradient {
@@ -188,26 +183,56 @@
 }
 
 @keyframes guardian-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.55; transform: scale(1.08); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes scan-line {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.animate-guardian { animation: guardian-pulse 2.6s ease-in-out infinite; }
-.animate-float-slow { animation: float-slow 7s cubic-bezier(0.4,0,0.2,1) infinite; }
-.animate-scan { animation: scan-line 2.2s ease-in-out infinite; }
-.animate-fade-up { animation: fade-up 0.7s cubic-bezier(0.19,1,0.22,1) both; }
+.animate-guardian {
+  animation: guardian-pulse 2.6s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float-slow 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.animate-scan {
+  animation: scan-line 2.2s ease-in-out infinite;
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
+}

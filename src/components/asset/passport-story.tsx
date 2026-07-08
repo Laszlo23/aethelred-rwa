@@ -1,13 +1,6 @@
 import type { AssetDetailDTO } from "@/lib/types";
 import { formatEuro } from "@/lib/format";
-import {
-  BadgeCheck,
-  Coins,
-  Gift,
-  LineChart,
-  ShieldCheck,
-  Wallet,
-} from "lucide-react";
+import { BadgeCheck, Coins, Gift, LineChart, ShieldCheck, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface PassportStoryProps {

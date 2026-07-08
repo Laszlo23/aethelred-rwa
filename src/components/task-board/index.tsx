@@ -77,7 +77,9 @@ function TaskCard({
       <h3 className="mt-4 text-base font-semibold leading-snug">{task.title}</h3>
       <p className="mt-2 flex-1 text-sm text-muted-foreground">{task.description}</p>
       {inProgress && quick && (
-        <p className="mt-3 text-xs font-medium text-verified">Step 2: confirm on X, then claim below</p>
+        <p className="mt-3 text-xs font-medium text-verified">
+          Step 2: confirm on X, then claim below
+        </p>
       )}
       <div className="mt-6 flex items-center justify-between gap-3">
         <span className="text-xs text-muted-foreground">⚡ {task.timeEstimate}</span>
@@ -139,7 +141,9 @@ function SocialDoneSheet({
             𝕏
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-verified">Almost done</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-verified">
+              Almost done
+            </p>
             <h3 className="text-lg font-semibold">{enriched.label}</h3>
           </div>
         </div>
@@ -339,7 +343,8 @@ export function TaskBoard() {
             </p>
             <h2 className="text-2xl font-semibold tracking-tight">Follow @buildingcultu3 on X</h2>
             <p className="text-sm text-muted-foreground">
-              One tap opens X with the follow screen ready. Confirm, claim points — no links to paste.
+              One tap opens X with the follow screen ready. Confirm, claim points — no links to
+              paste.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
