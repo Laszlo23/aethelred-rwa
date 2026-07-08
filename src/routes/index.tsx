@@ -1,17 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Plus, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { HubPillars } from "@/components/hub/hub-pillars";
+import { BuildingCultureNetwork } from "@/components/hub/building-culture-network";
 import { SimplePassportCard } from "@/components/simple-passport-card";
 import { HeroPassportCard } from "@/components/hero-passport-card";
 import { HeroVideoBackground } from "@/components/hero-video-background";
 import { HowItWorksSection } from "@/components/how-it-works";
 import { GuardianSpotlight } from "@/components/guardian-spotlight";
-import { InvestorValueSection } from "@/components/investor-value-section";
 import { ActionLink } from "@/components/action-link";
 import { AssetCard } from "@/components/asset-card";
 import { useAssets } from "@/hooks/use-api";
 import { listAssets } from "@/api/assets";
 import { BC_FEATURED_SLUGS } from "@/lib/data/seed-building-culture";
 import { pageSeo } from "@/lib/seo";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context: { queryClient } }) => {
@@ -22,15 +24,15 @@ export const Route = createFileRoute("/")({
   },
   head: () =>
     pageSeo({
-      title: "Real Assets. Verified. Accessible.",
+      title: "Own a piece of the real world",
       description:
-        "Turn real-world assets into trusted digital value. Verify ownership, see debt clearly, and unlock Euro-backed liquidity on Solana.",
+        "Discover verified buildings, land, water, and real assets. Everything backed by transparent collateral and Guardian verification.",
       path: "/",
     }),
-  component: LandingPage,
+  component: HubPage,
 });
 
-function LandingPage() {
+function HubPage() {
   const { data: assets = [] } = useAssets();
   const heroAsset = assets.find((a) => a.slug === "berggasse-35") ?? assets[0];
   const featuredProperties = BC_FEATURED_SLUGS.map((slug) =>
@@ -39,30 +41,31 @@ function LandingPage() {
 
   return (
     <>
-      {/* Hero */}
       <section className="relative isolate min-h-[calc(100svh-4rem)] overflow-hidden">
         <HeroVideoBackground />
         <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:py-28">
           <div className="animate-fade-up space-y-8 lg:space-y-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/60 backdrop-blur-sm">
-              RWA
+              Aethelred Hub
             </span>
 
             <h1 className="text-5xl font-semibold leading-[1.02] tracking-tight text-balance text-white md:text-6xl lg:text-7xl">
-              Real Assets. <span className="text-gold-gradient">Verified.</span> Accessible.
+              Own a piece of the{" "}
+              <span className="text-gold-gradient">real world.</span>
             </h1>
 
             <p className="max-w-lg text-lg leading-relaxed text-white/65">
-              Turn bricks into blocks. Every Euro backed by real collateral.
+              Discover verified buildings, land, water, and real assets. Everything backed by
+              transparent collateral and Guardian verification.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <ActionLink to="/create" icon={Plus} variant="hero-primary">
-                Create Asset
+              <ActionLink to="/choose" icon={ArrowRight} variant="hero-primary">
+                Explore Real Assets
               </ActionLink>
-              <ActionLink to="/explore" icon={ArrowRight} variant="hero-secondary">
-                Explore Assets
-              </ActionLink>
+              <a href="#how-it-works" className="btn-hero-secondary inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold">
+                How it Works
+              </a>
             </div>
           </div>
 
@@ -80,26 +83,25 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Why this platform */}
-      <InvestorValueSection />
+      <HubPillars />
 
-      {/* Featured properties */}
       {featuredProperties.length > 0 && (
         <section className="border-t border-border">
-          <div className="mx-auto max-w-7xl px-6 py-28 lg:py-32">
+          <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28">
             <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="eyebrow">Building Culture</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                  City · Land · Water —{" "}
-                  <span className="text-editorial text-accent">on Solana.</span>
+                  Featured real assets —{" "}
+                  <span className="text-editorial text-accent">verified on-chain.</span>
                 </h2>
               </div>
               <Link
                 to="/explore"
+                search={{ from: "hub" }}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
               >
-                View collection
+                View all assets
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -112,14 +114,14 @@ function LandingPage() {
         </section>
       )}
 
-      {/* How it works */}
-      <section className="border-t border-border">
+      <BuildingCultureNetwork assets={assets} />
+
+      <section id="how-it-works" className="border-t border-border scroll-mt-20">
         <div className="mx-auto max-w-7xl px-6 py-28 lg:py-32">
           <HowItWorksSection />
         </div>
       </section>
 
-      {/* Passport explainer */}
       <section className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-28 lg:py-32">
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
@@ -147,23 +149,24 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Guardian */}
       <section className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-28 lg:py-32">
           <GuardianSpotlight />
         </div>
       </section>
 
-      {/* Closing CTA */}
       <section className="border-t border-border">
         <div className="mx-auto max-w-3xl px-6 py-32 text-center">
           <p className="text-2xl leading-relaxed tracking-tight md:text-3xl">
-            A simple way to turn real assets into{" "}
-            <span className="text-editorial text-accent">trusted digital value.</span>
+            <span className="text-editorial text-accent">Discover</span> → Verify → Own →
+            Participate
           </p>
-          <div className="mt-10">
-            <ActionLink to="/create" icon={Plus}>
-              Create Asset
+          <p className="mt-4 text-muted-foreground">
+            One place where anyone can discover, understand, verify, and own real-world assets.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <ActionLink to="/choose" icon={ArrowRight} variant="hero-primary">
+              Explore Real Assets
             </ActionLink>
           </div>
         </div>

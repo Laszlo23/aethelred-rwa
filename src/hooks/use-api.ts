@@ -13,6 +13,7 @@ import {
 } from "@/api/guardian";
 import { listTasks, startTask, submitTaskProof, claimTaskReward } from "@/api/tasks";
 import { listProposals, voteProposal } from "@/api/governance";
+import { getPublicMetrics } from "@/api/metrics";
 import { listLendingPositions, createLendingPosition, repayLendingPosition } from "@/api/lending";
 import { listDistributions, getHolderPayouts } from "@/api/distributions";
 import { getWalletHoldings, purchaseShares } from "@/api/shares";
@@ -156,6 +157,14 @@ export function useProposals() {
   return useQuery({
     queryKey: ["proposals"],
     queryFn: () => listProposals(),
+  });
+}
+
+export function usePublicMetrics() {
+  return useQuery({
+    queryKey: ["public-metrics"],
+    queryFn: () => getPublicMetrics(),
+    staleTime: 60_000,
   });
 }
 

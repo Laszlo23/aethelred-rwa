@@ -137,6 +137,8 @@ Grant funds accelerate **real** paths, not demo polish.
 - [Architecture](https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/ARCHITECTURE.md)
 - [Security audit v1](https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/security-audit-v1.md)
 - [5-min demo script](https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/DEMO.md)
+- [Form answers (copy-paste)](https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT-FORM.md)
+- [2-min Loom script](https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/LOOM-SCRIPT.md)
 - [CI status](https://github.com/Laszlo23/aethelred-rwa/actions)
 
 ---

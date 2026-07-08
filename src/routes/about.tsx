@@ -232,14 +232,24 @@ function AboutPage() {
           <p className="mt-2 text-sm text-muted-foreground">
             Open-source MIT repo, passing CI, live demo, and grant application package on GitHub.
           </p>
-          <a
-            href="https://github.com/Laszlo23/aethelred-rwa/blob/main/GRANT.md"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
-          >
-            Grant package <ExternalLink className="h-3.5 w-3.5" />
-          </a>
+          <div className="mt-4 flex flex-col gap-2">
+            <a
+              href="https://github.com/Laszlo23/aethelred-rwa/blob/main/docs/SOLANA-GRANT-FORM.md"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
+            >
+              Grant form answers <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            <a
+              href="https://github.com/Laszlo23/aethelred-rwa/blob/main/GRANT.md"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-accent hover:underline"
+            >
+              Full grant package <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </div>
       </section>
 
